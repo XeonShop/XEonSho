@@ -300,7 +300,7 @@ header{
     display:grid;
 
     grid-template-columns:
-        repeat(4,1fr);
+        repeat(2,1fr);
 
     gap:18px;
 }
@@ -814,7 +814,7 @@ footer span{
 
 
     <h1>
-        ร้านค้าเกม
+        ร้านค้า Roblox และ PES
         <span>ครบจบในที่เดียว</span>
     </h1>
 
@@ -880,99 +880,22 @@ footer span{
 
 <div class="cards">
 
-
     <div class="card">
-
-        <div class="icon">
-            🛍
-        </div>
-
-        <h3>
-            ITEMSHOP
-        </h3>
-
-        <p>
-            สั่งซื้อสินค้าเกม
-        </p>
-
-        <a href="#products">
-            ดูสินค้า
-        </a>
-
+        <div class="icon">R$</div>
+        <h3>ROBLOX</h3>
+        <p>เติม Robux สำหรับ Roblox</p>
+        <a href="#products">ดูสินค้า</a>
     </div>
 
-
-
     <div class="card">
-
-        <div class="icon">
-            R$
-        </div>
-
-        <h3>
-            ROBUX
-        </h3>
-
-        <p>
-            เติม Robux
-        </p>
-
-        <a href="#products">
-            ดูสินค้า
-        </a>
-
+        <div class="icon">PES</div>
+        <h3>PES</h3>
+        <p>สินค้าและบริการเกม PES</p>
+        <a href="#products">ดูสินค้า</a>
     </div>
-
-
-
-    <div class="card">
-
-        <div class="icon">
-            ID
-        </div>
-
-        <h3>
-            ID + PASS
-        </h3>
-
-        <p>
-            ไอดีเกมพร้อมใช้งาน
-        </p>
-
-        <a href="#products">
-            ดูสินค้า
-        </a>
-
-    </div>
-
-
-
-    <div class="card">
-
-        <div class="icon">
-            ⚡
-        </div>
-
-        <h3>
-            บริการ
-        </h3>
-
-        <p>
-            บริการเกมต่าง ๆ
-        </p>
-
-        <a href="#products">
-            ดูสินค้า
-        </a>
-
-    </div>
-
 
 </div>
-
 </section>
-
-
 
 <!-- =====================================================
      สินค้า
@@ -986,7 +909,7 @@ footer span{
 <div class="title">
 
     <h2>
-        สินค้าของร้าน
+        สินค้า Roblox และ PES
     </h2>
 
     <span>
@@ -996,230 +919,53 @@ footer span{
 </div>
 
 
-<div
-    class="products"
-    id="productGrid"
->
+<div class="products" id="productGrid">
 
-
-
-<!-- =====================================================
-     ⭐⭐⭐ สินค้า 1 ⭐⭐⭐
-
-     เปลี่ยนรูปตรงนี้
-
-     images/product1.jpg
-
-     เป็นชื่อรูปของนายได้เลย
-===================================================== -->
-
-<div
-    class="product"
-    data-name="Robux"
->
-
-    <div class="product-img">
-
-        <img
-            src="images/product1.jpg"
-            alt="Robux"
-        >
-
-    </div>
-
-
-    <div class="product-info">
-
-        <h3>
-            Robux
-        </h3>
-
-        <p>
-            เติม Robux สำหรับ Roblox
-        </p>
-
-        <div class="price">
-            เริ่มต้น 25 บาท
+    <div class="product" data-name="Roblox Robux Roblox">
+        <div class="product-img">
+            <img src="images/product1.jpg" alt="Roblox">
         </div>
 
+        <div class="product-info">
+            <h3>Roblox</h3>
+            <p>เติม Robux สำหรับ Roblox</p>
+            <div class="price">เริ่มต้น 25 บาท</div>
 
-        <!-- ⭐ ปุ่มดูรายละเอียด -->
-
-        <button
-            class="detail-button"
-            onclick="openDetail(
-                'Robux',
-                'images/product1.jpg',
-                'เติม Robux สำหรับ Roblox ราคาเริ่มต้น 25 บาท'
-            )"
-        >
-            ดูรายละเอียดสินค้า
-        </button>
-
+            <button class="detail-button"
+                onclick="openDetail(
+                    'Roblox',
+                    'images/product1.jpg',
+                    'เติม Robux สำหรับ Roblox ราคาเริ่มต้น 25 บาท'
+                )">
+                ดูรายละเอียดสินค้า
+            </button>
+        </div>
     </div>
 
-</div>
-
-
-
-<!-- =====================================================
-     ⭐⭐⭐ สินค้า 2 ⭐⭐⭐
-===================================================== -->
-
-<div
-    class="product"
-    data-name="Game Pass"
->
-
-    <div class="product-img">
-
-        <img
-            src="images/product2.jpg"
-            alt="Game Pass"
-        >
-
-    </div>
-
-
-    <div class="product-info">
-
-        <h3>
-            Game Pass
-        </h3>
-
-        <p>
-            บริการซื้อ Game Pass
-        </p>
-
-        <div class="price">
-            สอบถามราคา
+    <div class="product" data-name="PES eFootball">
+        <div class="product-img">
+            <img src="images/product2.jpg" alt="PES">
         </div>
 
+        <div class="product-info">
+            <h3>PES</h3>
+            <p>สินค้าและบริการสำหรับเกม PES</p>
+            <div class="price">สอบถามราคา</div>
 
-        <button
-            class="detail-button"
-            onclick="openDetail(
-                'Game Pass',
-                'images/product2.jpg',
-                'บริการซื้อ Game Pass สามารถสอบถามรายละเอียดกับร้านได้'
-            )"
-        >
-            ดูรายละเอียดสินค้า
-        </button>
-
-    </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     ⭐⭐⭐ สินค้า 3 ⭐⭐⭐
-===================================================== -->
-
-<div
-    class="product"
-    data-name="ID PASS"
->
-
-    <div class="product-img">
-
-        <img
-            src="images/product3.jpg"
-            alt="ID PASS"
-        >
-
-    </div>
-
-
-    <div class="product-info">
-
-        <h3>
-            ID + PASS
-        </h3>
-
-        <p>
-            ไอดีเกมพร้อมใช้งาน
-        </p>
-
-        <div class="price">
-            สอบถามราคา
+            <button class="detail-button"
+                onclick="openDetail(
+                    'PES',
+                    'images/product2.jpg',
+                    'สินค้าและบริการสำหรับเกม PES สามารถสอบถามรายละเอียดและราคากับร้านได้'
+                )">
+                ดูรายละเอียดสินค้า
+            </button>
         </div>
-
-
-        <button
-            class="detail-button"
-            onclick="openDetail(
-                'ID + PASS',
-                'images/product3.jpg',
-                'ไอดีเกมพร้อมใช้งาน สอบถามรายละเอียดและราคากับร้าน'
-            )"
-        >
-            ดูรายละเอียดสินค้า
-        </button>
-
     </div>
-
-</div>
-
-
-
-<!-- =====================================================
-     ⭐⭐⭐ สินค้า 4 ⭐⭐⭐
-===================================================== -->
-
-<div
-    class="product"
-    data-name="เติมเกม"
->
-
-    <div class="product-img">
-
-        <img
-            src="images/product4.jpg"
-            alt="เติมเกม"
-        >
-
-    </div>
-
-
-    <div class="product-info">
-
-        <h3>
-            เติมเกม
-        </h3>
-
-        <p>
-            บริการเติมเกมต่าง ๆ
-        </p>
-
-        <div class="price">
-            สอบถามราคา
-        </div>
-
-
-        <button
-            class="detail-button"
-            onclick="openDetail(
-                'เติมเกม',
-                'images/product4.jpg',
-                'บริการเติมเกมต่าง ๆ สอบถามรายละเอียดกับร้าน'
-            )"
-        >
-            ดูรายละเอียดสินค้า
-        </button>
-
-    </div>
-
-</div>
-
-
 
 </div>
 
 </section>
-
-
 
 <!-- =====================================================
      POPUP รายละเอียดสินค้า
