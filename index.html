@@ -679,6 +679,129 @@ footer span{
     color:#ffe000;
 }
 
+
+/* ================= GAME PAGES ================= */
+.game-page{
+    display:none;
+    width:1100px;
+    max-width:94%;
+    margin:40px auto 70px;
+}
+
+.game-page.active{
+    display:block;
+}
+
+.game-page-header{
+    display:flex;
+    justify-content:space-between;
+    align-items:center;
+    gap:15px;
+    margin-bottom:22px;
+    flex-wrap:wrap;
+}
+
+.game-page-header h2{
+    font-size:32px;
+}
+
+.game-page-header h2 span{
+    color:#28c8ff;
+}
+
+.back-button{
+    border:1px solid #28c8ff;
+    background:#111;
+    color:#28c8ff;
+    padding:10px 18px;
+    border-radius:8px;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.back-button:hover{
+    background:#28c8ff;
+    color:#001018;
+}
+
+.id-grid{
+    display:grid;
+    grid-template-columns:repeat(3,1fr);
+    gap:18px;
+}
+
+.id-card{
+    background:linear-gradient(180deg,#111,#070707);
+    border:1px solid #333;
+    border-radius:14px;
+    padding:18px;
+    transition:.2s;
+}
+
+.id-card:hover{
+    transform:translateY(-4px);
+    border-color:#ffe000;
+}
+
+.id-card .id-image{
+    width:100%;
+    height:150px;
+    background:#080b0f;
+    border-radius:10px;
+    overflow:hidden;
+    margin-bottom:14px;
+}
+
+.id-card .id-image img{
+    width:100%;
+    height:100%;
+    object-fit:cover;
+}
+
+.id-card h3{
+    font-size:20px;
+    margin-bottom:6px;
+}
+
+.id-card p{
+    color:#999;
+    line-height:1.6;
+}
+
+.id-card .id-price{
+    color:#ffe000;
+    font-weight:bold;
+    margin-top:8px;
+}
+
+.id-card button{
+    width:100%;
+    margin-top:12px;
+    padding:10px;
+    border:0;
+    border-radius:7px;
+    background:#28c8ff;
+    color:#001018;
+    font-weight:bold;
+    cursor:pointer;
+}
+
+.id-card button:hover{
+    background:#ffe000;
+}
+
+@media(max-width:900px){
+    .id-grid{
+        grid-template-columns:repeat(2,1fr);
+    }
+}
+
+@media(max-width:600px){
+    .id-grid{
+        grid-template-columns:1fr;
+    }
+}
+
 /* ================= MOBILE ================= */
 
 @media(max-width:900px){
@@ -883,15 +1006,15 @@ footer span{
     <div class="card">
         <div class="icon">R$</div>
         <h3>ROBLOX</h3>
-        <p>เติม Robux สำหรับ Roblox</p>
-        <a href="#products">ดูสินค้า</a>
+        <p>สินค้า Roblox</p>
+        <a href="javascript:void(0)" onclick="showGamePage('robloxPage')">ดูสินค้า</a>
     </div>
 
     <div class="card">
         <div class="icon">PES</div>
         <h3>PES</h3>
         <p>สินค้าและบริการเกม PES</p>
-        <a href="#products">ดูสินค้า</a>
+        <a href="javascript:void(0)" onclick="showGamePage('pesPage')">ดูสินค้า</a>
     </div>
 
 </div>
@@ -928,14 +1051,14 @@ footer span{
 
         <div class="product-info">
             <h3>Roblox</h3>
-            <p>เติม Robux สำหรับ Roblox</p>
+            <p>สินค้า Roblox</p>
             <div class="price">เริ่มต้น 25 บาท</div>
 
             <button class="detail-button"
                 onclick="openDetail(
                     'Roblox',
                     'images/product1.jpg',
-                    'เติม Robux สำหรับ Roblox ราคาเริ่มต้น 25 บาท'
+                    'สินค้า Roblox ราคาเริ่มต้น 25 บาท'
                 )">
                 ดูรายละเอียดสินค้า
             </button>
@@ -1222,6 +1345,127 @@ footer span{
 
 
 
+
+<!-- =====================================================
+     ROBLOX PAGE
+===================================================== -->
+<section class="game-page" id="robloxPage">
+    <div class="game-page-header">
+        <h2>ROBLOX <span>ไอดี</span></h2>
+        <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
+    </div>
+
+    <div class="id-grid">
+        <div class="id-card">
+            <div class="id-image"><img src="images/roblox-id1.jpg" alt="Roblox ID 1"></div>
+            <h3>Roblox ID #1</h3>
+            <p>ไอดี Roblox พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('Roblox ID #1','images/roblox-id1.jpg','ไอดี Roblox พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/roblox-id2.jpg" alt="Roblox ID 2"></div>
+            <h3>Roblox ID #2</h3>
+            <p>ไอดี Roblox พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('Roblox ID #2','images/roblox-id2.jpg','ไอดี Roblox พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/roblox-id3.jpg" alt="Roblox ID 3"></div>
+            <h3>Roblox ID #3</h3>
+            <p>ไอดี Roblox พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('Roblox ID #3','images/roblox-id3.jpg','ไอดี Roblox พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/roblox-id4.jpg" alt="Roblox ID 4"></div>
+            <h3>Roblox ID #4</h3>
+            <p>ไอดี Roblox พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('Roblox ID #4','images/roblox-id4.jpg','ไอดี Roblox พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/roblox-id5.jpg" alt="Roblox ID 5"></div>
+            <h3>Roblox ID #5</h3>
+            <p>ไอดี Roblox พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('Roblox ID #5','images/roblox-id5.jpg','ไอดี Roblox พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/roblox-id6.jpg" alt="Roblox ID 6"></div>
+            <h3>Roblox ID #6</h3>
+            <p>ไอดี Roblox พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('Roblox ID #6','images/roblox-id6.jpg','ไอดี Roblox พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+    </div>
+</section>
+
+<!-- =====================================================
+     PES PAGE
+===================================================== -->
+<section class="game-page" id="pesPage">
+    <div class="game-page-header">
+        <h2>PES <span>ไอดี</span></h2>
+        <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
+    </div>
+
+    <div class="id-grid">
+        <div class="id-card">
+            <div class="id-image"><img src="images/pes-id1.jpg" alt="PES ID 1"></div>
+            <h3>PES ID #1</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #1','images/pes-id1.jpg','ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/pes-id2.jpg" alt="PES ID 2"></div>
+            <h3>PES ID #2</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #2','images/pes-id2.jpg','ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/pes-id3.jpg" alt="PES ID 3"></div>
+            <h3>PES ID #3</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #3','images/pes-id3.jpg','ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/pes-id4.jpg" alt="PES ID 4"></div>
+            <h3>PES ID #4</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #4','images/pes-id4.jpg','ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/pes-id5.jpg" alt="PES ID 5"></div>
+            <h3>PES ID #5</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #5','images/pes-id5.jpg','ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+
+        <div class="id-card">
+            <div class="id-image"><img src="images/pes-id6.jpg" alt="PES ID 6"></div>
+            <h3>PES ID #6</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #6','images/pes-id6.jpg','ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับร้าน')">ดูรายละเอียด</button>
+        </div>
+    </div>
+</section>
+
 <!-- =====================================================
      FOOTER
 ===================================================== -->
@@ -1388,6 +1632,37 @@ function goProducts(){
 
 }
 
+
+
+function showGamePage(pageId){
+    document.querySelector(".hero").style.display = "none";
+    document.querySelectorAll(".container").forEach(function(el){
+        el.style.display = "none";
+    });
+
+    document.querySelectorAll(".game-page").forEach(function(el){
+        el.classList.remove("active");
+    });
+
+    const page = document.getElementById(pageId);
+    if(page){
+        page.classList.add("active");
+        page.scrollIntoView({behavior:"smooth"});
+    }
+}
+
+function showHome(){
+    document.querySelector(".hero").style.display = "";
+    document.querySelectorAll(".container").forEach(function(el){
+        el.style.display = "";
+    });
+
+    document.querySelectorAll(".game-page").forEach(function(el){
+        el.classList.remove("active");
+    });
+
+    window.scrollTo({top:0, behavior:"smooth"});
+}
 
 /* ================================
    กด ESC เพื่อปิด
