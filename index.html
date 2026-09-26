@@ -1,4 +1,3 @@
-```html
 <!DOCTYPE html>
 <html lang="th">
 <head>
@@ -8,867 +7,1212 @@
 <title>LAVA SHOP</title>
 
 <style>
-@import url('https://fonts.googleapis.com/css2?family=Kanit:wght@400;500;600;700;800&display=swap');
-
-* {
-    margin: 0;
-    padding: 0;
-    box-sizing: border-box;
+*{
+    box-sizing:border-box;
+    margin:0;
+    padding:0;
 }
 
-body {
-    font-family: 'Kanit', sans-serif;
-    background: #050505;
-    color: white;
+body{
+    font-family:Arial, "Tahoma", sans-serif;
+    background:#050505;
+    color:white;
 }
 
 /* ================= HEADER ================= */
 
-header {
-    height: 80px;
-    background: linear-gradient(90deg, #050505, #101010, #050505);
-    border-bottom: 3px solid #ffe000;
-    display: flex;
-    align-items: center;
-    position: sticky;
-    top: 0;
-    z-index: 1000;
+header{
+    height:80px;
+    background:#080808;
+    border-bottom:2px solid #ffe000;
+    position:sticky;
+    top:0;
+    z-index:1000;
 }
 
-.navbar {
-    width: 1150px;
-    max-width: 94%;
-    margin: auto;
-    display: flex;
-    align-items: center;
-    gap: 20px;
+.navbar{
+    width:1150px;
+    max-width:94%;
+    height:100%;
+    margin:auto;
+
+    display:flex;
+    align-items:center;
+    gap:20px;
 }
 
-/* LOGO */
-
-.logo {
-    width: 65px;
-    height: 65px;
-    border-radius: 50%;
-    object-fit: cover;
-    border: 3px solid #ffe000;
-    box-shadow: 0 0 20px rgba(255, 224, 0, .4);
+/* โลโก้ร้าน */
+.logo{
+    width:58px;
+    height:58px;
+    border-radius:50%;
+    object-fit:cover;
+    border:2px solid #ffe000;
 }
 
-.logo-name {
-    font-size: 25px;
-    font-weight: 800;
-    color: #ffe000;
-    margin-right: auto;
+/* ชื่อร้าน */
+.logo-name{
+    font-size:24px;
+    font-weight:bold;
+    color:#ffe000;
+    margin-right:auto;
 }
 
-.logo-name span {
-    color: #29c7ff;
+.logo-name span{
+    color:#28c8ff;
 }
 
-/* SEARCH */
+/* ================= ปุ่มแว่นขยาย ================= */
 
-.search {
-    display: flex;
-    height: 40px;
+.search-button{
+    width:45px;
+    height:45px;
+
+    border:2px solid #28c8ff;
+    border-radius:10px;
+
+    background:#111;
+    color:#28c8ff;
+
+    font-size:22px;
+    cursor:pointer;
 }
 
-.search input {
-    width: 220px;
-    border: none;
-    outline: none;
-    background: #111;
-    color: white;
-    padding: 10px;
-    border-radius: 7px 0 0 7px;
+.search-button:hover{
+    background:#28c8ff;
+    color:#000;
 }
 
-.search button {
-    border: none;
-    background: #ffe000;
-    padding: 0 18px;
-    font-weight: bold;
-    border-radius: 0 7px 7px 0;
-    cursor: pointer;
+/* เมนู */
+.menu{
+    display:flex;
+    gap:5px;
 }
 
-/* MENU */
+.menu button{
+    border:0;
+    background:transparent;
 
-.menu {
-    display: flex;
-    gap: 5px;
+    color:white;
+
+    padding:10px;
+
+    font-size:15px;
+    font-weight:bold;
+
+    cursor:pointer;
 }
 
-.menu button {
-    border: none;
-    background: transparent;
-    color: white;
-    font-size: 15px;
-    font-weight: 600;
-    padding: 10px;
-    cursor: pointer;
+.menu button:hover{
+    color:#ffe000;
 }
 
-.menu button:hover {
-    color: #ffe000;
+/* ================= SEARCH ================= */
+
+.search-box{
+    display:none;
+
+    position:absolute;
+
+    right:3%;
+    top:72px;
+
+    width:320px;
+
+    padding:12px;
+
+    background:#101010;
+
+    border:2px solid #28c8ff;
+    border-radius:12px;
+
+    box-shadow:0 10px 30px #000;
+}
+
+.search-box input{
+    width:100%;
+
+    padding:12px;
+
+    background:#050505;
+
+    border:1px solid #444;
+    border-radius:8px;
+
+    color:white;
+
+    outline:none;
+}
+
+.search-box button{
+    width:100%;
+
+    margin-top:8px;
+
+    padding:10px;
+
+    border:0;
+    border-radius:8px;
+
+    background:#ffe000;
+
+    color:#000;
+
+    font-weight:bold;
+
+    cursor:pointer;
 }
 
 /* ================= HERO ================= */
 
-.hero {
-    width: 1100px;
-    max-width: 94%;
-    min-height: 330px;
-    margin: 40px auto 30px;
+.hero{
+    width:1100px;
+    max-width:94%;
 
-    border: 2px solid #29c7ff;
-    border-radius: 18px;
+    min-height:330px;
 
-    display: flex;
-    align-items: center;
+    margin:35px auto;
+
+    border:2px solid #28c8ff;
+    border-radius:18px;
 
     background:
-        radial-gradient(circle at 80% 30%, #ffe00033, transparent 30%),
-        linear-gradient(120deg, #080808, #111820);
+        radial-gradient(
+            circle at 80% 20%,
+            #ffe00025,
+            transparent 30%
+        ),
+        linear-gradient(
+            120deg,
+            #080808,
+            #111820
+        );
 
-    box-shadow: 0 0 30px rgba(41, 199, 255, .15);
+    display:flex;
+    align-items:center;
 }
 
-.hero-content {
-    padding: 45px;
-    max-width: 750px;
+.hero-content{
+    padding:45px;
 }
 
-.badge {
-    display: inline-block;
-    border: 1px solid #ffe000;
-    color: #ffe000;
-    padding: 5px 15px;
-    border-radius: 30px;
-    margin-bottom: 15px;
+.badge{
+    display:inline-block;
+
+    padding:7px 18px;
+
+    margin-bottom:15px;
+
+    border:1px solid #ffe000;
+
+    border-radius:30px;
+
+    color:#ffe000;
+
+    font-weight:bold;
 }
 
-.hero h1 {
-    font-size: 55px;
-    line-height: 1.1;
-    margin-bottom: 15px;
+.hero h1{
+    font-size:55px;
+    line-height:1.1;
 }
 
-.hero h1 span {
-    color: #ffe000;
+.hero h1 span{
+    color:#ffe000;
 }
 
-.hero p {
-    color: #c7c7c7;
-    font-size: 17px;
-    line-height: 1.8;
+.hero p{
+    margin-top:15px;
+
+    color:#ccc;
+
+    line-height:1.7;
 }
 
-.hero-buttons {
-    margin-top: 25px;
-    display: flex;
-    gap: 12px;
-    flex-wrap: wrap;
+.hero-buttons{
+    display:flex;
+
+    gap:12px;
+
+    margin-top:25px;
+
+    flex-wrap:wrap;
 }
 
-.hero-buttons button {
-    padding: 12px 22px;
-    border: none;
-    border-radius: 8px;
-    font-family: inherit;
-    font-weight: bold;
-    cursor: pointer;
+.hero-buttons button{
+    padding:12px 22px;
+
+    border:0;
+
+    border-radius:8px;
+
+    font-weight:bold;
+
+    cursor:pointer;
 }
 
-.yellow {
-    background: #ffe000;
-    color: #000;
+.yellow{
+    background:#ffe000;
+    color:#000;
 }
 
-.blue {
-    background: #29c7ff;
-    color: #001018;
+.blue{
+    background:#28c8ff;
+    color:#001018;
 }
 
-.dark {
-    background: #111;
-    color: white;
-    border: 1px solid #333 !important;
+.dark{
+    background:#111;
+    color:white;
+
+    border:1px solid #444 !important;
 }
 
-/* ================= CATEGORY ================= */
+/* ================= CONTENT ================= */
 
-.container {
-    width: 1100px;
-    max-width: 94%;
-    margin: 35px auto;
+.container{
+    width:1100px;
+    max-width:94%;
+
+    margin:40px auto;
 }
 
-.title {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 20px;
+.title{
+    display:flex;
+
+    justify-content:space-between;
+    align-items:center;
+
+    margin-bottom:20px;
 }
 
-.title h2 {
-    font-size: 28px;
+.title h2{
+    font-size:30px;
 }
 
-.title span {
-    color: #29c7ff;
+.title span{
+    color:#28c8ff;
 }
 
-/* CARDS */
+/* ================= หมวดหมู่ ================= */
 
-.cards {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+.cards{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
 }
 
-.card {
-    background: linear-gradient(180deg, #111, #070707);
-    border: 2px solid #ffe000;
-    border-radius: 16px;
-    text-align: center;
-    padding: 25px 15px;
-    transition: .25s;
+.card{
+    background:
+        linear-gradient(
+            180deg,
+            #111,
+            #070707
+        );
+
+    border:2px solid #ffe000;
+
+    border-radius:16px;
+
+    text-align:center;
+
+    padding:25px 15px;
+
+    transition:.2s;
 }
 
-.card:hover {
-    transform: translateY(-5px);
-    border-color: #29c7ff;
+.card:hover{
+    transform:translateY(-5px);
+
+    border-color:#28c8ff;
 }
 
-.icon {
-    width: 75px;
-    height: 75px;
+.icon{
+    width:75px;
+    height:75px;
 
-    margin: auto;
-    margin-bottom: 15px;
+    margin:0 auto 15px;
 
-    border: 3px solid #ffe000;
-    border-radius: 50%;
+    border:3px solid #ffe000;
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border-radius:50%;
 
-    color: #ffe000;
-    font-size: 27px;
-    font-weight: bold;
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    color:#ffe000;
+
+    font-size:25px;
+    font-weight:bold;
 }
 
-.card h3 {
-    font-size: 22px;
+.card h3{
+    font-size:21px;
 }
 
-.card p {
-    color: #aaa;
-    margin: 5px 0 15px;
+.card p{
+    color:#aaa;
+
+    margin:7px 0 15px;
 }
 
-.card a {
-    display: inline-block;
-    background: #29c7ff;
-    color: #001018;
-    padding: 8px 17px;
-    border-radius: 7px;
-    font-weight: bold;
+.card a{
+    display:inline-block;
+
+    padding:9px 18px;
+
+    border-radius:7px;
+
+    background:#28c8ff;
+
+    color:#001018;
+
+    font-weight:bold;
+
+    text-decoration:none;
 }
 
-/* ================= PRODUCTS ================= */
+/* ================= สินค้า ================= */
 
-.products {
-    display: grid;
-    grid-template-columns: repeat(4, 1fr);
-    gap: 18px;
+.products{
+    display:grid;
+
+    grid-template-columns:
+        repeat(4,1fr);
+
+    gap:18px;
 }
 
-.product {
-    background: #0d1117;
-    border: 1px solid #303944;
-    border-radius: 13px;
-    overflow: hidden;
+.product{
+    background:#0d1117;
+
+    border:1px solid #333;
+
+    border-radius:13px;
+
+    overflow:hidden;
+
+    transition:.2s;
 }
 
-.product-img {
-    height: 145px;
+.product:hover{
+    transform:translateY(-4px);
 
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: linear-gradient(135deg, #111923, #050505);
-
-    color: #ffe000;
-    font-size: 42px;
-    font-weight: bold;
+    border-color:#28c8ff;
 }
 
-.product-info {
-    padding: 15px;
+/* =================================================
+   ⭐⭐⭐ จุดที่ 2 — รูปสินค้าอยู่ตรงนี้ ⭐⭐⭐
+
+   ถ้าจะใส่รูปสินค้า ให้เอารูปใส่ในโฟลเดอร์ images
+
+   ตัวอย่าง:
+
+   images/product1.jpg
+   images/product2.jpg
+   images/product3.jpg
+   images/product4.jpg
+
+   แล้วใช้แบบนี้:
+
+   <img src="images/product1.jpg">
+
+   ================================================= */
+
+.product-img{
+    width:100%;
+    height:180px;
+
+    background:#080b0f;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    overflow:hidden;
 }
 
-.product-info p {
-    color: #999;
+.product-img img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
 }
 
-.price {
-    color: #ffe000;
-    font-size: 20px;
-    font-weight: bold;
-    margin-top: 5px;
+/* ข้อมูลสินค้า */
+
+.product-info{
+    padding:15px;
 }
 
-.buy {
-    width: 100%;
-    margin-top: 10px;
-
-    border: none;
-    border-radius: 7px;
-
-    padding: 10px;
-
-    background: #ffe000;
-    color: #000;
-
-    font-family: inherit;
-    font-weight: bold;
-
-    cursor: pointer;
+.product-info h3{
+    font-size:21px;
 }
 
-.buy:hover {
-    background: #29c7ff;
+.product-info p{
+    color:#999;
+
+    margin-top:5px;
+}
+
+.price{
+    color:#ffe000;
+
+    font-size:19px;
+
+    font-weight:bold;
+
+    margin-top:8px;
+}
+
+/* ปุ่มรายละเอียด */
+
+.detail-button{
+    width:100%;
+
+    margin-top:12px;
+
+    padding:10px;
+
+    border:0;
+
+    border-radius:7px;
+
+    background:#28c8ff;
+
+    color:#001018;
+
+    font-weight:bold;
+
+    cursor:pointer;
+}
+
+.detail-button:hover{
+    background:#ffe000;
 }
 
 /* ================= POPUP ================= */
 
-.popup-bg {
-    display: none;
+.popup-bg{
+    display:none;
 
-    position: fixed;
-    inset: 0;
+    position:fixed;
 
-    background: rgba(0,0,0,.8);
+    inset:0;
 
-    align-items: center;
-    justify-content: center;
+    background:#000c;
 
-    z-index: 2000;
+    z-index:3000;
+
+    justify-content:center;
+
+    align-items:center;
+
+    padding:20px;
 }
 
-.popup {
-    width: 450px;
-    max-width: 92%;
+.popup{
+    width:500px;
+    max-width:95%;
 
-    background: #0b1016;
+    max-height:90vh;
 
-    border: 2px solid #ffe000;
+    overflow:auto;
 
-    border-radius: 17px;
+    background:#0b1016;
 
-    padding: 25px;
+    border:2px solid #ffe000;
 
-    box-shadow: 0 0 40px rgba(0,0,0,.8);
+    border-radius:17px;
+
+    padding:22px;
 }
 
-.popup-head {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
+.popup-title{
+    display:flex;
 
-    margin-bottom: 20px;
+    justify-content:space-between;
+
+    align-items:center;
+
+    margin-bottom:15px;
 }
 
-.popup-head h2 {
-    color: #ffe000;
+.popup-title h2{
+    color:#ffe000;
 }
 
-.close {
-    width: 35px;
-    height: 35px;
+.close-button{
+    width:35px;
+    height:35px;
 
-    border: none;
-    border-radius: 50%;
+    border:0;
 
-    background: #222;
-    color: white;
+    border-radius:50%;
 
-    font-size: 20px;
+    background:#222;
 
-    cursor: pointer;
+    color:white;
+
+    font-size:20px;
+
+    cursor:pointer;
 }
 
-/* CONTACT */
+/* รูปในรายละเอียด */
 
-.contact {
-    display: flex;
-    align-items: center;
-    gap: 15px;
+.detail-image{
+    width:100%;
+    height:250px;
 
-    padding: 14px;
+    background:#080b0f;
 
-    margin-bottom: 10px;
+    border-radius:10px;
 
-    background: #111820;
+    overflow:hidden;
 
-    border: 1px solid #293541;
-
-    border-radius: 10px;
+    margin-bottom:15px;
 }
 
-.contact:hover {
-    border-color: #29c7ff;
+.detail-image img{
+    width:100%;
+    height:100%;
+
+    object-fit:cover;
 }
 
-.contact-icon {
-    width: 45px;
-    height: 45px;
+.detail-description{
+    color:#ccc;
 
-    border-radius: 50%;
-
-    display: flex;
-    align-items: center;
-    justify-content: center;
-
-    background: #ffe000;
-    color: #000;
-
-    font-weight: bold;
+    line-height:1.8;
 }
 
-.contact small {
-    color: #999;
+/* ติดต่อเพื่อซื้อ */
+
+.contact-buy{
+    width:100%;
+
+    margin-top:15px;
+
+    padding:12px;
+
+    border:0;
+
+    border-radius:8px;
+
+    background:#ffe000;
+
+    color:#000;
+
+    font-weight:bold;
+
+    cursor:pointer;
 }
 
-/* GUIDE */
+/* ================= CONTACT ================= */
 
-.guide {
-    color: #ddd;
-    line-height: 2;
+.contact-item{
+    display:flex;
+
+    align-items:center;
+
+    gap:15px;
+
+    padding:15px;
+
+    margin-bottom:10px;
+
+    background:#111820;
+
+    border:1px solid #333;
+
+    border-radius:10px;
+
+    color:white;
+
+    text-decoration:none;
 }
 
-.guide ol {
-    padding-left: 25px;
+.contact-item:hover{
+    border-color:#28c8ff;
 }
 
-.guide p {
-    margin-top: 15px;
-    color: #ffdd55;
+.contact-icon{
+    width:45px;
+    height:45px;
+
+    border-radius:50%;
+
+    background:#ffe000;
+
+    color:#000;
+
+    display:flex;
+
+    justify-content:center;
+    align-items:center;
+
+    font-weight:bold;
 }
 
-/* FOOTER */
+/* ================= FOOTER ================= */
 
-footer {
-    text-align: center;
-    padding: 30px;
-    margin-top: 60px;
+footer{
+    margin-top:60px;
 
-    border-top: 1px solid #222;
+    padding:30px;
 
-    color: #777;
+    border-top:1px solid #222;
+
+    text-align:center;
+
+    color:#777;
 }
 
-footer span {
-    color: #ffe000;
+footer span{
+    color:#ffe000;
 }
 
 /* ================= MOBILE ================= */
 
-@media(max-width:900px) {
+@media(max-width:900px){
 
-    .search {
-        display: none;
+    .menu{
+        display:none;
     }
 
     .cards,
-    .products {
-        grid-template-columns: repeat(2,1fr);
+    .products{
+        grid-template-columns:
+            repeat(2,1fr);
     }
 
 }
 
-@media(max-width:600px) {
+@media(max-width:600px){
 
-    header {
-        height: auto;
-        padding: 10px;
+    .logo{
+        width:48px;
+        height:48px;
     }
 
-    .navbar {
-        flex-wrap: wrap;
-        justify-content: center;
-    }
-
-    .logo-name {
-        margin-right: 0;
-    }
-
-    .menu {
-        width: 100%;
-        justify-content: center;
-        flex-wrap: wrap;
-    }
-
-    .hero h1 {
-        font-size: 38px;
+    .logo-name{
+        font-size:20px;
     }
 
     .cards,
-    .products {
-        grid-template-columns: 1fr;
+    .products{
+        grid-template-columns:1fr;
+    }
+
+    .hero h1{
+        font-size:38px;
+    }
+
+    .hero-content{
+        padding:28px;
     }
 
 }
 </style>
 </head>
 
+
 <body>
 
-<!-- ================= HEADER ================= -->
+
+<!-- =====================================================
+     HEADER
+===================================================== -->
 
 <header>
 
 <div class="navbar">
 
-<img src="images/lava-logo.jpg" class="logo">
+    <!-- ⭐ จุดที่ 1 — ใส่รูปโลโก้ตรงนี้ -->
 
-<div class="logo-name">
-LAVA<span>SHOP</span>
-</div>
+    <img
+        src="images/lava-logo.jpg"
+        class="logo"
+        alt="LAVA SHOP"
+    >
 
-<div class="search">
+    <div class="logo-name">
+        LAVA<span>SHOP</span>
+    </div>
 
-<input
-id="searchInput"
-type="text"
-placeholder="ค้นหาสินค้า..."
->
 
-<button onclick="searchProduct()">
-ค้นหา
-</button>
+    <!-- ⭐ ปุ่มแว่นขยาย -->
 
-</div>
+    <button
+        class="search-button"
+        onclick="toggleSearch()"
+    >
+        🔍
+    </button>
 
-<div class="menu">
 
-<button onclick="goProducts()">
-🛒 สินค้า
-</button>
+    <div class="menu">
 
-<button onclick="openGuide()">
-📖 วิธีซื้อสินค้า
-</button>
+        <button onclick="goProducts()">
+            🛒 สินค้า
+        </button>
 
-<button onclick="openContact()">
-📞 ช่องทางการติดต่อ
-</button>
+        <button onclick="openPopup('guidePopup')">
+            📖 วิธีซื้อสินค้า
+        </button>
 
-</div>
+        <button onclick="openPopup('contactPopup')">
+            📞 ช่องทางการติดต่อ
+        </button>
+
+    </div>
+
+
+    <!-- ช่องค้นหา -->
+
+    <div
+        class="search-box"
+        id="searchBox"
+    >
+
+        <input
+            id="searchInput"
+            type="text"
+            placeholder="ค้นหาสินค้า..."
+        >
+
+        <button onclick="searchProduct()">
+            ค้นหา
+        </button>
+
+    </div>
 
 </div>
 
 </header>
 
 
-<!-- ================= HERO ================= -->
+
+<!-- =====================================================
+     HERO
+===================================================== -->
 
 <section class="hero">
 
 <div class="hero-content">
 
-<div class="badge">
-🔥 LAVA SHOP
-</div>
+    <div class="badge">
+        🔥 LAVA SHOP
+    </div>
 
-<h1>
-ร้านค้าเกม
-<span>ครบจบในที่เดียว</span>
-</h1>
 
-<p>
-ร้านค้าออนไลน์สำหรับสินค้าเกม
-ซื้อสินค้าได้ง่าย ติดต่อร้านได้โดยตรง
-รวดเร็วและสะดวก
-</p>
+    <h1>
+        ร้านค้าเกม
+        <span>ครบจบในที่เดียว</span>
+    </h1>
 
-<div class="hero-buttons">
 
-<button class="yellow" onclick="goProducts()">
-🛒 ดูสินค้าทั้งหมด
-</button>
+    <p>
+        ร้านค้าออนไลน์สำหรับสินค้าเกม
+        ซื้อสินค้าได้ง่าย ติดต่อร้านได้โดยตรง
+        รวดเร็วและสะดวก
+    </p>
 
-<button class="blue" onclick="openGuide()">
-📖 วิธีซื้อสินค้า
-</button>
 
-<button class="dark" onclick="openContact()">
-📞 ติดต่อร้าน
-</button>
+    <div class="hero-buttons">
 
-</div>
+        <button
+            class="yellow"
+            onclick="goProducts()"
+        >
+            🛒 ดูสินค้าทั้งหมด
+        </button>
+
+
+        <button
+            class="blue"
+            onclick="openPopup('guidePopup')"
+        >
+            📖 วิธีซื้อสินค้า
+        </button>
+
+
+        <button
+            class="dark"
+            onclick="openPopup('contactPopup')"
+        >
+            📞 ติดต่อร้าน
+        </button>
+
+    </div>
 
 </div>
 
 </section>
 
 
-<!-- ================= CATEGORY ================= -->
+
+<!-- =====================================================
+     หมวดหมู่สินค้า
+===================================================== -->
 
 <section class="container">
 
 <div class="title">
 
-<h2>
-หมวดหมู่สินค้า
-</h2>
+    <h2>
+        หมวดหมู่สินค้า
+    </h2>
 
-<span>
-SHOP
-</span>
+    <span>
+        SHOP
+    </span>
 
 </div>
 
 
 <div class="cards">
 
-<div class="card">
 
-<div class="icon">
-🛍
-</div>
+    <div class="card">
 
-<h3>
-ITEMSHOP
-</h3>
+        <div class="icon">
+            🛍
+        </div>
 
-<p>
-สั่งซื้อสินค้าเกม
-</p>
+        <h3>
+            ITEMSHOP
+        </h3>
 
-<a href="#products">
-ดูสินค้า
-</a>
+        <p>
+            สั่งซื้อสินค้าเกม
+        </p>
 
-</div>
+        <a href="#products">
+            ดูสินค้า
+        </a>
 
-
-<div class="card">
-
-<div class="icon">
-R$
-</div>
-
-<h3>
-ROBUX
-</h3>
-
-<p>
-เติม Robux
-</p>
-
-<a href="#products">
-สั่งซื้อ
-</a>
-
-</div>
+    </div>
 
 
-<div class="card">
 
-<div class="icon">
-ID
-</div>
+    <div class="card">
 
-<h3>
-ID + PASS
-</h3>
+        <div class="icon">
+            R$
+        </div>
 
-<p>
-ไอดีเกมพร้อมใช้งาน
-</p>
+        <h3>
+            ROBUX
+        </h3>
 
-<a href="#products">
-สั่งซื้อ
-</a>
+        <p>
+            เติม Robux
+        </p>
 
-</div>
+        <a href="#products">
+            ดูสินค้า
+        </a>
+
+    </div>
 
 
-<div class="card">
 
-<div class="icon">
-⚡
-</div>
+    <div class="card">
 
-<h3>
-บริการ
-</h3>
+        <div class="icon">
+            ID
+        </div>
 
-<p>
-บริการเกมต่าง ๆ
-</p>
+        <h3>
+            ID + PASS
+        </h3>
 
-<a href="#products">
-ดูบริการ
-</a>
+        <p>
+            ไอดีเกมพร้อมใช้งาน
+        </p>
 
-</div>
+        <a href="#products">
+            ดูสินค้า
+        </a>
+
+    </div>
+
+
+
+    <div class="card">
+
+        <div class="icon">
+            ⚡
+        </div>
+
+        <h3>
+            บริการ
+        </h3>
+
+        <p>
+            บริการเกมต่าง ๆ
+        </p>
+
+        <a href="#products">
+            ดูสินค้า
+        </a>
+
+    </div>
+
 
 </div>
 
 </section>
 
 
-<!-- ================= PRODUCTS ================= -->
 
-<section class="container" id="products">
+<!-- =====================================================
+     สินค้า
+===================================================== -->
+
+<section
+    class="container"
+    id="products"
+>
 
 <div class="title">
 
-<h2>
-สินค้าของร้าน
-</h2>
+    <h2>
+        สินค้าของร้าน
+    </h2>
 
-<span>
-PRODUCTS
-</span>
+    <span>
+        PRODUCTS
+    </span>
 
 </div>
 
 
-<div class="products" id="productGrid">
-
-
-<div class="product" data-name="Robux">
-
-<div class="product-img">
-R$
-</div>
-
-<div class="product-info">
-
-<h3>
-Robux
-</h3>
-
-<p>
-เติม Robux สำหรับ Roblox
-</p>
-
-<div class="price">
-เริ่มต้น 25 บาท
-</div>
-
-<button
-class="buy"
-onclick="buyProduct('Robux')"
+<div
+    class="products"
+    id="productGrid"
 >
-สั่งซื้อ
-</button>
-
-</div>
-
-</div>
 
 
-<div class="product" data-name="Game Pass">
 
-<div class="product-img">
-🎮
-</div>
+<!-- =====================================================
+     ⭐⭐⭐ สินค้า 1 ⭐⭐⭐
 
-<div class="product-info">
+     เปลี่ยนรูปตรงนี้
 
-<h3>
-Game Pass
-</h3>
+     images/product1.jpg
 
-<p>
-บริการซื้อ Game Pass
-</p>
+     เป็นชื่อรูปของนายได้เลย
+===================================================== -->
 
-<div class="price">
-สอบถามราคา
-</div>
-
-<button
-class="buy"
-onclick="buyProduct('Game Pass')"
+<div
+    class="product"
+    data-name="Robux"
 >
-สั่งซื้อ
-</button>
+
+    <div class="product-img">
+
+        <img
+            src="images/product1.jpg"
+            alt="Robux"
+        >
+
+    </div>
+
+
+    <div class="product-info">
+
+        <h3>
+            Robux
+        </h3>
+
+        <p>
+            เติม Robux สำหรับ Roblox
+        </p>
+
+        <div class="price">
+            เริ่มต้น 25 บาท
+        </div>
+
+
+        <!-- ⭐ ปุ่มดูรายละเอียด -->
+
+        <button
+            class="detail-button"
+            onclick="openDetail(
+                'Robux',
+                'images/product1.jpg',
+                'เติม Robux สำหรับ Roblox ราคาเริ่มต้น 25 บาท'
+            )"
+        >
+            ดูรายละเอียดสินค้า
+        </button>
+
+    </div>
 
 </div>
 
-</div>
 
 
-<div class="product" data-name="ID PASS">
+<!-- =====================================================
+     ⭐⭐⭐ สินค้า 2 ⭐⭐⭐
+===================================================== -->
 
-<div class="product-img">
-ID+
-</div>
-
-<div class="product-info">
-
-<h3>
-ID + PASS
-</h3>
-
-<p>
-ไอดีเกมพร้อมใช้งาน
-</p>
-
-<div class="price">
-สอบถามราคา
-</div>
-
-<button
-class="buy"
-onclick="buyProduct('ID + PASS')"
+<div
+    class="product"
+    data-name="Game Pass"
 >
-สั่งซื้อ
-</button>
+
+    <div class="product-img">
+
+        <img
+            src="images/product2.jpg"
+            alt="Game Pass"
+        >
+
+    </div>
+
+
+    <div class="product-info">
+
+        <h3>
+            Game Pass
+        </h3>
+
+        <p>
+            บริการซื้อ Game Pass
+        </p>
+
+        <div class="price">
+            สอบถามราคา
+        </div>
+
+
+        <button
+            class="detail-button"
+            onclick="openDetail(
+                'Game Pass',
+                'images/product2.jpg',
+                'บริการซื้อ Game Pass สามารถสอบถามรายละเอียดกับร้านได้'
+            )"
+        >
+            ดูรายละเอียดสินค้า
+        </button>
+
+    </div>
 
 </div>
 
-</div>
 
 
-<div class="product" data-name="เติมเกม">
+<!-- =====================================================
+     ⭐⭐⭐ สินค้า 3 ⭐⭐⭐
+===================================================== -->
 
-<div class="product-img">
-⚡
-</div>
-
-<div class="product-info">
-
-<h3>
-เติมเกม
-</h3>
-
-<p>
-บริการเติมเกมต่าง ๆ
-</p>
-
-<div class="price">
-สอบถามราคา
-</div>
-
-<button
-class="buy"
-onclick="buyProduct('เติมเกม')"
+<div
+    class="product"
+    data-name="ID PASS"
 >
-สั่งซื้อ
-</button>
+
+    <div class="product-img">
+
+        <img
+            src="images/product3.jpg"
+            alt="ID PASS"
+        >
+
+    </div>
+
+
+    <div class="product-info">
+
+        <h3>
+            ID + PASS
+        </h3>
+
+        <p>
+            ไอดีเกมพร้อมใช้งาน
+        </p>
+
+        <div class="price">
+            สอบถามราคา
+        </div>
+
+
+        <button
+            class="detail-button"
+            onclick="openDetail(
+                'ID + PASS',
+                'images/product3.jpg',
+                'ไอดีเกมพร้อมใช้งาน สอบถามรายละเอียดและราคากับร้าน'
+            )"
+        >
+            ดูรายละเอียดสินค้า
+        </button>
+
+    </div>
 
 </div>
 
+
+
+<!-- =====================================================
+     ⭐⭐⭐ สินค้า 4 ⭐⭐⭐
+===================================================== -->
+
+<div
+    class="product"
+    data-name="เติมเกม"
+>
+
+    <div class="product-img">
+
+        <img
+            src="images/product4.jpg"
+            alt="เติมเกม"
+        >
+
+    </div>
+
+
+    <div class="product-info">
+
+        <h3>
+            เติมเกม
+        </h3>
+
+        <p>
+            บริการเติมเกมต่าง ๆ
+        </p>
+
+        <div class="price">
+            สอบถามราคา
+        </div>
+
+
+        <button
+            class="detail-button"
+            onclick="openDetail(
+                'เติมเกม',
+                'images/product4.jpg',
+                'บริการเติมเกมต่าง ๆ สอบถามรายละเอียดกับร้าน'
+            )"
+        >
+            ดูรายละเอียดสินค้า
+        </button>
+
+    </div>
+
 </div>
+
 
 
 </div>
@@ -876,289 +1220,335 @@ onclick="buyProduct('เติมเกม')"
 </section>
 
 
-<!-- ================= CONTACT POPUP ================= -->
+
+<!-- =====================================================
+     POPUP รายละเอียดสินค้า
+===================================================== -->
 
 <div
-class="popup-bg"
-id="contactPopup"
-onclick="closeOutside(event,'contactPopup')"
+    class="popup-bg"
+    id="detailPopup"
 >
 
 <div class="popup">
 
-<div class="popup-head">
 
-<h2>
-📞 ติดต่อร้าน
-</h2>
+    <div class="popup-title">
 
-<button
-class="close"
-onclick="closePopup('contactPopup')"
->
-×
-</button>
+        <h2 id="detailTitle">
+            รายละเอียดสินค้า
+        </h2>
 
-</div>
+        <button
+            class="close-button"
+            onclick="closePopup('detailPopup')"
+        >
+            ×
+        </button>
 
-
-<!-- เปลี่ยนลิงก์ตรงนี้เป็นของร้าน -->
-
-<a
-class="contact"
-href="https://facebook.com/"
-target="_blank"
->
-
-<div class="contact-icon">
-F
-</div>
-
-<div>
-<strong>
-Facebook
-</strong>
-
-<br>
-
-<small>
-ติดต่อผ่าน Facebook
-</small>
-
-</div>
-
-</a>
+    </div>
 
 
-<a
-class="contact"
-href="https://instagram.com/"
-target="_blank"
->
+    <div class="detail-image">
 
-<div class="contact-icon">
-IG
-</div>
+        <img
+            id="detailImage"
+            src=""
+            alt=""
+        >
 
-<div>
-<strong>
-Instagram
-</strong>
-
-<br>
-
-<small>
-ติดต่อผ่าน Instagram
-</small>
-
-</div>
-
-</a>
+    </div>
 
 
-<a
-class="contact"
-href="https://line.me/"
-target="_blank"
->
+    <div
+        class="detail-description"
+        id="detailDescription"
+    >
+    </div>
 
-<div class="contact-icon">
-LINE
-</div>
 
-<div>
-<strong>
-LINE
-</strong>
-
-<br>
-
-<small>
-ติดต่อผ่าน LINE
-</small>
-
-</div>
-
-</a>
+    <button
+        class="contact-buy"
+        onclick="
+            closePopup('detailPopup');
+            openPopup('contactPopup');
+        "
+    >
+        📞 ติดต่อเพื่อสั่งซื้อ
+    </button>
 
 </div>
 
 </div>
 
 
-<!-- ================= GUIDE POPUP ================= -->
+
+<!-- =====================================================
+     POPUP ช่องทางติดต่อ
+===================================================== -->
 
 <div
-class="popup-bg"
-id="guidePopup"
-onclick="closeOutside(event,'guidePopup')"
+    class="popup-bg"
+    id="contactPopup"
 >
 
 <div class="popup">
 
-<div class="popup-head">
 
-<h2>
-📖 วิธีซื้อสินค้า
-</h2>
+    <div class="popup-title">
 
-<button
-class="close"
-onclick="closePopup('guidePopup')"
+        <h2>
+            📞 ช่องทางการติดต่อ
+        </h2>
+
+        <button
+            class="close-button"
+            onclick="closePopup('contactPopup')"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+
+    <!-- ⭐ เปลี่ยนลิงก์ Facebook ตรงนี้ -->
+
+    <a
+        class="contact-item"
+        href="https://facebook.com/"
+        target="_blank"
+    >
+
+        <div class="contact-icon">
+            F
+        </div>
+
+        <div>
+
+            <b>
+                Facebook
+            </b>
+
+            <br>
+
+            <small>
+                ติดต่อผ่าน Facebook
+            </small>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- ⭐ เปลี่ยนลิงก์ Instagram ตรงนี้ -->
+
+    <a
+        class="contact-item"
+        href="https://instagram.com/"
+        target="_blank"
+    >
+
+        <div class="contact-icon">
+            IG
+        </div>
+
+        <div>
+
+            <b>
+                Instagram
+            </b>
+
+            <br>
+
+            <small>
+                ติดต่อผ่าน Instagram
+            </small>
+
+        </div>
+
+    </a>
+
+
+
+    <!-- ⭐ เปลี่ยนลิงก์ LINE ตรงนี้ -->
+
+    <a
+        class="contact-item"
+        href="https://line.me/"
+        target="_blank"
+    >
+
+        <div class="contact-icon">
+            LINE
+        </div>
+
+        <div>
+
+            <b>
+                LINE
+            </b>
+
+            <br>
+
+            <small>
+                ติดต่อผ่าน LINE
+            </small>
+
+        </div>
+
+    </a>
+
+
+</div>
+
+</div>
+
+
+
+<!-- =====================================================
+     POPUP วิธีซื้อ
+===================================================== -->
+
+<div
+    class="popup-bg"
+    id="guidePopup"
 >
-×
-</button>
+
+<div class="popup">
+
+
+    <div class="popup-title">
+
+        <h2>
+            📖 วิธีซื้อสินค้า
+        </h2>
+
+        <button
+            class="close-button"
+            onclick="closePopup('guidePopup')"
+        >
+            ×
+        </button>
+
+    </div>
+
+
+    <ol
+        style="
+        padding-left:25px;
+        line-height:2;
+        color:#ddd;
+        "
+    >
+
+        <li>
+            เลือกสินค้าที่ต้องการ
+        </li>
+
+        <li>
+            กด "ดูรายละเอียดสินค้า"
+        </li>
+
+        <li>
+            อ่านรายละเอียดสินค้า
+        </li>
+
+        <li>
+            กด "ติดต่อเพื่อสั่งซื้อ"
+        </li>
+
+        <li>
+            เลือก Facebook / Instagram / LINE
+        </li>
+
+        <li>
+            แจ้งรายละเอียดสินค้าที่ต้องการกับร้าน
+        </li>
+
+    </ol>
+
+
+</div>
 
 </div>
 
 
-<div class="guide">
 
-<ol>
-
-<li>
-เลือกสินค้าที่ต้องการ
-</li>
-
-<li>
-กดปุ่ม "สั่งซื้อ"
-</li>
-
-<li>
-เลือกช่องทางติดต่อร้าน
-</li>
-
-<li>
-แจ้งชื่อสินค้าให้ร้าน
-</li>
-
-<li>
-ชำระเงินตามที่ร้านแจ้ง
-</li>
-
-<li>
-รอรับสินค้า
-</li>
-
-</ol>
-
-
-<p>
-⚠️ กรุณาตรวจสอบรายละเอียดสินค้า
-และบัญชีผู้รับเงินก่อนโอนทุกครั้ง
-</p>
-
-</div>
-
-</div>
-
-</div>
-
-
-<!-- ================= FOOTER ================= -->
+<!-- =====================================================
+     FOOTER
+===================================================== -->
 
 <footer>
 
-© 2026
-<span>LAVA SHOP</span>
-— All Rights Reserved
+    © 2026
+
+    <span>
+        LAVA SHOP
+    </span>
+
+    — All Rights Reserved
 
 </footer>
 
 
+
 <script>
 
-/* ไปหน้าสินค้า */
+/* ================================
+   ปุ่มแว่นขยาย
+================================ */
 
-function goProducts(){
+function toggleSearch(){
 
-    document
-    .getElementById("products")
-    .scrollIntoView({
-        behavior:"smooth"
-    });
+    const box =
+        document.getElementById("searchBox");
 
-}
+    if(
+        box.style.display === "block"
+    ){
 
+        box.style.display = "none";
 
-/* เปิดช่องทางติดต่อ */
+    }else{
 
-function openContact(){
+        box.style.display = "block";
 
-    document
-    .getElementById("contactPopup")
-    .style.display = "flex";
-
-}
-
-
-/* เปิดวิธีซื้อ */
-
-function openGuide(){
-
-    document
-    .getElementById("guidePopup")
-    .style.display = "flex";
-
-}
-
-
-/* ปิด Popup */
-
-function closePopup(id){
-
-    document
-    .getElementById(id)
-    .style.display = "none";
-
-}
-
-
-/* คลิกพื้นหลังเพื่อปิด */
-
-function closeOutside(event,id){
-
-    if(event.target.id === id){
-
-        closePopup(id);
+        document
+            .getElementById("searchInput")
+            .focus();
 
     }
 
 }
 
 
-/* ปุ่มซื้อ */
-
-function buyProduct(product){
-
-    openContact();
-
-}
-
-
-/* ระบบค้นหา */
+/* ================================
+   ค้นหาสินค้า
+================================ */
 
 function searchProduct(){
 
-    let keyword =
-    document
-    .getElementById("searchInput")
-    .value
-    .toLowerCase()
-    .trim();
+    const keyword =
+        document
+        .getElementById("searchInput")
+        .value
+        .toLowerCase()
+        .trim();
 
-    let products =
-    document
-    .querySelectorAll(".product");
+
+    const products =
+        document.querySelectorAll(".product");
 
 
     products.forEach(function(product){
 
-        let name =
-        product
-        .dataset
-        .name
-        .toLowerCase();
+        const name =
+            product
+            .dataset
+            .name
+            .toLowerCase();
 
 
         if(
@@ -1182,17 +1572,96 @@ function searchProduct(){
 }
 
 
-/* กด Enter เพื่อค้นหา */
+/* ================================
+   ดูรายละเอียดสินค้า
+================================ */
 
-document
-.getElementById("searchInput")
-.addEventListener(
+function openDetail(
+    title,
+    image,
+    description
+){
+
+    document
+        .getElementById("detailTitle")
+        .innerText = title;
+
+
+    document
+        .getElementById("detailImage")
+        .src = image;
+
+
+    document
+        .getElementById("detailDescription")
+        .innerText = description;
+
+
+    openPopup("detailPopup");
+
+}
+
+
+/* ================================
+   เปิด Popup
+================================ */
+
+function openPopup(id){
+
+    document
+        .getElementById(id)
+        .style.display = "flex";
+
+}
+
+
+/* ================================
+   ปิด Popup
+================================ */
+
+function closePopup(id){
+
+    document
+        .getElementById(id)
+        .style.display = "none";
+
+}
+
+
+/* ================================
+   เลื่อนไปสินค้า
+================================ */
+
+function goProducts(){
+
+    document
+        .getElementById("products")
+        .scrollIntoView({
+            behavior:"smooth"
+        });
+
+}
+
+
+/* ================================
+   กด ESC เพื่อปิด
+================================ */
+
+document.addEventListener(
     "keydown",
-    function(event){
+    function(e){
 
-        if(event.key === "Enter"){
+        if(e.key === "Escape"){
 
-            searchProduct();
+            closePopup("detailPopup");
+
+            closePopup("contactPopup");
+
+            closePopup("guidePopup");
+
+            document
+                .getElementById("searchBox")
+                .style.display = "none";
 
         }
 
@@ -1200,24 +1669,26 @@ document
 );
 
 
-/* กด ESC ปิด Popup */
+/* ================================
+   กด Enter เพื่อค้นหา
+================================ */
 
-document.addEventListener(
-"keydown",
-function(event){
+document
+    .getElementById("searchInput")
+    .addEventListener(
+        "keydown",
+        function(e){
 
-    if(event.key === "Escape"){
+            if(e.key === "Enter"){
 
-        closePopup("contactPopup");
+                searchProduct();
 
-        closePopup("guidePopup");
+            }
 
-    }
-
-});
+        }
+    );
 
 </script>
 
 </body>
 </html>
-```
