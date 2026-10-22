@@ -1138,7 +1138,7 @@ const customPesImages = {
    ฐานข้อมูลตั้งค่าไอดี PES 1-100
    ========================================================== */
 const pesDatabase = {
-    1: { gold: "3,177 Coins", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" "PES 87"},
+    1: { gold: "3,177 Coins", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     2: { gold: "สอบถาม", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     3: { gold: "สอบถาม", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     4: { gold: "4,520", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
@@ -1181,6 +1181,7 @@ function generatePesCards() {
         const imgSrc = hasImage ? customImg : DEFAULT_NO_PRODUCT_IMG;
         
         // รูปแบบรหัสไอดีเริ่มต้นอัตโนมัติ: "PES เลขเบอร์" (เช่น PES 89)
+         "PES 2"
         const code = data.code || `PES ${i}`;
         const gold = data.gold || "สอบถาม";
         const price = data.price || "สอบถามราคา";
