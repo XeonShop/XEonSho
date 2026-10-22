@@ -851,7 +851,7 @@ footer span { color: #ffe000; }
 
     <div class="products" id="productGrid">
         <div class="product" data-name="Roblox Robux">
-            <div class="product-img" onclick="zoomImage('images/product1.jpg')">
+            <div class="product-img" onclick="zoomImage(this.querySelector('img').src)">
                 <img src="images/product1.jpg" alt="Roblox">
             </div>
             <div class="product-info">
@@ -865,7 +865,7 @@ footer span { color: #ffe000; }
         </div>
 
         <div class="product" data-name="PES eFootball">
-            <div class="product-img" onclick="zoomImage('images/product2.jpg')">
+            <div class="product-img" onclick="zoomImage(this.querySelector('img').src)">
                 <img src="images/product2.jpg" alt="PES">
             </div>
             <div class="product-info">
@@ -968,42 +968,42 @@ footer span { color: #ffe000; }
 
     <div class="map-grid" id="robloxMapGrid">
         <div class="map-card">
-            <div class="map-image" onclick="zoomImage('images/maps/egg-map.jpg')"><img src="images/maps/egg-map.jpg" alt="แมพเอาไข่"></div>
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/egg-map.jpg" alt="แมพเอาไข่"></div>
             <h3>แมพเอาไข่</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('egg')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image" onclick="zoomImage('images/maps/grow-a-garden.jpg')"><img src="images/maps/grow-a-garden.jpg" alt="Grow a Garden"></div>
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/grow-a-garden.jpg" alt="Grow a Garden"></div>
             <h3>Grow a Garden</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('garden')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image" onclick="zoomImage('images/maps/steal-brainrot.jpg')"><img src="images/maps/steal-brainrot.jpg" alt="Steal a Brainrot"></div>
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/steal-brainrot.jpg" alt="Steal a Brainrot"></div>
             <h3>Steal a Brainrot</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('brainrot')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image" onclick="zoomImage('images/maps/blox-fruits.jpg')"><img src="images/maps/blox-fruits.jpg" alt="Blox Fruits"></div>
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/blox-fruits.jpg" alt="Blox Fruits"></div>
             <h3>Blox Fruits</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('bloxfruits')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image" onclick="zoomImage('images/maps/pet-simulator.jpg')"><img src="images/maps/pet-simulator.jpg" alt="Pet Simulator"></div>
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/pet-simulator.jpg" alt="Pet Simulator"></div>
             <h3>Pet Simulator</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('petsim')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image" onclick="zoomImage('images/maps/other-map.jpg')"><img src="images/maps/other-map.jpg" alt="แมพอื่น ๆ"></div>
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/other-map.jpg" alt="แมพอื่น ๆ"></div>
             <h3>แมพอื่น ๆ</h3>
             <p>เพิ่มแมพที่คุณต้องการได้</p>
             <button onclick="showMapProducts('other')">ดูสินค้าในแมพ</button>
@@ -1019,14 +1019,13 @@ footer span { color: #ffe000; }
     </div>
 </section>
 
-<!-- หน้า PES (สร้าง ID #1 ถึง #100 ด้วย JS สั้นๆ) -->
+<!-- หน้า PES -->
 <section class="game-page" id="pesPage">
     <div class="game-page-header">
         <h2>PES <span>ไอดี</span></h2>
         <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
     </div>
 
-    <!-- ตารางสร้างไอดี PES 1-100 สวยงาม -->
     <div class="id-grid" id="pesIdGrid"></div>
 </section>
 
@@ -1042,42 +1041,60 @@ footer span { color: #ffe000; }
 
 <script>
 /* ====================================
+   ตั้งค่ารูป fallback เมื่อไม่มีสินค้า/หาไฟล์ไม่พบ
+   ==================================== */
+const DEFAULT_NO_PRODUCT_IMG = "Screenshot 2026-10-22 094639.png";
+
+/* ====================================
    ตั้งค่ารูปภาพสำหรับ PES ID #1 ถึง #100
    ==================================== */
-// 📷 แก้ไขพาธรูปภาพของไอดี PES ตรงนี้ได้เลยครับ (ถ้าไม่ใส่จะใช้รูป default ด้านล่าง)
 const customPesImages = {
     1: "PES 2 409.png",
     2: "PES 3 409.png",
     3: "images/pes-id3.jpg",
 };
 
-// สคริปต์สร้างการ์ด Screenshot 2026-10-22 094639.png - #100 อัตโนมัติ
+// สร้างการ์ด PES #1 - #100 อัตโนมัติ
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
     
     let htmlContent = "";
     for (let i = 1; i <= 100; i++) {
-        // ใช้รูปคัสตอม ถ้าไม่มีจะใช้รูปตัวอย่าง
         const imgSrc = customPesImages[i] || `images/pes-id${i}.jpg`;
         
         htmlContent += `
         <div class="id-card">
-            <div class="id-image" onclick="zoomImage('${imgSrc}')">
-                <img src="${imgSrc}" alt="PES ID #${i}" onerror="this.src='PES 2 409.png'">
+            <div class="id-image" onclick="zoomImage(this.querySelector('img').src)">
+                <img src="${imgSrc}" alt="PES ID #${i}" onerror="this.onerror=null; this.src='${DEFAULT_NO_PRODUCT_IMG}';">
             </div>
             <h3>PES ID #${i}</h3>
             <p>ไอดี PES พร้อมใช้งาน</p>
             <div class="id-price">สอบถามราคา</div>
-            <button onclick="openDetail('PES ID #${i}', '${imgSrc}', 'ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับทางร้าน')">ดูรายละเอียด</button>
+            <button onclick="openDetail('PES ID #${i}', this.previousElementSibling.previousElementSibling.previousElementSibling.querySelector('img').src, 'ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับทางร้าน')">ดูรายละเอียด</button>
         </div>
         `;
     }
     container.innerHTML = htmlContent;
 }
 
-// เรียกใช้งานสร้างไอดีเมื่อโหลดหน้าเว็บ
-document.addEventListener("DOMContentLoaded", generatePesCards);
+// เรียกใช้งานเมื่อโหลด DOM
+document.addEventListener("DOMContentLoaded", function() {
+    generatePesCards();
+    setupImageFallback();
+});
+
+/* ฟังก์ชั่นตรวจจับรูปที่โหลดไม่ได้ และใช้รูปแทนที่อัตโนมัติ */
+function setupImageFallback() {
+    document.querySelectorAll("img").forEach(function(img) {
+        img.addEventListener("error", function() {
+            this.onerror = null;
+            this.src = DEFAULT_NO_PRODUCT_IMG;
+            this.style.objectFit = "contain";
+            this.style.background = "#0d1117";
+        });
+    });
+}
 
 /* ====================================
    ระบบซูมขยายรูปภาพ (ZOOM LIGHTBOX)
@@ -1360,15 +1377,17 @@ function showMapProducts(mapKey) {
 
             const imageBox = document.createElement("div");
             imageBox.className = "id-image";
-            imageBox.onclick = function() { zoomImage(product.image); };
 
             const img = document.createElement("img");
             img.src = product.image;
             img.alt = product.name;
             img.onerror = function() {
-                this.style.opacity = ".25";
+                this.onerror = null;
+                this.src = DEFAULT_NO_PRODUCT_IMG;
+                this.style.objectFit = "contain";
             };
 
+            imageBox.onclick = function() { zoomImage(img.src); };
             imageBox.appendChild(img);
 
             const title = document.createElement("h3");
@@ -1387,7 +1406,7 @@ function showMapProducts(mapKey) {
             button.onclick = function() {
                 openDetail(
                     product.name,
-                    product.image,
+                    img.src,
                     product.description + "\nราคา: " + product.price
                 );
             };
@@ -1412,15 +1431,6 @@ function backToMaps() {
         block: "start"
     });
 }
-
-/* ป้องกันรูปที่หาไม่พบแสดงเป็นภาพแตก */
-document.querySelectorAll("img").forEach(function(img) {
-    img.addEventListener("error", function() {
-        this.style.background = "#111820";
-        this.style.objectFit = "contain";
-        this.style.opacity = ".45";
-    }, {once:true});
-});
 </script>
 
 </body>
