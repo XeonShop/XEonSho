@@ -1135,14 +1135,14 @@ const customPesImages = {
 };
 
 /* ==========================================================
-   ฐานข้อมูลตั้งค่าไอดี PES 1-100
+   ฐานข้อมูลตั้งค่าไอดี PES 1-27 (เบอร์อื่นๆ จะใช้อัตโนมัติ)
    ========================================================== */
 const pesDatabase = {
     1: { code: "PES 2", gold: "5,360 Coins", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     2: { code: "PES 3", gold: "5,350", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     3: { code: "PES 4", gold: "5,370", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     4: { code: "PES 9", gold: "5,160", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
-    5: { code: "PES 10", gold: 6,750", price: "499 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    5: { code: "PES 10", gold: "6,750", price: "499 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     6: { code: "PES 11", gold: "3,990", price: "419 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     7: { code: "PES 12", gold: "4,920", price: "399 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     8: { code: "PES 13", gold: "4,970", price: "399 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
@@ -1164,10 +1164,10 @@ const pesDatabase = {
     24: { code: "PES 88", gold: "5,075", price: "419 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     25: { code: "PES 89", gold: "5,570", price: "419 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     26: { code: "PES 90", gold: "4,790", price: "429 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
-    27: { code: "PES 91", gold: "4,655", price: "449 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    27: { code: "PES 91", gold: "4,655", price: "449 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" }
 };
 
-// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (แสดงรหัสเป็น PES [ตัวเลข])
+// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
@@ -1180,7 +1180,6 @@ function generatePesCards() {
         const hasImage = customImg ? true : false;
         const imgSrc = hasImage ? customImg : DEFAULT_NO_PRODUCT_IMG;
         
-        // รูปแบบรหัสไอดีเริ่มต้นอัตโนมัติ: "PES เลขเบอร์" (เช่น PES 89)
         const code = data.code || `PES ${i}`;
         const gold = data.gold || "สอบถาม";
         const price = data.price || "สอบถามราคา";
