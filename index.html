@@ -957,7 +957,7 @@ footer span { color: #ffe000; }
             <div class="detail-info-box">
                 <div class="info-row">
                     <span>รหัสไอดี :</span>
-                    <span id="pesCode">PES - 1</span>
+                    <span id="pesCode">PES 1</span>
                 </div>
                 <div class="info-row">
                     <span>ทอง :</span>
@@ -1167,7 +1167,7 @@ const pesDatabase = {
     27: { gold: "สอบถาม", price: "449 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" }
 };
 
-// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (แสดงรหัสเป็น PES - เลขเบอร์)
+// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (แสดงรหัสเป็น PES [ตัวเลข])
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
@@ -1180,8 +1180,8 @@ function generatePesCards() {
         const hasImage = customImg ? true : false;
         const imgSrc = hasImage ? customImg : DEFAULT_NO_PRODUCT_IMG;
         
-        // รูปแบบรหัสไอดีเริ่มต้นอัตโนมัติ: "PES - เลขเบอร์"
-        const code = data.code || `PES - ${i}`;
+        // รูปแบบรหัสไอดีเริ่มต้นอัตโนมัติ: "PES เลขเบอร์" (เช่น PES 89)
+        const code = data.code || `PES ${i}`;
         const gold = data.gold || "สอบถาม";
         const price = data.price || "สอบถามราคา";
         const features = data.features || "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10";
