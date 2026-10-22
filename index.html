@@ -1084,27 +1084,43 @@ const customPesImages = {
     27: "PES 91 419.png",
 };
 
-// สร้างการ์ด PES #1 - #100 อัตโนมัติ
+// สร้างการ์ด PES #1 - #100 และเรียงลำดับ (มีรูปขึ้นก่อน, ไม่มีรูปไปไว้หลังสุด)
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
     
-    let htmlContent = "";
+    let items = [];
     for (let i = 1; i <= 100; i++) {
-        const imgSrc = customPesImages[i] || `images/pes-id${i}.jpg`;
+        // เช็คว่ามีระบุรูปไว้ใน customPesImages หรือไม่ (ถ้าไม่มีจะถือว่าไม่มีรูป)
+        const hasImage = customPesImages[i] ? true : false;
+        const imgSrc = hasImage ? customPesImages[i] : DEFAULT_NO_PRODUCT_IMG;
         
+        items.push({
+            id: i,
+            imgSrc: imgSrc,
+            hasImage: hasImage
+        });
+    }
+
+    // จัดเรียง: เอาที่มีรูป (hasImage = true) ขึ้นมาก่อน
+    items.sort(function(a, b) {
+        return (b.hasImage ? 1 : 0) - (a.hasImage ? 1 : 0);
+    });
+    
+    let htmlContent = "";
+    items.forEach(function(item) {
         htmlContent += `
         <div class="id-card">
             <div class="id-image" onclick="zoomImage(this.querySelector('img').src)">
-                <img src="${imgSrc}" alt="PES ID #${i}">
+                <img src="${item.imgSrc}" alt="PES ID #${item.id}">
             </div>
-            <h3>PES ID #${i}</h3>
+            <h3>PES ID #${item.id}</h3>
             <p>ไอดี PES พร้อมใช้งาน</p>
             <div class="id-price">สอบถามราคา</div>
             <button onclick="openCardDetail(this)">ดูรายละเอียด</button>
         </div>
         `;
-    }
+    });
     container.innerHTML = htmlContent;
 }
 
@@ -1117,7 +1133,6 @@ document.addEventListener("DOMContentLoaded", function() {
 /* ฟังก์ชั่นตรวจจับรูปที่โหลดไม่ได้ และใช้รูปแทนที่อัตโนมัติ */
 function setupImageFallback() {
     document.querySelectorAll("img").forEach(function(img) {
-        // ตรวจสอบตั้งแต่ต้นถ้า src ว่าง
         if (!img.getAttribute('src')) {
             img.src = DEFAULT_NO_PRODUCT_IMG;
         }
@@ -1131,17 +1146,14 @@ function setupImageFallback() {
     });
 }
 
-/* กดเปิดรายละเอียดจากการ์ดสินค้า/ไอดีโดยตรง (ดึงรูปปัจจุบันที่แสดงอยู่ในการ์ดมาใช้) */
+/* กดเปิดรายละเอียดจากการ์ดสินค้า/ไอดีโดยตรง */
 function openCardDetail(btn) {
     const card = btn.closest('.id-card') || btn.closest('.product');
     if (!card) return;
 
     const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'รายละเอียดสินค้า';
     const imgEl = card.querySelector('img');
-    
-    // ดึงค่า src ของรูปในการ์ด (ซึ่งถ้าโหลดไม่ผ่าน จะเปลี่ยนเป็นรูปไม่มีสินค้าให้อัตโนมัติแล้ว)
-    let imgSrc = imgEl ? imgEl.src : DEFAULT_NO_PRODUCT_IMG;
-    
+    const imgSrc = imgEl ? imgEl.src : DEFAULT_NO_PRODUCT_IMG;
     const desc = card.querySelector('p') ? card.querySelector('p').textContent : '';
     const price = card.querySelector('.price, .id-price') ? card.querySelector('.price, .id-price').textContent : '';
 
