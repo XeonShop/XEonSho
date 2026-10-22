@@ -1117,6 +1117,11 @@ document.addEventListener("DOMContentLoaded", function() {
 /* ฟังก์ชั่นตรวจจับรูปที่โหลดไม่ได้ และใช้รูปแทนที่อัตโนมัติ */
 function setupImageFallback() {
     document.querySelectorAll("img").forEach(function(img) {
+        // ตรวจสอบตั้งแต่ต้นถ้า src ว่าง
+        if (!img.getAttribute('src')) {
+            img.src = DEFAULT_NO_PRODUCT_IMG;
+        }
+        
         img.addEventListener("error", function() {
             this.onerror = null;
             this.src = DEFAULT_NO_PRODUCT_IMG;
@@ -1126,14 +1131,17 @@ function setupImageFallback() {
     });
 }
 
-/* กดเปิดรายละเอียดจากการ์ดสินค้า/ไอดีโดยตรง */
+/* กดเปิดรายละเอียดจากการ์ดสินค้า/ไอดีโดยตรง (ดึงรูปปัจจุบันที่แสดงอยู่ในการ์ดมาใช้) */
 function openCardDetail(btn) {
     const card = btn.closest('.id-card') || btn.closest('.product');
     if (!card) return;
 
     const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'รายละเอียดสินค้า';
     const imgEl = card.querySelector('img');
-    const imgSrc = imgEl ? imgEl.src : DEFAULT_NO_PRODUCT_IMG;
+    
+    // ดึงค่า src ของรูปในการ์ด (ซึ่งถ้าโหลดไม่ผ่าน จะเปลี่ยนเป็นรูปไม่มีสินค้าให้อัตโนมัติแล้ว)
+    let imgSrc = imgEl ? imgEl.src : DEFAULT_NO_PRODUCT_IMG;
+    
     const desc = card.querySelector('p') ? card.querySelector('p').textContent : '';
     const price = card.querySelector('.price, .id-price') ? card.querySelector('.price, .id-price').textContent : '';
 
