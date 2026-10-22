@@ -407,6 +407,9 @@ header {
     margin-bottom: 15px;
     cursor: pointer;
     position: relative;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .detail-image::after {
@@ -574,6 +577,9 @@ header {
     overflow: hidden;
     margin-bottom: 14px;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .id-card .id-image img {
@@ -633,6 +639,9 @@ header {
     margin-bottom: 13px;
     background: #080b0f;
     cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
 .map-card .map-image img {
@@ -778,7 +787,6 @@ footer span { color: #ffe000; }
 
 <header>
     <div class="navbar">
-        <!-- 📷 เปลี่ยนรูปโลโก้ได้ตรงนี้ -->
         <img src="Screenshot 2026-09-26 155129.png" class="logo" alt="XeonEria" onclick="zoomImage(this.src)">
 
         <div class="logo-name">
@@ -823,7 +831,6 @@ footer span { color: #ffe000; }
     <div class="cards">
         <div class="card">
             <div class="icon game-icon">
-                <!-- 📷 รูปโลโก้ Roblox -->
                 <img src="Roblox_Logo_2025.png" alt="Roblox" onclick="zoomImage(this.src)">
             </div>
             <h3>ROBLOX</h3>
@@ -833,7 +840,6 @@ footer span { color: #ffe000; }
 
         <div class="card">
             <div class="icon game-icon">
-                <!-- 📷 รูปโลโก้ PES -->
                 <img src="6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp" alt="PES" onclick="zoomImage(this.src)">
             </div>
             <h3>PES</h3>
@@ -858,7 +864,7 @@ footer span { color: #ffe000; }
                 <h3>Roblox</h3>
                 <p>สินค้า Roblox</p>
                 <div class="price">เริ่มต้น 25 บาท</div>
-                <button class="detail-button" onclick="openDetail('Roblox','images/product1.jpg','สินค้า Roblox ราคาเริ่มต้น 25 บาท')">
+                <button class="detail-button" onclick="openCardDetail(this)">
                     ดูรายละเอียดสินค้า
                 </button>
             </div>
@@ -872,7 +878,7 @@ footer span { color: #ffe000; }
                 <h3>PES</h3>
                 <p>สินค้าและบริการสำหรับเกม PES</p>
                 <div class="price">สอบถามราคา</div>
-                <button class="detail-button" onclick="openDetail('PES','images/product2.jpg','สินค้าและบริการสำหรับเกม PES สามารถสอบถามรายละเอียดและราคากับร้านได้')">
+                <button class="detail-button" onclick="openCardDetail(this)">
                     ดูรายละเอียดสินค้า
                 </button>
             </div>
@@ -1041,7 +1047,7 @@ footer span { color: #ffe000; }
 
 <script>
 /* ====================================
-   ตั้งค่ารูป fallback เมื่อไม่มีสินค้า/หาไฟล์ไม่พบ
+   รูป fallback เมื่อไม่มีสินค้า/หาไฟล์ไม่พบ
    ==================================== */
 const DEFAULT_NO_PRODUCT_IMG = "Screenshot 2026-10-22 094639.png";
 
@@ -1066,12 +1072,12 @@ function generatePesCards() {
         htmlContent += `
         <div class="id-card">
             <div class="id-image" onclick="zoomImage(this.querySelector('img').src)">
-                <img src="${imgSrc}" alt="PES ID #${i}" onerror="this.onerror=null; this.src='${DEFAULT_NO_PRODUCT_IMG}';">
+                <img src="${imgSrc}" alt="PES ID #${i}">
             </div>
             <h3>PES ID #${i}</h3>
             <p>ไอดี PES พร้อมใช้งาน</p>
             <div class="id-price">สอบถามราคา</div>
-            <button onclick="openDetail('PES ID #${i}', this.previousElementSibling.previousElementSibling.previousElementSibling.querySelector('img').src, 'ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับทางร้าน')">ดูรายละเอียด</button>
+            <button onclick="openCardDetail(this)">ดูรายละเอียด</button>
         </div>
         `;
     }
@@ -1096,6 +1102,21 @@ function setupImageFallback() {
     });
 }
 
+/* กดเปิดรายละเอียดจากการ์ดสินค้า/ไอดีโดยตรง */
+function openCardDetail(btn) {
+    const card = btn.closest('.id-card') || btn.closest('.product');
+    if (!card) return;
+
+    const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'รายละเอียดสินค้า';
+    const imgEl = card.querySelector('img');
+    const imgSrc = imgEl ? imgEl.src : DEFAULT_NO_PRODUCT_IMG;
+    const desc = card.querySelector('p') ? card.querySelector('p').textContent : '';
+    const price = card.querySelector('.price, .id-price') ? card.querySelector('.price, .id-price').textContent : '';
+
+    const fullDesc = desc + (price ? '\nราคา: ' + price : '');
+    openDetail(title, imgSrc, fullDesc);
+}
+
 /* ====================================
    ระบบซูมขยายรูปภาพ (ZOOM LIGHTBOX)
    ==================================== */
@@ -1104,6 +1125,12 @@ function zoomImage(src) {
     const modal = document.getElementById("zoomModal");
     const img = document.getElementById("zoomImage");
     img.src = src;
+    
+    img.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+    };
+    
     modal.style.display = "flex";
 }
 
@@ -1186,8 +1213,17 @@ function scrollToBottom() {
 /* รายละเอียดสินค้า */
 function openDetail(title, image, description) {
     document.getElementById("detailTitle").textContent = title;
-    document.getElementById("detailImage").src = image;
-    document.getElementById("detailImage").alt = title;
+    
+    const detailImg = document.getElementById("detailImage");
+    detailImg.src = image;
+    detailImg.alt = title;
+    
+    detailImg.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+        this.style.objectFit = "contain";
+    };
+
     document.getElementById("detailDescription").textContent = description;
     openPopup("detailPopup");
 }
