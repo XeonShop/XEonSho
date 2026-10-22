@@ -956,6 +956,7 @@ footer span { color: #ffe000; }
             </div>
             <div class="detail-info-box">
                 <div class="info-row">
+                    <!-- [ตำแหน่งตรงนี้] เปลี่ยนคำว่า รหัสไอดี -->
                     <span>รหัสไอดี :</span>
                     <span id="pesCode">ไอดี PES #1</span>
                 </div>
@@ -1102,7 +1103,7 @@ footer span { color: #ffe000; }
 const DEFAULT_NO_PRODUCT_IMG = "Screenshot 2026-10-22 094639.png";
 
 /* ==========================================================
-   รวมรูปภาพ PES ID #1 ถึง #100
+   [ตำแหน่งตรงนี้] รวมรูปภาพ PES ID #1 ถึง #100
    ========================================================== */
 const customPesImages = {
     1: "PES 2 409.png",
@@ -1135,7 +1136,7 @@ const customPesImages = {
 };
 
 /* ==========================================================
-   ฐานข้อมูลราคา ทอง และรายละเอียดไอดี
+   [ตำแหน่งตรงนี้] ฐานข้อมูลราคา ทอง และรายละเอียดไอดีแต่ละเบอร์
    ========================================================== */
 const pesDatabase = {
     1: { gold: "3,177 Coins", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
@@ -1201,6 +1202,7 @@ function generatePesCards() {
     items.forEach(function(item) {
         const safeFeatures = item.features.replace(/\n/g, '\\n');
         
+        /* [ตำแหน่งตรงนี้] ตัวสร้างชื่อการ์ดแต่ละอัน เช่น ไอดี PES #1 */
         htmlContent += `
         <div class="id-card">
             <div class="id-image" onclick="zoomImage(this.querySelector('img').src)">
