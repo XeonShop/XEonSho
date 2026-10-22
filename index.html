@@ -35,7 +35,6 @@ button {
 }
 
 /* HEADER */
-
 header {
     min-height: 80px;
     background: #080808;
@@ -114,7 +113,6 @@ header {
 }
 
 /* SEARCH */
-
 .search-box {
     display: none;
     position: absolute;
@@ -151,7 +149,6 @@ header {
 }
 
 /* HERO */
-
 .hero {
     width: 1100px;
     max-width: 94%;
@@ -209,24 +206,11 @@ header {
     font-weight: bold;
 }
 
-.yellow {
-    background: #ffe000;
-    color: #000;
-}
-
-.blue {
-    background: #28c8ff;
-    color: #001018;
-}
-
-.dark {
-    background: #111;
-    color: white;
-    border: 1px solid #444 !important;
-}
+.yellow { background: #ffe000; color: #000; }
+.blue { background: #28c8ff; color: #001018; }
+.dark { background: #111; color: white; border: 1px solid #444 !important; }
 
 /* CONTENT */
-
 .container {
     width: 1100px;
     max-width: 94%;
@@ -241,16 +225,10 @@ header {
     gap: 12px;
 }
 
-.title h2 {
-    font-size: 30px;
-}
-
-.title span {
-    color: #28c8ff;
-}
+.title h2 { font-size: 30px; }
+.title span { color: #28c8ff; }
 
 /* CATEGORY */
-
 .cards {
     display: grid;
     grid-template-columns: repeat(2, minmax(0, 1fr));
@@ -297,14 +275,8 @@ header {
     display: block;
 }
 
-.card h3 {
-    font-size: 21px;
-}
-
-.card p {
-    color: #aaa;
-    margin: 7px 0 15px;
-}
+.card h3 { font-size: 21px; }
+.card p { color: #aaa; margin: 7px 0 15px; }
 
 .card a {
     display: inline-block;
@@ -317,7 +289,6 @@ header {
 }
 
 /* PRODUCTS */
-
 .products {
     display: grid;
     grid-template-columns: repeat(4, minmax(0, 1fr));
@@ -345,26 +316,23 @@ header {
     justify-content: center;
     align-items: center;
     overflow: hidden;
+    cursor: pointer;
 }
 
 .product-img img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s;
 }
 
-.product-info {
-    padding: 15px;
+.product-img:hover img {
+    transform: scale(1.05);
 }
 
-.product-info h3 {
-    font-size: 21px;
-}
-
-.product-info p {
-    color: #999;
-    margin-top: 5px;
-}
+.product-info { padding: 15px; }
+.product-info h3 { font-size: 21px; }
+.product-info p { color: #999; margin-top: 5px; }
 
 .price {
     color: #ffe000;
@@ -384,12 +352,9 @@ header {
     font-weight: bold;
 }
 
-.detail-button:hover {
-    background: #ffe000;
-}
+.detail-button:hover { background: #ffe000; }
 
 /* POPUP */
-
 .popup-bg {
     display: none;
     position: fixed;
@@ -420,9 +385,7 @@ header {
     margin-bottom: 15px;
 }
 
-.popup-title h2 {
-    color: #ffe000;
-}
+.popup-title h2 { color: #ffe000; }
 
 .close-button {
     flex-shrink: 0;
@@ -442,6 +405,21 @@ header {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 15px;
+    cursor: pointer;
+    position: relative;
+}
+
+.detail-image::after {
+    content: "🔍 แตะเพื่อขยายรูปภาพ";
+    position: absolute;
+    bottom: 8px;
+    right: 8px;
+    background: rgba(0, 0, 0, 0.7);
+    color: #ffe000;
+    font-size: 12px;
+    padding: 4px 8px;
+    border-radius: 5px;
+    pointer-events: none;
 }
 
 .detail-image img {
@@ -467,8 +445,43 @@ header {
     font-weight: bold;
 }
 
-/* CONTACT */
+/* IMAGE ZOOM / LIGHTBOX */
+.zoom-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 5000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
 
+.zoom-modal img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border: 2px solid #ffe000;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255, 224, 0, 0.3);
+    object-fit: contain;
+}
+
+.zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #ffe000;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.zoom-close:hover {
+    color: #28c8ff;
+}
+
+/* CONTACT */
 .contact-item {
     display: flex;
     align-items: center;
@@ -482,9 +495,7 @@ header {
     text-decoration: none;
 }
 
-.contact-item:hover {
-    border-color: #28c8ff;
-}
+.contact-item:hover { border-color: #28c8ff; }
 
 .contact-icon {
     width: 45px;
@@ -500,7 +511,6 @@ header {
 }
 
 /* GAME PAGES */
-
 .game-page {
     display: none;
     width: 1100px;
@@ -508,9 +518,7 @@ header {
     margin: 40px auto 70px;
 }
 
-.game-page.active {
-    display: block;
-}
+.game-page.active { display: block; }
 
 .game-page-header {
     display: flex;
@@ -521,13 +529,8 @@ header {
     flex-wrap: wrap;
 }
 
-.game-page-header h2 {
-    font-size: 32px;
-}
-
-.game-page-header h2 span {
-    color: #28c8ff;
-}
+.game-page-header h2 { font-size: 32px; }
+.game-page-header h2 span { color: #28c8ff; }
 
 .back-button {
     border: 1px solid #28c8ff;
@@ -570,29 +573,23 @@ header {
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 14px;
+    cursor: pointer;
 }
 
 .id-card .id-image img {
     width: 100%;
     height: 100%;
     object-fit: cover;
+    transition: transform 0.3s;
 }
 
-.id-card h3 {
-    font-size: 20px;
-    margin-bottom: 6px;
+.id-card .id-image:hover img {
+    transform: scale(1.05);
 }
 
-.id-card p {
-    color: #999;
-    line-height: 1.6;
-}
-
-.id-card .id-price {
-    color: #ffe000;
-    font-weight: bold;
-    margin-top: 8px;
-}
+.id-card h3 { font-size: 20px; margin-bottom: 6px; }
+.id-card p { color: #999; line-height: 1.6; }
+.id-card .id-price { color: #ffe000; font-weight: bold; margin-top: 8px; }
 
 .id-card button {
     width: 100%;
@@ -605,12 +602,9 @@ header {
     font-weight: bold;
 }
 
-.id-card button:hover {
-    background: #ffe000;
-}
+.id-card button:hover { background: #ffe000; }
 
 /* ROBLOX MAPS */
-
 .map-grid {
     display: grid;
     grid-template-columns: repeat(3, minmax(0, 1fr));
@@ -638,6 +632,7 @@ header {
     border-radius: 10px;
     margin-bottom: 13px;
     background: #080b0f;
+    cursor: pointer;
 }
 
 .map-card .map-image img {
@@ -645,19 +640,15 @@ header {
     height: 100%;
     object-fit: cover;
     display: block;
+    transition: transform 0.3s;
 }
 
-.map-card h3 {
-    color: #ffe000;
-    font-size: 20px;
-    margin-bottom: 7px;
+.map-card .map-image:hover img {
+    transform: scale(1.05);
 }
 
-.map-card p {
-    color: #aaa;
-    line-height: 1.5;
-    margin-bottom: 13px;
-}
+.map-card h3 { color: #ffe000; font-size: 20px; margin-bottom: 7px; }
+.map-card p { color: #aaa; line-height: 1.5; margin-bottom: 13px; }
 
 .map-card button {
     width: 100%;
@@ -669,9 +660,7 @@ header {
     font-weight: bold;
 }
 
-.map-card button:hover {
-    background: #ffe000;
-}
+.map-card button:hover { background: #ffe000; }
 
 .map-products-heading {
     display: flex;
@@ -682,10 +671,7 @@ header {
     margin: 30px 0 18px;
 }
 
-.map-products-heading h3 {
-    font-size: 25px;
-    color: #ffe000;
-}
+.map-products-heading h3 { font-size: 25px; color: #ffe000; }
 
 .map-empty {
     color: #aaa;
@@ -698,7 +684,6 @@ header {
 }
 
 /* FOOTER */
-
 footer {
     margin-top: 60px;
     padding: 30px;
@@ -707,12 +692,9 @@ footer {
     color: #777;
 }
 
-footer span {
-    color: #ffe000;
-}
+footer span { color: #ffe000; }
 
 /* SCROLL BUTTONS */
-
 .scroll-controls {
     position: fixed;
     right: 18px;
@@ -740,15 +722,9 @@ footer span {
 }
 
 /* MOBILE */
-
 @media (max-width: 900px) {
-    .menu {
-        display: none;
-    }
-
-    .mobile-menu-button {
-        display: block;
-    }
+    .menu { display: none; }
+    .mobile-menu-button { display: block; }
 
     .menu.mobile-open {
         display: flex;
@@ -771,73 +747,29 @@ footer span {
         border-radius: 7px;
     }
 
-    .products {
+    .products, .map-grid, .id-grid {
         grid-template-columns: repeat(2, minmax(0, 1fr));
     }
 
-    .map-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .id-grid {
-        grid-template-columns: repeat(2, minmax(0, 1fr));
-    }
-
-    .hero h1 {
-        font-size: 42px;
-    }
+    .hero h1 { font-size: 42px; }
 }
 
 @media (max-width: 600px) {
-    .navbar {
-        gap: 9px;
-    }
+    .navbar { gap: 9px; }
+    .logo { width: 45px; height: 45px; }
+    .logo-name { font-size: 18px; }
+    .hero { min-height: 0; }
+    .hero-content { padding: 25px; }
+    .hero h1 { font-size: 34px; }
+    .title h2 { font-size: 24px; }
 
-    .logo {
-        width: 45px;
-        height: 45px;
-    }
-
-    .logo-name {
-        font-size: 18px;
-    }
-
-    .hero {
-        min-height: 0;
-    }
-
-    .hero-content {
-        padding: 25px;
-    }
-
-    .hero h1 {
-        font-size: 34px;
-    }
-
-    .title h2 {
-        font-size: 24px;
-    }
-
-    .cards,
-    .products,
-    .map-grid,
-    .id-grid {
+    .cards, .products, .map-grid, .id-grid {
         grid-template-columns: 1fr;
     }
 
-    .search-box {
-        right: 3%;
-        width: 94%;
-    }
-
-    .scroll-controls {
-        right: 12px;
-        bottom: 12px;
-    }
-
-    .popup {
-        padding: 16px;
-    }
+    .search-box { right: 3%; width: 94%; }
+    .scroll-controls { right: 12px; bottom: 12px; }
+    .popup { padding: 16px; }
 }
 </style>
 </head>
@@ -846,31 +778,15 @@ footer span {
 
 <header>
     <div class="navbar">
-        <img
-            src="Screenshot 2026-09-26 155129.png"
-            class="logo"
-            alt="XeonEria"
-        >
+        <!-- 📷 เปลี่ยนรูปโลโก้ได้ตรงนี้ -->
+        <img src="Screenshot 2026-09-26 155129.png" class="logo" alt="XeonEria" onclick="zoomImage(this.src)">
 
         <div class="logo-name">
             Xeon<span>Eria</span>
         </div>
 
-        <button
-            class="search-button"
-            type="button"
-            onclick="toggleSearch()"
-            aria-label="ค้นหาสินค้า"
-        >🔍</button>
-
-        <button
-            class="mobile-menu-button"
-            id="mobileMenuButton"
-            type="button"
-            onclick="toggleMobileMenu()"
-            aria-label="เปิดเมนู"
-            aria-expanded="false"
-        >☰</button>
+        <button class="search-button" type="button" onclick="toggleSearch()" aria-label="ค้นหาสินค้า">🔍</button>
+        <button class="mobile-menu-button" id="mobileMenuButton" type="button" onclick="toggleMobileMenu()" aria-label="เปิดเมนู" aria-expanded="false">☰</button>
 
         <nav class="menu">
             <button type="button" onclick="goProducts()">🛒 สินค้า</button>
@@ -879,12 +795,7 @@ footer span {
         </nav>
 
         <div class="search-box" id="searchBox">
-            <input
-                id="searchInput"
-                type="text"
-                placeholder="ค้นหาสินค้า..."
-                aria-label="ค้นหาสินค้า"
-            >
+            <input id="searchInput" type="text" placeholder="ค้นหาสินค้า..." aria-label="ค้นหาสินค้า">
             <button type="button" onclick="searchProduct()">ค้นหา</button>
         </div>
     </div>
@@ -893,18 +804,8 @@ footer span {
 <section class="hero">
     <div class="hero-content">
         <div class="badge">🔥 XEONERIA</div>
-
-        <h1>
-            ร้านค้า Roblox และ PES
-            <span>ครบจบในที่เดียว</span>
-        </h1>
-
-        <p>
-            ร้านค้าออนไลน์สำหรับสินค้าเกม
-            ซื้อสินค้าได้ง่าย ติดต่อร้านได้โดยตรง
-            รวดเร็วและสะดวก
-        </p>
-
+        <h1>ร้านค้า Roblox และ PES <span>ครบจบในที่เดียว</span></h1>
+        <p>ร้านค้าออนไลน์สำหรับสินค้าเกม ซื้อสินค้าได้ง่าย ติดต่อร้านได้โดยตรง รวดเร็วและสะดวก</p>
         <div class="hero-buttons">
             <button class="yellow" onclick="goProducts()">🛒 ดูสินค้าทั้งหมด</button>
             <button class="blue" onclick="openPopup('guidePopup')">📖 วิธีซื้อสินค้า</button>
@@ -922,7 +823,8 @@ footer span {
     <div class="cards">
         <div class="card">
             <div class="icon game-icon">
-                <img src="Roblox_Logo_2025.png" alt="Roblox">
+                <!-- 📷 รูปโลโก้ Roblox -->
+                <img src="Roblox_Logo_2025.png" alt="Roblox" onclick="zoomImage(this.src)">
             </div>
             <h3>ROBLOX</h3>
             <p>สินค้า Roblox</p>
@@ -931,7 +833,8 @@ footer span {
 
         <div class="card">
             <div class="icon game-icon">
-                <img src="6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp" alt="PES">
+                <!-- 📷 รูปโลโก้ PES -->
+                <img src="6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp" alt="PES" onclick="zoomImage(this.src)">
             </div>
             <h3>PES</h3>
             <p>สินค้าและบริการเกม PES</p>
@@ -948,7 +851,7 @@ footer span {
 
     <div class="products" id="productGrid">
         <div class="product" data-name="Roblox Robux">
-            <div class="product-img">
+            <div class="product-img" onclick="zoomImage('images/product1.jpg')">
                 <img src="images/product1.jpg" alt="Roblox">
             </div>
             <div class="product-info">
@@ -962,7 +865,7 @@ footer span {
         </div>
 
         <div class="product" data-name="PES eFootball">
-            <div class="product-img">
+            <div class="product-img" onclick="zoomImage('images/product2.jpg')">
                 <img src="images/product2.jpg" alt="PES">
             </div>
             <div class="product-info">
@@ -977,7 +880,7 @@ footer span {
     </div>
 </section>
 
-<!-- รายละเอียดสินค้า -->
+<!-- POPUP รายละเอียดสินค้า -->
 <div class="popup-bg" id="detailPopup" role="dialog" aria-modal="true" aria-label="รายละเอียดสินค้า">
     <div class="popup">
         <div class="popup-title">
@@ -985,7 +888,7 @@ footer span {
             <button class="close-button" onclick="closePopup('detailPopup')" aria-label="ปิด">×</button>
         </div>
 
-        <div class="detail-image">
+        <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)">
             <img id="detailImage" src="" alt="รูปสินค้า">
         </div>
 
@@ -997,7 +900,13 @@ footer span {
     </div>
 </div>
 
-<!-- ช่องทางติดต่อ -->
+<!-- POPUP ซูมรูปภาพใหญ่ (LIGHTBOX) -->
+<div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
+    <span class="zoom-close" onclick="closeZoom()">&times;</span>
+    <img id="zoomImage" src="" alt="ขยายรูปภาพ">
+</div>
+
+<!-- POPUP ช่องทางติดต่อ -->
 <div class="popup-bg" id="contactPopup" role="dialog" aria-modal="true" aria-label="ช่องทางการติดต่อ">
     <div class="popup">
         <div class="popup-title">
@@ -1031,7 +940,7 @@ footer span {
     </div>
 </div>
 
-<!-- วิธีซื้อสินค้า -->
+<!-- POPUP วิธีซื้อสินค้า -->
 <div class="popup-bg" id="guidePopup" role="dialog" aria-modal="true" aria-label="วิธีซื้อสินค้า">
     <div class="popup">
         <div class="popup-title">
@@ -1050,7 +959,7 @@ footer span {
     </div>
 </div>
 
-<!-- หน้า Roblox -->
+<!-- หน้า ROBLOX -->
 <section class="game-page" id="robloxPage">
     <div class="game-page-header">
         <h2>ROBLOX <span>หมวดหมู่แมพ</span></h2>
@@ -1059,42 +968,42 @@ footer span {
 
     <div class="map-grid" id="robloxMapGrid">
         <div class="map-card">
-            <div class="map-image"><img src="images/maps/egg-map.jpg" alt="แมพเอาไข่"></div>
+            <div class="map-image" onclick="zoomImage('images/maps/egg-map.jpg')"><img src="images/maps/egg-map.jpg" alt="แมพเอาไข่"></div>
             <h3>แมพเอาไข่</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('egg')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image"><img src="images/maps/grow-a-garden.jpg" alt="Grow a Garden"></div>
+            <div class="map-image" onclick="zoomImage('images/maps/grow-a-garden.jpg')"><img src="images/maps/grow-a-garden.jpg" alt="Grow a Garden"></div>
             <h3>Grow a Garden</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('garden')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image"><img src="images/maps/steal-brainrot.jpg" alt="Steal a Brainrot"></div>
+            <div class="map-image" onclick="zoomImage('images/maps/steal-brainrot.jpg')"><img src="images/maps/steal-brainrot.jpg" alt="Steal a Brainrot"></div>
             <h3>Steal a Brainrot</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('brainrot')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image"><img src="images/maps/blox-fruits.jpg" alt="Blox Fruits"></div>
+            <div class="map-image" onclick="zoomImage('images/maps/blox-fruits.jpg')"><img src="images/maps/blox-fruits.jpg" alt="Blox Fruits"></div>
             <h3>Blox Fruits</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('bloxfruits')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image"><img src="images/maps/pet-simulator.jpg" alt="Pet Simulator"></div>
+            <div class="map-image" onclick="zoomImage('images/maps/pet-simulator.jpg')"><img src="images/maps/pet-simulator.jpg" alt="Pet Simulator"></div>
             <h3>Pet Simulator</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('petsim')">ดูสินค้าในแมพ</button>
         </div>
 
         <div class="map-card">
-            <div class="map-image"><img src="images/maps/other-map.jpg" alt="แมพอื่น ๆ"></div>
+            <div class="map-image" onclick="zoomImage('images/maps/other-map.jpg')"><img src="images/maps/other-map.jpg" alt="แมพอื่น ๆ"></div>
             <h3>แมพอื่น ๆ</h3>
             <p>เพิ่มแมพที่คุณต้องการได้</p>
             <button onclick="showMapProducts('other')">ดูสินค้าในแมพ</button>
@@ -1110,15 +1019,15 @@ footer span {
     </div>
 </section>
 
-<!-- หน้า PES (แก้ไขแล้ว: แสดง PES ID #1 - #100) -->
+<!-- หน้า PES (สร้าง ID #1 ถึง #100 ด้วย JS สั้นๆ) -->
 <section class="game-page" id="pesPage">
     <div class="game-page-header">
-        <h2>PES <span>ไอดี (1 - 100)</span></h2>
+        <h2>PES <span>ไอดี</span></h2>
         <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
     </div>
 
-    <!-- กล่องรวมไอดี PES ทั้งหมด (จะสร้างไอดี 1-100 อัตโนมัติด้วย JavaScript) -->
-    <div class="id-grid" id="pesIdContainer"></div>
+    <!-- ตารางสร้างไอดี PES 1-100 สวยงาม -->
+    <div class="id-grid" id="pesIdGrid"></div>
 </section>
 
 <footer>
@@ -1132,51 +1041,58 @@ footer span {
 </div>
 
 <script>
-/* ========================================================
-   📷 วิธีใส่/เปลี่ยนรูปภาพของ PES ID แต่ละอัน
-   
-   - หากต้องการตั้งชื่อรูปตามไอดี ให้ตั้งว่า pes-1.jpg, pes-2.jpg ไปเรื่อยๆ 
-   - หรือใส่ลิงก์รูปที่คุณต้องการในตัวแปร pesCustomImages ด้านล่างนี้ได้เลยครับ
-   ======================================================== */
-const pesCustomImages = {
-    1: "PES 2 409.png",          // 📷 รูปไอดี PES #1
-    2: "images/pes-id2.jpg",      // 📷 รูปไอดี PES #2
-    3: "images/pes-id3.jpg",      // 📷 รูปไอดี PES #3
-    // เพิ่มรูปไอดีอื่นตามต้องการตรงนี้ได้เลย เช่น
-    // 4: "images/pes-id4.jpg",
+/* ====================================
+   ตั้งค่ารูปภาพสำหรับ PES ID #1 ถึง #100
+   ==================================== */
+// 📷 แก้ไขพาธรูปภาพของไอดี PES ตรงนี้ได้เลยครับ (ถ้าไม่ใส่จะใช้รูป default ด้านล่าง)
+const customPesImages = {
+    1: "PES 2 409.png", // รูปของ ID #1
+    // 2: "images/pes-id2.jpg",
+    // 3: "images/pes-id3.jpg",
 };
 
-// ฟังก์ชันสร้าง PES ID #1 ถึง #100 อัตโนมัติ
-function generatePesIds() {
-    const container = document.getElementById("pesIdContainer");
+// สคริปต์สร้างการ์ด PES ID #1 - #100 อัตโนมัติ
+function generatePesCards() {
+    const container = document.getElementById("pesIdGrid");
     if (!container) return;
-
-    let html = "";
+    
+    let htmlContent = "";
     for (let i = 1; i <= 100; i++) {
-        // ใช้รูปเฉพาะถ้ากำหนดไว้ ถ้าไม่มีจะใช้ชื่อไฟล์มาตรฐาน images/pes-idX.jpg
-        const imgSrc = pesCustomImages[i] || `images/pes-id${i}.jpg`;
-        const title = `PES ID #${i}`;
-        const desc = `ไอดี PES พร้อมใช้งาน (ไอดีลำดับที่ ${i})`;
-
-        html += `
-            <div class="id-card">
-                <div class="id-image">
-                    <img src="${imgSrc}" alt="${title}">
-                </div>
-                <h3>${title}</h3>
-                <p>${desc}</p>
-                <div class="id-price">สอบถามราคา</div>
-                <button onclick="openDetail('${title}', '${imgSrc}', '${desc} สอบถามรายละเอียดเพิ่มเติมกับทางร้านได้เลยครับ')">
-                    ดูรายละเอียด
-                </button>
+        // ใช้รูปคัสตอม ถ้าไม่มีจะใช้รูปตัวอย่าง
+        const imgSrc = customPesImages[i] || `images/pes-id${i}.jpg`;
+        
+        htmlContent += `
+        <div class="id-card">
+            <div class="id-image" onclick="zoomImage('${imgSrc}')">
+                <img src="${imgSrc}" alt="PES ID #${i}" onerror="this.src='PES 2 409.png'">
             </div>
+            <h3>PES ID #${i}</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">สอบถามราคา</div>
+            <button onclick="openDetail('PES ID #${i}', '${imgSrc}', 'ไอดี PES พร้อมใช้งาน สอบถามรายละเอียดกับทางร้าน')">ดูรายละเอียด</button>
+        </div>
         `;
     }
-    container.innerHTML = html;
+    container.innerHTML = htmlContent;
 }
 
-// เรียกให้สร้างรายการ PES ID เมื่อโหลดหน้าเว็บ
-document.addEventListener("DOMContentLoaded", generatePesIds);
+// เรียกใช้งานสร้างไอดีเมื่อโหลดหน้าเว็บ
+document.addEventListener("DOMContentLoaded", generatePesCards);
+
+/* ====================================
+   ระบบซูมขยายรูปภาพ (ZOOM LIGHTBOX)
+   ==================================== */
+function zoomImage(src) {
+    if (!src) return;
+    const modal = document.getElementById("zoomModal");
+    const img = document.getElementById("zoomImage");
+    img.src = src;
+    modal.style.display = "flex";
+}
+
+function closeZoom() {
+    document.getElementById("zoomModal").style.display = "none";
+}
 
 /* ค้นหา */
 function toggleSearch() {
@@ -1321,13 +1237,14 @@ function showHome() {
     window.scrollTo({top:0, behavior:"smooth"});
 }
 
-/* กด ESC เพื่อปิด Popup และเมนู */
+/* กด ESC เพื่อปิด Popup, รูปซูม และเมนู */
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
         document.querySelectorAll(".popup-bg").forEach(function(popup) {
             popup.style.display = "none";
         });
 
+        closeZoom();
         document.getElementById("searchBox").style.display = "none";
         closeMobileMenu();
     }
@@ -1443,6 +1360,7 @@ function showMapProducts(mapKey) {
 
             const imageBox = document.createElement("div");
             imageBox.className = "id-image";
+            imageBox.onclick = function() { zoomImage(product.image); };
 
             const img = document.createElement("img");
             img.src = product.image;
@@ -1507,17 +1425,3 @@ document.querySelectorAll("img").forEach(function(img) {
 
 </body>
 </html>
-```
-
-### 📌 วิธีใส่รูป PES ID 1 - 100:
-
-ค้นหาคำว่า `pesCustomImages` ในส่วนสคริปต์ล่างสุดของไฟล์ แล้วใส่ชื่อรูปภาพตามเลขไอดีได้เลยครับ เช่น:
-
-```javascript
-const pesCustomImages = {
-    1: "PES 2 409.png",      // รูปของ PES ID #1
-    2: "images/pes-id2.jpg",  // รูปของ PES ID #2
-    3: "images/pes-id3.jpg",  // รูปของ PES ID #3
-    // ต้องการใส่รูปไอดีไหนเพิ่ม ให้ต่อท้ายตรงนี้ได้เลยครับ เช่น
-    // 4: "รูปของคุณ.jpg",
-};
