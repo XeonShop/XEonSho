@@ -367,7 +367,7 @@ header {
 }
 
 .popup {
-    width: 500px;
+    width: 550px;
     max-width: 95%;
     max-height: 90vh;
     overflow: auto;
@@ -398,55 +398,86 @@ header {
     font-size: 20px;
 }
 
-.detail-image {
+/* สไตล์ป๊อปอัพรายละเอียดไอดีสไตล์ใหม่ตามแบบคุณ */
+.detail-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.detail-image-box {
     width: 100%;
-    height: 250px;
+    height: 200px;
     background: #080b0f;
     border-radius: 10px;
     overflow: hidden;
-    margin-bottom: 15px;
     cursor: pointer;
     position: relative;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+    border: 1px solid #333;
 }
 
-.detail-image::after {
-    content: "🔍 แตะเพื่อขยายรูปภาพ";
-    position: absolute;
-    bottom: 8px;
-    right: 8px;
-    background: rgba(0, 0, 0, 0.7);
-    color: #ffe000;
-    font-size: 12px;
-    padding: 4px 8px;
-    border-radius: 5px;
-    pointer-events: none;
-}
-
-.detail-image img {
+.detail-image-box img {
     width: 100%;
     height: 100%;
     object-fit: cover;
 }
 
-.detail-description {
-    color: #ccc;
-    line-height: 1.8;
-    white-space: pre-line;
+.detail-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
 }
+
+.info-row {
+    background: #111820;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-row span:first-child { color: #aaa; font-size: 14px; }
+.info-row span:last-child { color: #28c8ff; font-weight: bold; font-size: 16px; }
+
+.popup-price-tag {
+    background: #111;
+    border: 1px solid #28c8ff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.popup-price-tag .p-label { color: #aaa; font-size: 13px; }
+.popup-price-tag .p-val { color: #28ff55; font-size: 24px; font-weight: bold; margin-top: 3px; }
+
+.popup-features {
+    background: #111820;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.popup-features b { color: #28c8ff; display: block; margin-bottom: 5px; }
 
 .contact-buy {
     width: 100%;
-    margin-top: 15px;
     padding: 12px;
     border: 0;
     border-radius: 8px;
-    background: #ffe000;
-    color: #000;
+    background: #28c8ff;
+    color: #001018;
     font-weight: bold;
+    font-size: 16px;
 }
+.contact-buy:hover { background: #ffe000; }
 
 /* IMAGE ZOOM / LIGHTBOX */
 .zoom-modal {
@@ -864,7 +895,7 @@ footer span { color: #ffe000; }
                 <h3>Roblox</h3>
                 <p>สินค้า Roblox</p>
                 <div class="price">เริ่มต้น 25 บาท</div>
-                <button class="detail-button" onclick="openCardDetail(this)">
+                <button class="detail-button" onclick="openProductDetail('Roblox', 'images/product1.jpg', 'เริ่มต้น 25 บาท', '5ชั่วโมงที่แล้ว', 'สินค้า Roblox ราคาเริ่มต้น 25 บาท\n- เติมไว ปลอดภัย 100%')">
                     ดูรายละเอียดสินค้า
                 </button>
             </div>
@@ -878,7 +909,7 @@ footer span { color: #ffe000; }
                 <h3>PES</h3>
                 <p>สินค้าและบริการสำหรับเกม PES</p>
                 <div class="price">สอบถามราคา</div>
-                <button class="detail-button" onclick="openCardDetail(this)">
+                <button class="detail-button" onclick="openProductDetail('PES', 'images/product2.jpg', 'สอบถามราคา', '-', 'สินค้าและบริการสำหรับเกม PES สามารถสอบถามรายละเอียดและราคากับร้านได้')">
                     ดูรายละเอียดสินค้า
                 </button>
             </div>
@@ -886,7 +917,7 @@ footer span { color: #ffe000; }
     </div>
 </section>
 
-<!-- POPUP รายละเอียดสินค้า -->
+<!-- POPUP รายละเอียดสินค้า (ทั่วไป) -->
 <div class="popup-bg" id="detailPopup" role="dialog" aria-modal="true" aria-label="รายละเอียดสินค้า">
     <div class="popup">
         <div class="popup-title">
@@ -894,14 +925,58 @@ footer span { color: #ffe000; }
             <button class="close-button" onclick="closePopup('detailPopup')" aria-label="ปิด">×</button>
         </div>
 
-        <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)">
-            <img id="detailImage" src="" alt="รูปสินค้า">
+        <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)" style="width:100%; height:250px; background:#080b0f; border-radius:10px; overflow:hidden; margin-bottom:15px; cursor:pointer; position:relative; display:flex; align-items:center; justify-content:center;">
+            <img id="detailImage" src="" alt="รูปสินค้า" style="width:100%; height:100%; object-fit:cover;">
         </div>
 
-        <div class="detail-description" id="detailDescription"></div>
+        <div class="detail-description" id="detailDescription" style="color:#ccc; line-height:1.8; white-space:pre-line;"></div>
 
-        <button class="contact-buy" onclick="closePopup('detailPopup');openPopup('contactPopup')">
+        <button class="contact-buy" style="margin-top:15px;" onclick="closePopup('detailPopup');openPopup('contactPopup')">
             📞 ติดต่อเพื่อสั่งซื้อ
+        </button>
+    </div>
+</div>
+
+<!-- POPUP รายละเอียดไอดี PES (แบบดีไซน์ใหม่ตามที่คุณต้องการ) -->
+<div class="popup-bg" id="pesDetailPopup" role="dialog" aria-modal="true" aria-label="รายละเอียดไอดี PES">
+    <div class="popup">
+        <div class="popup-title">
+            <h2>🎮 รายละเอียดไอดี</h2>
+            <button class="close-button" onclick="closePopup('pesDetailPopup')" aria-label="ปิด">×</button>
+        </div>
+
+        <div class="detail-content-grid">
+            <div class="detail-image-box" onclick="zoomImage(document.getElementById('pesDetailImg').src)">
+                <img id="pesDetailImg" src="" alt="รูปไอดี PES">
+            </div>
+            <div class="detail-info-box">
+                <div class="info-row">
+                    <span>รหัสสินค้า :</span>
+                    <span id="pesCode">PES 1</span>
+                </div>
+                <div class="info-row">
+                    <span>ทอง :</span>
+                    <span id="pesGold">0</span>
+                </div>
+                <div style="background:#111820; border:1px solid #333; border-radius:8px; padding:10px 12px; margin-top:auto;">
+                    <span style="color:#aaa; font-size:13px;">สถานะ:</span>
+                    <span style="color:#28ff55; font-weight:bold; display:block; margin-top:2px;">พร้อมจำหน่าย</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-price-tag">
+            <div class="p-label">ราคาเพียง</div>
+            <div class="p-val" id="pesPrice">สอบถามราคา</div>
+        </div>
+
+        <div class="popup-features">
+            <b>🎮 รายละเอียดเกมเปส :</b>
+            <div id="pesFeaturesText">- ไอดีสะอาด<br>- ไทยแท้<br>- ระบบ AD<br>- ล็อก 10</div>
+        </div>
+
+        <button class="contact-buy" onclick="closePopup('pesDetailPopup');openPopup('contactPopup')">
+            🛒 สั่งซื้อไอดีนี้
         </button>
     </div>
 </div>
@@ -956,11 +1031,10 @@ footer span { color: #ffe000; }
 
         <ol style="padding-left:25px;line-height:2;color:#ddd">
             <li>เลือกสินค้าที่ต้องการ</li>
-            <li>กด “ดูรายละเอียดสินค้า”</li>
-            <li>อ่านรายละเอียดสินค้า</li>
-            <li>กด “ติดต่อเพื่อสั่งซื้อ”</li>
-            <li>เลือก Facebook / Instagram / LINE</li>
-            <li>แจ้งรายละเอียดสินค้าที่ต้องการกับร้าน</li>
+            <li>กด “ดูรายละเอียด”</li>
+            <li>ตรวจสอบข้อมูล รหัส, ทอง และราคา</li>
+            <li>กด “สั่งซื้อไอดีนี้” เพื่อติดต่อร้านค้า</li>
+            <li>แจ้งรหัสไอดีที่ต้องการกับทางร้าน</li>
         </ol>
     </div>
 </div>
@@ -979,40 +1053,11 @@ footer span { color: #ffe000; }
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('egg')">ดูสินค้าในแมพ</button>
         </div>
-
         <div class="map-card">
             <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/grow-a-garden.jpg" alt="Grow a Garden"></div>
             <h3>Grow a Garden</h3>
             <p>สินค้าและไอเทมจากแมพนี้</p>
             <button onclick="showMapProducts('garden')">ดูสินค้าในแมพ</button>
-        </div>
-
-        <div class="map-card">
-            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/steal-brainrot.jpg" alt="Steal a Brainrot"></div>
-            <h3>Steal a Brainrot</h3>
-            <p>สินค้าและไอเทมจากแมพนี้</p>
-            <button onclick="showMapProducts('brainrot')">ดูสินค้าในแมพ</button>
-        </div>
-
-        <div class="map-card">
-            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/blox-fruits.jpg" alt="Blox Fruits"></div>
-            <h3>Blox Fruits</h3>
-            <p>สินค้าและไอเทมจากแมพนี้</p>
-            <button onclick="showMapProducts('bloxfruits')">ดูสินค้าในแมพ</button>
-        </div>
-
-        <div class="map-card">
-            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/pet-simulator.jpg" alt="Pet Simulator"></div>
-            <h3>Pet Simulator</h3>
-            <p>สินค้าและไอเทมจากแมพนี้</p>
-            <button onclick="showMapProducts('petsim')">ดูสินค้าในแมพ</button>
-        </div>
-
-        <div class="map-card">
-            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/other-map.jpg" alt="แมพอื่น ๆ"></div>
-            <h3>แมพอื่น ๆ</h3>
-            <p>เพิ่มแมพที่คุณต้องการได้</p>
-            <button onclick="showMapProducts('other')">ดูสินค้าในแมพ</button>
         </div>
     </div>
 
@@ -1051,64 +1096,66 @@ footer span { color: #ffe000; }
    ==================================== */
 const DEFAULT_NO_PRODUCT_IMG = "Screenshot 2026-10-22 094639.png";
 
-/* ====================================
-   ตั้งค่ารูปภาพสำหรับ PES ID #1 ถึง #100
-   ==================================== */
-const customPesImages = {
-    1: "PES 2 409.png",
-    2: "PES 3 409.png",
-    3: "PES 4 409.png",
-    4: "PES 9 409.png",
-    5: "PES 10 499.png",
-    6: "PES 11 419.png",
-    7: "PES 12 399.png",
-    8: "PES 13 399.png",
-    9: "PES 14 459.png",
-    10: "PES 15 399.png",
-    11: "PES 16 400.png",
-    12: "PES 17 400.png",
-    13: "PES 76 419.png",
-    14: "PES 77 389.png",
-    15: "PES 78 419.png",
-    16: "PES 79 419.png",
-    17: "PES 81 439.png",
-    18: "PES 82 419.png",
-    19: "PES 83 359.png",
-    20: "PES 84 419.png",
-    21: "PES 85 419.png",
-    22: "PES 86 419.png",
-    23: "PES 87 389.png",
-    24: "PES 88 419.png",
-    25: "PES 89 419.png",
-    26: "PES 90 429.png",
-    27: "PES 91 449.png",
+/* ==========================================================
+   กำหนดข้อมูลไอดี PES #1 ถึง #100 (ใส่รูป, ทอง, ราคา, รายละเอียด)
+   * ไอดีไหนไม่ใส่ข้อมูล ราคาจะแสดงเป็น "สอบถามราคา" อัตโนมัติ
+   ========================================================== */
+const pesDatabase = {
+    1: {
+        image: "image_f804d9.png",
+        gold: "3,177 Coins",
+        price: "สอบถามราคา",
+        features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10"
+    },
+    4: {
+        image: "PES 9 409.png",
+        gold: "4,520",
+        price: "295 ฿",
+        features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10"
+    },
+    5: {
+        image: "PES 10 499.png",
+        gold: "3,500",
+        price: "499 ฿",
+        features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10"
+    }
+    // คุณสามารถเติมไอดีอื่นๆ ต่อได้ เช่น 6: { image: "...", gold: "...", price: "...", features: "..." }
 };
 
-// สร้างการ์ด PES #1 - #100 และเรียงลำดับ (มีรูปขึ้นก่อน, ไม่มีรูปไปไว้หลังสุด)
+// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (มีรูปขึ้นก่อน ไม่มีรูปไปไว้ข้างหลัง)
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
     
     let items = [];
     for (let i = 1; i <= 100; i++) {
-        // เช็คว่ามีระบุรูปไว้ใน customPesImages หรือไม่ (ถ้าไม่มีจะถือว่าไม่มีรูป)
-        const hasImage = customPesImages[i] ? true : false;
-        const imgSrc = hasImage ? customPesImages[i] : DEFAULT_NO_PRODUCT_IMG;
-        
+        const data = pesDatabase[i] || {};
+        const hasImage = data.image ? true : false;
+        const imgSrc = hasImage ? data.image : DEFAULT_NO_PRODUCT_IMG;
+        const gold = data.gold || "สอบถาม";
+        const price = data.price || "สอบถามราคา";
+        const features = data.features || "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10";
+
         items.push({
             id: i,
             imgSrc: imgSrc,
-            hasImage: hasImage
+            hasImage: hasImage,
+            gold: gold,
+            price: price,
+            features: features
         });
     }
 
-    // จัดเรียง: เอาที่มีรูป (hasImage = true) ขึ้นมาก่อน
+    // เรียงลำดับ: เอาที่มีรูป (hasImage = true) ขึ้นมาก่อน
     items.sort(function(a, b) {
         return (b.hasImage ? 1 : 0) - (a.hasImage ? 1 : 0);
     });
     
     let htmlContent = "";
     items.forEach(function(item) {
+        // หลีกเลี่ยงปัญหาเครื่องหมายคำพูดในสตริง JSON
+        const safeFeatures = item.features.replace(/\n/g, '\\n');
+        
         htmlContent += `
         <div class="id-card">
             <div class="id-image" onclick="zoomImage(this.querySelector('img').src)">
@@ -1116,27 +1163,26 @@ function generatePesCards() {
             </div>
             <h3>PES ID #${item.id}</h3>
             <p>ไอดี PES พร้อมใช้งาน</p>
-            <div class="id-price">สอบถามราคา</div>
-            <button onclick="openCardDetail(this)">ดูรายละเอียด</button>
+            <div class="id-price">${item.price}</div>
+            <button onclick="openPesDetail('PES ID #${item.id}', '${item.imgSrc}', '${item.gold}', '${item.price}', '${safeFeatures}')">ดูรายละเอียด</button>
         </div>
         `;
     });
     container.innerHTML = htmlContent;
 }
 
-// เรียกใช้งานเมื่อโหลด DOM
+// เรียกใช้งานเมื่อโหลดหน้าเว็บ
 document.addEventListener("DOMContentLoaded", function() {
     generatePesCards();
     setupImageFallback();
 });
 
-/* ฟังก์ชั่นตรวจจับรูปที่โหลดไม่ได้ และใช้รูปแทนที่อัตโนมัติ */
+/* ตรวจสอบรูปที่โหลดไม่ติดหรือไม่มีไฟล์ ให้เปลี่ยนเป็นรูปไม่มีสินค้า */
 function setupImageFallback() {
     document.querySelectorAll("img").forEach(function(img) {
         if (!img.getAttribute('src')) {
             img.src = DEFAULT_NO_PRODUCT_IMG;
         }
-        
         img.addEventListener("error", function() {
             this.onerror = null;
             this.src = DEFAULT_NO_PRODUCT_IMG;
@@ -1146,35 +1192,50 @@ function setupImageFallback() {
     });
 }
 
-/* กดเปิดรายละเอียดจากการ์ดสินค้า/ไอดีโดยตรง */
-function openCardDetail(btn) {
-    const card = btn.closest('.id-card') || btn.closest('.product');
-    if (!card) return;
+/* เปิดป๊อปอัพรายละเอียดไอดี PES สไตล์ใหม่ */
+function openPesDetail(code, img, gold, price, features) {
+    document.getElementById("pesCode").textContent = code;
+    document.getElementById("pesGold").textContent = gold;
+    document.getElementById("pesPrice").textContent = price;
+    
+    // แปลง \n กลับเป็น <br> สำหรับแสดงผลในกล่องฟีเจอร์
+    document.getElementById("pesFeaturesText").innerHTML = features.replace(/\\n/g, '<br>');
 
-    const title = card.querySelector('h3') ? card.querySelector('h3').textContent : 'รายละเอียดสินค้า';
-    const imgEl = card.querySelector('img');
-    const imgSrc = imgEl ? imgEl.src : DEFAULT_NO_PRODUCT_IMG;
-    const desc = card.querySelector('p') ? card.querySelector('p').textContent : '';
-    const price = card.querySelector('.price, .id-price') ? card.querySelector('.price, .id-price').textContent : '';
+    const detailImg = document.getElementById("pesDetailImg");
+    detailImg.src = img;
+    detailImg.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+    };
 
-    const fullDesc = desc + (price ? '\nราคา: ' + price : '');
-    openDetail(title, imgSrc, fullDesc);
+    openPopup("pesDetailPopup");
 }
 
-/* ====================================
-   ระบบซูมขยายรูปภาพ (ZOOM LIGHTBOX)
-   ==================================== */
+/* เปิดป๊อปอัพสินค้าทั่วไป */
+function openProductDetail(title, img, price, time, desc) {
+    document.getElementById("detailTitle").textContent = title;
+    document.getElementById("detailDescription").textContent = desc + "\nราคา: " + price;
+    
+    const detailImg = document.getElementById("detailImage");
+    detailImg.src = img;
+    detailImg.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+    };
+
+    openPopup("detailPopup");
+}
+
+/* ระบบซูมรูปภาพ */
 function zoomImage(src) {
     if (!src) return;
     const modal = document.getElementById("zoomModal");
     const img = document.getElementById("zoomImage");
     img.src = src;
-    
     img.onerror = function() {
         this.onerror = null;
         this.src = DEFAULT_NO_PRODUCT_IMG;
     };
-    
     modal.style.display = "flex";
 }
 
@@ -1182,14 +1243,12 @@ function closeZoom() {
     document.getElementById("zoomModal").style.display = "none";
 }
 
-/* ค้นหา */
+/* ระบบค้นหา */
 function toggleSearch() {
     const box = document.getElementById("searchBox");
     const input = document.getElementById("searchInput");
-
     const isOpen = box.style.display === "block";
     box.style.display = isOpen ? "none" : "block";
-
     if (!isOpen) input.focus();
 }
 
@@ -1222,22 +1281,17 @@ document.getElementById("searchInput").addEventListener("keydown", function(even
 function toggleMobileMenu() {
     const menu = document.querySelector(".menu");
     const button = document.getElementById("mobileMenuButton");
-
     const isOpen = menu.classList.toggle("mobile-open");
     button.setAttribute("aria-expanded", String(isOpen));
-    button.setAttribute("aria-label", isOpen ? "ปิดเมนู" : "เปิดเมนู");
     button.textContent = isOpen ? "×" : "☰";
 }
 
 function closeMobileMenu() {
     const menu = document.querySelector(".menu");
     const button = document.getElementById("mobileMenuButton");
-
     if (menu) menu.classList.remove("mobile-open");
-
     if (button) {
         button.setAttribute("aria-expanded", "false");
-        button.setAttribute("aria-label", "เปิดเมนู");
         button.textContent = "☰";
     }
 }
@@ -1254,25 +1308,7 @@ function scrollToBottom() {
     });
 }
 
-/* รายละเอียดสินค้า */
-function openDetail(title, image, description) {
-    document.getElementById("detailTitle").textContent = title;
-    
-    const detailImg = document.getElementById("detailImage");
-    detailImg.src = image;
-    detailImg.alt = title;
-    
-    detailImg.onerror = function() {
-        this.onerror = null;
-        this.src = DEFAULT_NO_PRODUCT_IMG;
-        this.style.objectFit = "contain";
-    };
-
-    document.getElementById("detailDescription").textContent = description;
-    openPopup("detailPopup");
-}
-
-/* Popup */
+/* ป๊อปอัพควบคุมทั่วไป */
 function openPopup(id) {
     const popup = document.getElementById(id);
     if (popup) popup.style.display = "flex";
@@ -1284,152 +1320,70 @@ function closePopup(id) {
     if (popup) popup.style.display = "none";
 }
 
-/* คลิกพื้นที่ด้านนอก Popup เพื่อปิด */
 document.querySelectorAll(".popup-bg").forEach(function(overlay) {
     overlay.addEventListener("click", function(event) {
         if (event.target === overlay) overlay.style.display = "none";
     });
 });
 
-/* เลื่อนไปหน้าสินค้า */
+/* เปลี่ยนหน้าหลัก / เกมเพจ */
 function goProducts() {
     showHome();
     document.getElementById("products").scrollIntoView({behavior:"smooth"});
     closeMobileMenu();
 }
 
-/* เปลี่ยนหน้า */
 function showGamePage(pageId) {
     document.querySelector(".hero").style.display = "none";
-
     document.querySelectorAll(".container").forEach(function(element) {
         element.style.display = "none";
     });
-
     document.querySelectorAll(".game-page").forEach(function(page) {
         page.classList.remove("active");
     });
-
     const page = document.getElementById(pageId);
-
     if (page) {
         page.classList.add("active");
         page.scrollIntoView({behavior:"smooth"});
     }
-
     closeMobileMenu();
 }
 
 function showHome() {
     document.querySelector(".hero").style.display = "";
-
     document.querySelectorAll(".container").forEach(function(element) {
         element.style.display = "";
     });
-
     document.querySelectorAll(".game-page").forEach(function(page) {
         page.classList.remove("active");
     });
-
     window.scrollTo({top:0, behavior:"smooth"});
 }
 
-/* กด ESC เพื่อปิด Popup, รูปซูม และเมนู */
+/* ปุ่ม ESC ปิดหน้าต่างทั้งหมด */
 document.addEventListener("keydown", function(event) {
     if (event.key === "Escape") {
         document.querySelectorAll(".popup-bg").forEach(function(popup) {
             popup.style.display = "none";
         });
-
         closeZoom();
         document.getElementById("searchBox").style.display = "none";
         closeMobileMenu();
     }
 });
 
-/* ข้อมูลสินค้า Roblox แยกตามแมพ */
+/* ตัวอย่างข้อมูลแมพ Roblox (ถ้ามี) */
 const robloxMaps = {
     egg: {
         name: "แมพเอาไข่",
         products: [
-            {
-                name: "สินค้าแมพเอาไข่ #1",
-                image: "images/maps/egg-product1.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้าจากแมพเอาไข่"
-            },
-            {
-                name: "สินค้าแมพเอาไข่ #2",
-                image: "images/maps/egg-product2.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้าจากแมพเอาไข่"
-            }
+            { name: "สินค้าแมพเอาไข่ #1", image: "images/maps/egg-product1.jpg", price: "สอบถามราคา", description: "รายละเอียดสินค้าจากแมพเอาไข่" }
         ]
     },
-
     garden: {
         name: "Grow a Garden",
         products: [
-            {
-                name: "สินค้า Grow a Garden #1",
-                image: "images/maps/garden-product1.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้า Grow a Garden"
-            },
-            {
-                name: "สินค้า Grow a Garden #2",
-                image: "images/maps/garden-product2.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้า Grow a Garden"
-            }
-        ]
-    },
-
-    brainrot: {
-        name: "Steal a Brainrot",
-        products: [
-            {
-                name: "สินค้า Steal a Brainrot #1",
-                image: "images/maps/brainrot-product1.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้า Steal a Brainrot"
-            }
-        ]
-    },
-
-    bloxfruits: {
-        name: "Blox Fruits",
-        products: [
-            {
-                name: "สินค้า Blox Fruits #1",
-                image: "images/maps/blox-fruits-product1.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้า Blox Fruits"
-            }
-        ]
-    },
-
-    petsim: {
-        name: "Pet Simulator",
-        products: [
-            {
-                name: "สินค้า Pet Simulator #1",
-                image: "images/maps/pet-simulator-product1.jpg",
-                price: "สอบถามราคา",
-                description: "รายละเอียดสินค้า Pet Simulator"
-            }
-        ]
-    },
-
-    other: {
-        name: "แมพอื่น ๆ",
-        products: [
-            {
-                name: "สินค้าแมพอื่น ๆ #1",
-                image: "images/maps/other-product1.jpg",
-                price: "สอบถามราคา",
-                description: "กรุณาติดต่อร้านเพื่อสอบถามเพิ่มเติม"
-            }
+            { name: "สินค้า Grow a Garden #1", image: "images/maps/garden-product1.jpg", price: "สอบถามราคา", description: "รายละเอียดสินค้า Grow a Garden" }
         ]
     }
 };
@@ -1437,7 +1391,6 @@ const robloxMaps = {
 function showMapProducts(mapKey) {
     const map = robloxMaps[mapKey];
     if (!map) return;
-
     document.getElementById("robloxMapGrid").style.display = "none";
     document.getElementById("mapProducts").style.display = "block";
     document.getElementById("mapProductTitle").textContent = map.name;
@@ -1445,71 +1398,28 @@ function showMapProducts(mapKey) {
     const grid = document.getElementById("mapProductGrid");
     grid.innerHTML = "";
 
-    if (!map.products || map.products.length === 0) {
-        const empty = document.createElement("div");
-        empty.className = "map-empty";
-        empty.textContent = "ยังไม่มีสินค้าในแมพนี้ คุณสามารถเพิ่มสินค้าในข้อมูล robloxMaps ได้";
-        grid.appendChild(empty);
-    } else {
-        map.products.forEach(function(product) {
-            const card = document.createElement("div");
-            card.className = "id-card";
-
-            const imageBox = document.createElement("div");
-            imageBox.className = "id-image";
-
-            const img = document.createElement("img");
-            img.src = product.image;
-            img.alt = product.name;
-            img.onerror = function() {
-                this.onerror = null;
-                this.src = DEFAULT_NO_PRODUCT_IMG;
-                this.style.objectFit = "contain";
-            };
-
-            imageBox.onclick = function() { zoomImage(img.src); };
-            imageBox.appendChild(img);
-
-            const title = document.createElement("h3");
-            title.textContent = product.name;
-
-            const description = document.createElement("p");
-            description.textContent = product.description;
-
-            const price = document.createElement("div");
-            price.className = "id-price";
-            price.textContent = product.price;
-
-            const button = document.createElement("button");
-            button.textContent = "ดูรายละเอียดสินค้า";
-
-            button.onclick = function() {
-                openDetail(
-                    product.name,
-                    img.src,
-                    product.description + "\nราคา: " + product.price
-                );
-            };
-
-            card.append(imageBox, title, description, price, button);
-            grid.appendChild(card);
-        });
-    }
-
-    document.getElementById("mapProducts").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
+    map.products.forEach(function(product) {
+        const card = document.createElement("div");
+        card.className = "id-card";
+        card.innerHTML = `
+            <div class="id-image" onclick="zoomImage('${product.image}')">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="id-price">${product.price}</div>
+            <button onclick="openProductDetail('${product.name}', '${product.image}', '${product.price}', '-', '${product.description}')">ดูรายละเอียดสินค้า</button>
+        `;
+        grid.appendChild(card);
     });
+
+    document.getElementById("mapProducts").scrollIntoView({behavior: "smooth", block: "start"});
 }
 
 function backToMaps() {
     document.getElementById("mapProducts").style.display = "none";
     document.getElementById("robloxMapGrid").style.display = "grid";
-
-    document.getElementById("robloxPage").scrollIntoView({
-        behavior: "smooth",
-        block: "start"
-    });
+    document.getElementById("robloxPage").scrollIntoView({behavior: "smooth", block: "start"});
 }
 </script>
 
