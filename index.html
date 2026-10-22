@@ -957,7 +957,7 @@ footer span { color: #ffe000; }
             <div class="detail-info-box">
                 <div class="info-row">
                     <span>รหัสไอดี :</span>
-                    <span id="pesCode">ไอดี PES #1</span>
+                    <span id="pesCode">PES - 1</span>
                 </div>
                 <div class="info-row">
                     <span>ทอง :</span>
@@ -1135,12 +1135,12 @@ const customPesImages = {
 };
 
 /* ==========================================================
-   ฐานข้อมูลตั้งค่าไอดี (สามารถใส่ code: "รหัสที่ต้องการ" เพื่อกำหนดเองได้)
+   ฐานข้อมูลตั้งค่าไอดี PES 1-100
    ========================================================== */
 const pesDatabase = {
-    1: { code: "PES-VIP-01", gold: "3,177 Coins", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
-    2: { code: "PES-VIP-02", gold: "สอบถาม", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
-    3: { code: "PES-VIP-03", gold: "สอบถาม", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    1: { gold: "3,177 Coins", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    2: { gold: "สอบถาม", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    3: { gold: "สอบถาม", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     4: { gold: "4,520", price: "409 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     5: { gold: "3,500", price: "499 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
     6: { gold: "สอบถาม", price: "419 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
@@ -1167,7 +1167,7 @@ const pesDatabase = {
     27: { gold: "สอบถาม", price: "449 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" }
 };
 
-// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (มีรูปขึ้นก่อน)
+// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (แสดงรหัสเป็น PES - เลขเบอร์)
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
@@ -1180,8 +1180,8 @@ function generatePesCards() {
         const hasImage = customImg ? true : false;
         const imgSrc = hasImage ? customImg : DEFAULT_NO_PRODUCT_IMG;
         
-        // ถ้ารหัสไหนใส่ code ในฐานข้อมูล จะใช้ค่านั้นทันที (ถ้าไม่ใส่ จะแสดงเป็น "ไอดี PES #เลขเบอร์")
-        const code = data.code || `ไอดี PES #${i}`;
+        // รูปแบบรหัสไอดีเริ่มต้นอัตโนมัติ: "PES - เลขเบอร์"
+        const code = data.code || `PES - ${i}`;
         const gold = data.gold || "สอบถาม";
         const price = data.price || "สอบถามราคา";
         const features = data.features || "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10";
