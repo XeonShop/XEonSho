@@ -311,7 +311,7 @@ header {
 .product-img {
     width: 100%;
     height: 180px;
-    background: #080b0f;
+    background: #000;
     display: flex;
     justify-content: center;
     align-items: center;
@@ -322,7 +322,7 @@ header {
 .product-img img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain; /* ปรับรูปไม่ให้สเกลเบี้ยว/ยืด */
     transition: transform 0.3s;
 }
 
@@ -409,19 +409,22 @@ header {
 .detail-image-box {
     width: 100%;
     height: 200px;
-    background: #080b0f;
+    background: #000;
     border-radius: 10px;
     overflow: hidden;
     cursor: pointer;
     position: relative;
     border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
 }
 
-/* แก้ไขรูปในป๊อปอัพไม่ให้ยืด */
+/* แก้ไขรูปในป๊อปอัพไม่ให้ยืดและเห็นรูปครบ */
 .detail-image-box img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
 }
 
 .detail-info-box {
@@ -603,8 +606,8 @@ header {
 
 .id-card .id-image {
     width: 100%;
-    height: 160px;
-    background: #080b0f;
+    height: 190px;
+    background: #000;
     border-radius: 10px;
     overflow: hidden;
     margin-bottom: 14px;
@@ -612,18 +615,19 @@ header {
     display: flex;
     align-items: center;
     justify-content: center;
+    border: 1px solid #222;
 }
 
-/* แก้ไขรูปในการ์ดไม่ให้ยืด (เปลี่ยนเป็น cover) */
+/* แก้ไขรูปในการ์ด PES ไม่ให้ยืดและเห็นเต็มรูป */
 .id-card .id-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     transition: transform 0.3s;
 }
 
 .id-card .id-image:hover img {
-    transform: scale(1.03);
+    transform: scale(1.05);
 }
 
 .id-card h3 { font-size: 20px; margin-bottom: 6px; }
@@ -670,7 +674,7 @@ header {
     overflow: hidden;
     border-radius: 10px;
     margin-bottom: 13px;
-    background: #080b0f;
+    background: #000;
     cursor: pointer;
     display: flex;
     align-items: center;
@@ -680,7 +684,7 @@ header {
 .map-card .map-image img {
     width: 100%;
     height: 100%;
-    object-fit: cover;
+    object-fit: contain;
     display: block;
     transition: transform 0.3s;
 }
@@ -928,8 +932,8 @@ footer span { color: #ffe000; }
             <button class="close-button" onclick="closePopup('detailPopup')" aria-label="ปิด">×</button>
         </div>
 
-        <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)" style="width:100%; height:250px; background:#080b0f; border-radius:10px; overflow:hidden; margin-bottom:15px; cursor:pointer; position:relative; display:flex; align-items:center; justify-content:center;">
-            <img id="detailImage" src="" alt="รูปสินค้า" style="width:100%; height:100%; object-fit:cover;">
+        <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)" style="width:100%; height:250px; background:#000; border-radius:10px; overflow:hidden; margin-bottom:15px; cursor:pointer; position:relative; display:flex; align-items:center; justify-content:center; border:1px solid #333;">
+            <img id="detailImage" src="" alt="รูปสินค้า" style="width:100%; height:100%; object-fit:contain;">
         </div>
 
         <div class="detail-description" id="detailDescription" style="color:#ccc; line-height:1.8; white-space:pre-line;"></div>
@@ -1100,7 +1104,7 @@ footer span { color: #ffe000; }
 const DEFAULT_NO_PRODUCT_IMG = "Screenshot 2026-10-22 094639.png";
 
 /* ==========================================================
-   รวมรูปภาพ PES ID #1 ถึง #100 ที่คุณเคยเขียนไว้ทั้งหมด
+   รวมรูปภาพ PES ID #1 ถึง #100
    ========================================================== */
 const customPesImages = {
     1: "PES 2 409.png",
@@ -1165,7 +1169,7 @@ const pesDatabase = {
     27: { gold: "สอบถาม", price: "449 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" }
 };
 
-// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (มีรูปขึ้นก่อน ไม่มีรูปไปไว้ข้างหลัง)
+// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ (มีรูปขึ้นก่อน)
 function generatePesCards() {
     const container = document.getElementById("pesIdGrid");
     if (!container) return;
@@ -1191,7 +1195,6 @@ function generatePesCards() {
         });
     }
 
-    // เรียงลำดับ: เอาที่มีรูป (hasImage = true) ขึ้นมาก่อน
     items.sort(function(a, b) {
         return (b.hasImage ? 1 : 0) - (a.hasImage ? 1 : 0);
     });
@@ -1231,7 +1234,7 @@ function setupImageFallback() {
             this.onerror = null;
             this.src = DEFAULT_NO_PRODUCT_IMG;
             this.style.objectFit = "contain";
-            this.style.background = "#0d1117";
+            this.style.background = "#000";
         });
     });
 }
@@ -1414,7 +1417,7 @@ document.addEventListener("keydown", function(event) {
     }
 });
 
-/* ตัวอย่างข้อมูลแมพ Roblox */
+/* ข้อมูลแมพ Roblox */
 const robloxMaps = {
     egg: {
         name: "แมพเอาไข่",
