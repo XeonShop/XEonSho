@@ -236,12 +236,36 @@ header {
 }
 
 .card {
-    background: linear-gradient(180deg, #111, #070707);
-    border: 2px solid #ffe000;
+    position: relative;
     border-radius: 16px;
     text-align: center;
-    padding: 25px 15px;
+    padding: 40px 15px;
     transition: .2s;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border: 2px solid #ffe000;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75); /* ทำให้มืดลงเพื่อให้ตัวหนังสืออ่านง่าย */
+    z-index: 1;
+}
+
+.card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.card.roblox-card {
+    background-image: url('Roblox_Logo_2025.png');
+}
+
+.card.pes-card {
+    background-image: url('6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp');
 }
 
 .card:hover {
@@ -261,6 +285,7 @@ header {
     color: #ffe000;
     font-size: 25px;
     font-weight: bold;
+    background: #000;
 }
 
 .game-icon {
@@ -275,8 +300,8 @@ header {
     display: block;
 }
 
-.card h3 { font-size: 21px; }
-.card p { color: #aaa; margin: 7px 0 15px; }
+.card h3 { font-size: 21px; color: #fff; text-shadow: 0 2px 4px #000; }
+.card p { color: #ddd; margin: 7px 0 15px; text-shadow: 0 1px 3px #000; }
 
 .card a {
     display: inline-block;
@@ -287,72 +312,6 @@ header {
     font-weight: bold;
     text-decoration: none;
 }
-
-/* PRODUCTS */
-.products {
-    display: grid;
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-    gap: 18px;
-}
-
-.product {
-    background: #0d1117;
-    border: 1px solid #333;
-    border-radius: 13px;
-    overflow: hidden;
-    transition: .2s;
-}
-
-.product:hover {
-    transform: translateY(-4px);
-    border-color: #28c8ff;
-}
-
-.product-img {
-    width: 100%;
-    height: 180px;
-    background: #000;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-    overflow: hidden;
-    cursor: pointer;
-}
-
-.product-img img {
-    width: 100%;
-    height: 100%;
-    object-fit: contain;
-    transition: transform 0.3s;
-}
-
-.product-img:hover img {
-    transform: scale(1.05);
-}
-
-.product-info { padding: 15px; }
-.product-info h3 { font-size: 21px; }
-.product-info p { color: #999; margin-top: 5px; }
-
-.price {
-    color: #ffe000;
-    font-size: 19px;
-    font-weight: bold;
-    margin-top: 8px;
-}
-
-.detail-button {
-    width: 100%;
-    margin-top: 12px;
-    padding: 10px;
-    border: 0;
-    border-radius: 7px;
-    background: #28c8ff;
-    color: #001018;
-    font-weight: bold;
-}
-
-.detail-button:hover { background: #ffe000; }
 
 /* POPUP */
 .popup-bg {
@@ -851,7 +810,6 @@ footer span { color: #ffe000; }
         <h1>ร้านค้า Roblox และ PES <span>ครบจบในที่เดียว</span></h1>
         <p>ร้านค้าออนไลน์สำหรับสินค้าเกม ซื้อสินค้าได้ง่าย ติดต่อร้านได้โดยตรง รวดเร็วและสะดวก</p>
         <div class="hero-buttons">
-            <button class="yellow" onclick="goProducts()">🛒 ดูสินค้าทั้งหมด</button>
             <button class="blue" onclick="openPopup('guidePopup')">📖 วิธีซื้อสินค้า</button>
             <button class="dark" onclick="openPopup('contactPopup')">📞 ติดต่อร้าน</button>
         </div>
@@ -865,7 +823,7 @@ footer span { color: #ffe000; }
     </div>
 
     <div class="cards">
-        <div class="card">
+        <div class="card roblox-card">
             <div class="icon game-icon">
                 <img src="Roblox_Logo_2025.png" alt="Roblox" onclick="zoomImage(this.src)">
             </div>
@@ -874,7 +832,7 @@ footer span { color: #ffe000; }
             <a href="javascript:void(0)" onclick="showGamePage('robloxPage')">ดูสินค้า</a>
         </div>
 
-        <div class="card">
+        <div class="card pes-card">
             <div class="icon game-icon">
                 <img src="6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp" alt="PES" onclick="zoomImage(this.src)">
             </div>
