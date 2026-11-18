@@ -1,105 +1,779 @@
-
 <!DOCTYPE html>
 <html lang="th">
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Xeon Finnix | PES SHOP</title>
+<meta name="theme-color" content="#050505">
+<meta name="description" content="Xeon Finnix ร้านค้าออนไลน์สำหรับสินค้า Roblox และ PES">
+
+<title>Xeon Finnix | ร้านค้า Roblox และ PES</title>
 
 <style>
-*{box-sizing:border-box;margin:0;padding:0}
-body{font-family:Arial,Tahoma,sans-serif;background:#050505;color:white}
-button,input{font:inherit}
-button{cursor:pointer}
-header{background:#080808;border-bottom:2px solid #ffe000;position:sticky;top:0;z-index:1000}
-.navbar{width:1150px;max-width:94%;min-height:75px;margin:auto;display:flex;align-items:center;gap:12px}
-.logo-name{font-size:24px;font-weight:bold;color:#ffe000;margin-right:auto}
-.logo-name span{color:#28c8ff}
-.menu{display:flex;gap:5px}
-.menu button{border:0;background:transparent;color:white;padding:10px;font-weight:bold}
-.menu button:hover{color:#ffe000}
-.search-button{background:#111;border:1px solid #28c8ff;color:#28c8ff;border-radius:8px;padding:10px}
-.search-box{display:none;position:absolute;right:3%;top:70px;background:#111;padding:12px;border:1px solid #28c8ff;border-radius:10px;width:300px}
-.search-box input{width:100%;padding:10px;background:#050505;color:white;border:1px solid #555;border-radius:7px}
-.search-box button{width:100%;margin-top:8px;padding:9px;background:#ffe000;border:0;border-radius:7px}
-.hero,.container,.game-page{width:1100px;max-width:94%;margin:35px auto}
-.hero{padding:40px;border:2px solid #28c8ff;border-radius:16px;background:linear-gradient(120deg,#080808,#111820)}
-.hero h1{font-size:42px}
-.hero h1 span{color:#ffe000}
-.hero p{color:#ccc;margin-top:12px;line-height:1.7}
-.hero button{padding:12px 20px;margin-top:20px;border:0;border-radius:8px;font-weight:bold;margin-right:5px}
-.yellow{background:#ffe000;color:#000}
-.blue{background:#28c8ff;color:#000}
-.title{display:flex;justify-content:space-between;margin-bottom:20px}
-.title span{color:#28c8ff}
-.cards{display:grid;grid-template-columns:1fr 1fr;gap:18px}
-.category-card{padding:35px 15px;text-align:center;border:2px solid #ffe000;border-radius:16px;background:linear-gradient(135deg,#101b42,#080808)}
-.category-card:hover{border-color:#28c8ff;transform:translateY(-3px)}
-.category-image{width:100px;height:100px;border-radius:50%;border:2px solid #ffe000;object-fit:cover;background:#111;margin-bottom:12px}
-.category-card h3{font-size:23px}
-.category-card p{color:#ccc;margin:10px 0 15px}
-.category-card button{background:#28c8ff;color:#000;border:0;border-radius:8px;padding:11px 25px;font-weight:bold}
-.game-page{display:none;margin-bottom:70px}
-.game-page.active{display:block}
-.game-page-header{display:flex;justify-content:space-between;align-items:center;gap:12px;flex-wrap:wrap;margin-bottom:22px}
-.game-page-header h2{font-size:30px}
-.game-page-header h2 span{color:#28c8ff}
-.back-button{background:#111;color:#28c8ff;border:1px solid #28c8ff;padding:10px 17px;border-radius:8px}
-.id-grid{display:grid;grid-template-columns:repeat(3,minmax(0,1fr));gap:18px}
-.id-card{background:linear-gradient(180deg,#111,#070707);border:1px solid #444;border-radius:14px;padding:15px;transition:.2s}
-.id-card:hover{border-color:#ffe000;transform:translateY(-3px)}
-.id-image{width:100%;height:190px;background:#000;border-radius:10px;overflow:hidden;margin-bottom:12px;cursor:pointer;border:1px solid #333;display:flex;align-items:center;justify-content:center}
-.id-image img{width:100%;height:100%;object-fit:contain}
-.id-card h3{color:#ffe000;margin-bottom:7px}
-.id-card p{color:#bbb;line-height:1.7;font-size:14px}
-.id-price{color:#28c8ff;font-weight:bold;font-size:19px;margin-top:8px}
-.id-card button{width:100%;margin-top:12px;padding:11px;background:#28c8ff;color:#000;border:0;border-radius:8px;font-weight:bold}
-.id-card button:hover{background:#ffe000}
-.status{margin-top:7px;color:#28ff55;font-size:13px}
-.status.sold{color:#ff4444}
-.lottery{padding:22px;border:2px solid #ffe000;border-radius:15px;background:#101010;text-align:center;margin-top:30px}
-.lottery h2{color:#ffe000;margin-bottom:10px}
-.lottery-result{margin:15px 0;padding:15px;background:#050505;border:1px solid #444;border-radius:10px;min-height:130px;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:7px;color:#ccc}
-.lottery-result img{width:200px;height:140px;object-fit:contain;background:#111;border-radius:8px}
-.lottery-result strong{font-size:23px;color:#ffe000}
-.lottery-button{padding:12px 25px;background:#28c8ff;border:0;border-radius:8px;font-weight:bold}
-.popup-bg{display:none;position:fixed;inset:0;background:#000d;z-index:3000;justify-content:center;align-items:center;padding:15px}
-.popup{width:550px;max-width:100%;max-height:90vh;overflow:auto;background:#0b1016;border:2px solid #ffe000;border-radius:15px;padding:20px}
-.popup-title{display:flex;justify-content:space-between;align-items:center;margin-bottom:15px}
-.popup-title h2{color:#ffe000}
-.close-button{width:35px;height:35px;background:#333;color:white;border:0;border-radius:50%;font-size:21px}
-.detail-content-grid{display:grid;grid-template-columns:1fr 1fr;gap:15px;margin-bottom:15px}
-.detail-image{width:100%;height:210px;background:#000;border-radius:10px;overflow:hidden;cursor:pointer;border:1px solid #333;display:flex;align-items:center;justify-content:center}
-.detail-image img{width:100%;height:100%;object-fit:contain}
-.detail-info{display:flex;flex-direction:column;gap:9px}
-.info-row{background:#111820;border:1px solid #333;border-radius:8px;padding:10px;display:flex;justify-content:space-between;gap:8px}
-.info-row span:first-child{color:#aaa}
-.info-row span:last-child{color:#28c8ff;font-weight:bold;text-align:right}
-.detail-price{font-size:23px;color:#28ff55;font-weight:bold;text-align:center;margin:12px}
-.detail-features{background:#111820;border:1px solid #333;border-radius:9px;padding:13px;margin:12px 0;color:#ccc;line-height:1.8}
-.detail-features b{color:#28c8ff}
-.detail-buttons{display:grid;grid-template-columns:1fr;gap:10px;margin-top:15px}
-.buy-button{padding:13px;border:0;border-radius:8px;font-weight:bold;background:#28c8ff;color:#000;width:100%}
-.contact-item{display:block;text-align:center;padding:14px;margin-top:12px;border-radius:9px;background:#1877f2;color:white;text-decoration:none;font-weight:bold}
-.contact-item.instagram{background:#e1306c}
-.guide-list{color:#ddd;line-height:2;padding-left:25px}
-.zoom-modal{display:none;position:fixed;inset:0;background:#000e;z-index:5000;justify-content:center;align-items:center;padding:20px}
-.zoom-modal img{max-width:95%;max-height:85%;object-fit:contain;border:2px solid #ffe000}
-.zoom-close{position:absolute;right:20px;top:10px;font-size:40px;color:#ffe000;cursor:pointer}
-footer{text-align:center;padding:30px;color:#777;border-top:1px solid #222;margin-top:50px}
-footer span{color:#ffe000}
-.scroll-controls{position:fixed;right:15px;bottom:15px;display:flex;flex-direction:column;gap:8px}
-.scroll-controls button{width:42px;height:42px;border-radius:50%;border:1px solid #28c8ff;background:#111;color:#28c8ff;font-size:20px}
-@media(max-width:800px){
-.navbar{flex-wrap:wrap;padding:12px 0}
-.menu{width:100%;justify-content:center}
-.id-grid{grid-template-columns:repeat(2,minmax(0,1fr))}
+* {
+    box-sizing: border-box;
+    margin: 0;
+    padding: 0;
 }
-@media(max-width:550px){
-.cards,.id-grid{grid-template-columns:1fr}
-.hero{padding:25px}
-.hero h1{font-size:30px}
-.detail-content-grid{grid-template-columns:1fr}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 90px;
+}
+
+body {
+    font-family: Arial, Tahoma, sans-serif;
+    background: #050505;
+    color: white;
+}
+
+button, input {
+    font: inherit;
+}
+
+button {
+    cursor: pointer;
+}
+
+/* HEADER */
+header {
+    min-height: 80px;
+    background: #080808;
+    border-bottom: 2px solid #ffe000;
+    position: sticky;
+    top: 0;
+    z-index: 1000;
+}
+
+.navbar {
+    width: 1150px;
+    max-width: 94%;
+    min-height: 78px;
+    margin: auto;
+    display: flex;
+    align-items: center;
+    gap: 15px;
+}
+
+.logo {
+    width: 58px;
+    height: 58px;
+    border-radius: 50%;
+    object-fit: cover;
+    border: 2px solid #ffe000;
+}
+
+.logo-name {
+    font-size: 24px;
+    font-weight: bold;
+    color: #ffe000;
+    margin-right: auto;
+}
+
+.logo-name span {
+    color: #28c8ff;
+}
+
+.search-button,
+.mobile-menu-button {
+    width: 45px;
+    height: 45px;
+    border: 2px solid #28c8ff;
+    border-radius: 10px;
+    background: #111;
+    color: #28c8ff;
+    font-size: 22px;
+}
+
+.search-button:hover,
+.mobile-menu-button:hover {
+    background: #28c8ff;
+    color: #000;
+}
+
+.mobile-menu-button {
+    display: none;
+}
+
+.menu {
+    display: flex;
+    gap: 5px;
+}
+
+.menu button {
+    border: 0;
+    background: transparent;
+    color: white;
+    padding: 10px;
+    font-size: 15px;
+    font-weight: bold;
+}
+
+.menu button:hover {
+    color: #ffe000;
+}
+
+/* SEARCH */
+.search-box {
+    display: none;
+    position: absolute;
+    right: 3%;
+    top: 72px;
+    width: 320px;
+    max-width: 94vw;
+    padding: 12px;
+    background: #101010;
+    border: 2px solid #28c8ff;
+    border-radius: 12px;
+    box-shadow: 0 10px 30px #000;
+}
+
+.search-box input {
+    width: 100%;
+    padding: 12px;
+    background: #050505;
+    border: 1px solid #444;
+    border-radius: 8px;
+    color: white;
+    outline: none;
+}
+
+.search-box button {
+    width: 100%;
+    margin-top: 8px;
+    padding: 10px;
+    border: 0;
+    border-radius: 8px;
+    background: #ffe000;
+    color: #000;
+    font-weight: bold;
+}
+
+/* HERO */
+.hero {
+    width: 1100px;
+    max-width: 94%;
+    min-height: 330px;
+    margin: 35px auto;
+    border: 2px solid #28c8ff;
+    border-radius: 18px;
+    background:
+        radial-gradient(circle at 80% 20%, #ffe00025, transparent 30%),
+        linear-gradient(120deg, #080808, #111820);
+    display: flex;
+    align-items: center;
+}
+
+.hero-content {
+    padding: 45px;
+}
+
+.badge {
+    display: inline-block;
+    padding: 7px 18px;
+    margin-bottom: 15px;
+    border: 1px solid #ffe000;
+    border-radius: 30px;
+    color: #ffe000;
+    font-weight: bold;
+}
+
+.hero h1 {
+    font-size: 55px;
+    line-height: 1.1;
+}
+
+.hero h1 span {
+    color: #ffe000;
+}
+
+.hero p {
+    margin-top: 15px;
+    color: #ccc;
+    line-height: 1.7;
+}
+
+.hero-buttons {
+    display: flex;
+    gap: 12px;
+    margin-top: 25px;
+    flex-wrap: wrap;
+}
+
+.hero-buttons button {
+    padding: 12px 22px;
+    border: 0;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.yellow { background: #ffe000; color: #000; }
+.blue { background: #28c8ff; color: #001018; }
+.dark { background: #111; color: white; border: 1px solid #444 !important; }
+
+/* CONTENT */
+.container {
+    width: 1100px;
+    max-width: 94%;
+    margin: 40px auto;
+}
+
+.title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-bottom: 20px;
+    gap: 12px;
+}
+
+.title h2 { font-size: 30px; }
+.title span { color: #28c8ff; }
+
+/* CATEGORY */
+.cards {
+    display: grid;
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.card {
+    position: relative;
+    border-radius: 16px;
+    text-align: center;
+    padding: 40px 15px;
+    transition: .2s;
+    background-size: cover;
+    background-position: center;
+    overflow: hidden;
+    border: 2px solid #ffe000;
+}
+
+.card::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.75);
+    z-index: 1;
+}
+
+.card > * {
+    position: relative;
+    z-index: 2;
+}
+
+.card.roblox-card {
+    background-image: url('Roblox_Logo_2025.png');
+}
+
+.card.pes-card {
+    background-image: url('6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp');
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    border-color: #28c8ff;
+}
+
+.icon {
+    width: 75px;
+    height: 75px;
+    margin: 0 auto 15px;
+    border: 3px solid #ffe000;
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    color: #ffe000;
+    font-size: 25px;
+    font-weight: bold;
+    background: #000;
+}
+
+.game-icon {
+    overflow: hidden;
+    padding: 0;
+}
+
+.game-icon img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    display: block;
+}
+
+.card h3 { font-size: 21px; color: #fff; text-shadow: 0 2px 4px #000; }
+.card p { color: #ddd; margin: 7px 0 15px; text-shadow: 0 1px 3px #000; }
+
+.card a {
+    display: inline-block;
+    padding: 9px 18px;
+    border-radius: 7px;
+    background: #28c8ff;
+    color: #001018;
+    font-weight: bold;
+    text-decoration: none;
+}
+
+/* POPUP */
+.popup-bg {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: #000c;
+    z-index: 3000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.popup {
+    width: 550px;
+    max-width: 95%;
+    max-height: 90vh;
+    overflow: auto;
+    background: #0b1016;
+    border: 2px solid #ffe000;
+    border-radius: 17px;
+    padding: 22px;
+}
+
+.popup-title {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    margin-bottom: 15px;
+}
+
+.popup-title h2 { color: #ffe000; }
+
+.close-button {
+    flex-shrink: 0;
+    width: 35px;
+    height: 35px;
+    border: 0;
+    border-radius: 50%;
+    background: #222;
+    color: white;
+    font-size: 20px;
+}
+
+/* สไตล์ป๊อปอัพรายละเอียดไอดี */
+.detail-content-grid {
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    gap: 15px;
+    margin-bottom: 15px;
+}
+
+.detail-image-box {
+    width: 100%;
+    height: 200px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    cursor: pointer;
+    position: relative;
+    border: 1px solid #333;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.detail-image-box img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+}
+
+.detail-info-box {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+}
+
+.info-row {
+    background: #111820;
+    border: 1px solid #333;
+    border-radius: 8px;
+    padding: 10px 12px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+}
+
+.info-row span:first-child { color: #aaa; font-size: 14px; }
+.info-row span:last-child { color: #28c8ff; font-weight: bold; font-size: 16px; }
+
+.popup-price-tag {
+    background: #111;
+    border: 1px solid #28c8ff;
+    border-radius: 10px;
+    text-align: center;
+    padding: 12px;
+    margin-bottom: 15px;
+}
+
+.popup-price-tag .p-label { color: #aaa; font-size: 13px; }
+.popup-price-tag .p-val { color: #28ff55; font-size: 24px; font-weight: bold; margin-top: 3px; }
+
+.popup-features {
+    background: #111820;
+    border: 1px solid #333;
+    border-radius: 10px;
+    padding: 12px 15px;
+    margin-bottom: 15px;
+    color: #ccc;
+    font-size: 14px;
+    line-height: 1.6;
+}
+
+.popup-features b { color: #28c8ff; display: block; margin-bottom: 5px; }
+
+.contact-buy {
+    width: 100%;
+    padding: 12px;
+    border: 0;
+    border-radius: 8px;
+    background: #28c8ff;
+    color: #001018;
+    font-weight: bold;
+    font-size: 16px;
+}
+.contact-buy:hover { background: #ffe000; }
+
+/* IMAGE ZOOM / LIGHTBOX */
+.zoom-modal {
+    display: none;
+    position: fixed;
+    inset: 0;
+    background: rgba(0, 0, 0, 0.9);
+    z-index: 5000;
+    justify-content: center;
+    align-items: center;
+    padding: 20px;
+}
+
+.zoom-modal img {
+    max-width: 90vw;
+    max-height: 85vh;
+    border: 2px solid #ffe000;
+    border-radius: 10px;
+    box-shadow: 0 0 25px rgba(255, 224, 0, 0.3);
+    object-fit: contain;
+}
+
+.zoom-close {
+    position: absolute;
+    top: 20px;
+    right: 25px;
+    color: #ffe000;
+    font-size: 40px;
+    font-weight: bold;
+    cursor: pointer;
+    line-height: 1;
+}
+
+.zoom-close:hover {
+    color: #28c8ff;
+}
+
+/* CONTACT */
+.contact-item {
+    display: flex;
+    align-items: center;
+    gap: 15px;
+    padding: 15px;
+    margin-bottom: 10px;
+    background: #111820;
+    border: 1px solid #333;
+    border-radius: 10px;
+    color: white;
+    text-decoration: none;
+}
+
+.contact-item:hover { border-color: #28c8ff; }
+
+.contact-icon {
+    width: 45px;
+    height: 45px;
+    flex-shrink: 0;
+    border-radius: 50%;
+    background: #ffe000;
+    color: #000;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-weight: bold;
+}
+
+/* GAME PAGES */
+.game-page {
+    display: none;
+    width: 1100px;
+    max-width: 94%;
+    margin: 40px auto 70px;
+}
+
+.game-page.active { display: block; }
+
+.game-page-header {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 15px;
+    margin-bottom: 22px;
+    flex-wrap: wrap;
+}
+
+.game-page-header h2 { font-size: 32px; }
+.game-page-header h2 span { color: #28c8ff; }
+
+.back-button {
+    border: 1px solid #28c8ff;
+    background: #111;
+    color: #28c8ff;
+    padding: 10px 18px;
+    border-radius: 8px;
+    font-weight: bold;
+}
+
+.back-button:hover {
+    background: #28c8ff;
+    color: #001018;
+}
+
+.id-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.id-card {
+    background: linear-gradient(180deg, #111, #070707);
+    border: 1px solid #333;
+    border-radius: 14px;
+    padding: 18px;
+    transition: .2s;
+    min-width: 0;
+}
+
+.id-card:hover {
+    transform: translateY(-4px);
+    border-color: #ffe000;
+}
+
+.id-card .id-image {
+    width: 100%;
+    height: 190px;
+    background: #000;
+    border-radius: 10px;
+    overflow: hidden;
+    margin-bottom: 14px;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #222;
+}
+
+.id-card .id-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    transition: transform 0.3s;
+}
+
+.id-card .id-image:hover img {
+    transform: scale(1.05);
+}
+
+.id-card h3 { font-size: 20px; margin-bottom: 6px; }
+.id-card p { color: #999; line-height: 1.6; }
+.id-card .id-price { color: #ffe000; font-weight: bold; margin-top: 8px; }
+
+.id-card button {
+    width: 100%;
+    margin-top: 12px;
+    padding: 10px;
+    border: 0;
+    border-radius: 7px;
+    background: #28c8ff;
+    color: #001018;
+    font-weight: bold;
+}
+
+.id-card button:hover { background: #ffe000; }
+
+/* ROBLOX MAPS */
+.map-grid {
+    display: grid;
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+    gap: 18px;
+}
+
+.map-card {
+    background: linear-gradient(180deg, #111, #070707);
+    border: 2px solid #ffe000;
+    border-radius: 16px;
+    padding: 15px;
+    transition: .2s;
+    min-width: 0;
+}
+
+.map-card:hover {
+    transform: translateY(-5px);
+    border-color: #28c8ff;
+}
+
+.map-card .map-image {
+    height: 170px;
+    width: 100%;
+    overflow: hidden;
+    border-radius: 10px;
+    margin-bottom: 13px;
+    background: #000;
+    cursor: pointer;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.map-card .map-image img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+    display: block;
+    transition: transform 0.3s;
+}
+
+.map-card .map-image:hover img {
+    transform: scale(1.05);
+}
+
+.map-card h3 { color: #ffe000; font-size: 20px; margin-bottom: 7px; }
+.map-card p { color: #aaa; line-height: 1.5; margin-bottom: 13px; }
+
+.map-card button {
+    width: 100%;
+    padding: 11px;
+    border: 0;
+    border-radius: 8px;
+    background: #28c8ff;
+    color: #001018;
+    font-weight: bold;
+}
+
+.map-card button:hover { background: #ffe000; }
+
+.map-products-heading {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    gap: 12px;
+    flex-wrap: wrap;
+    margin: 30px 0 18px;
+}
+
+.map-products-heading h3 { font-size: 25px; color: #ffe000; }
+
+.map-empty {
+    color: #aaa;
+    background: #111;
+    border: 1px dashed #555;
+    border-radius: 12px;
+    padding: 22px;
+    text-align: center;
+    grid-column: 1 / -1;
+}
+
+/* FOOTER */
+footer {
+    margin-top: 60px;
+    padding: 30px;
+    border-top: 1px solid #222;
+    text-align: center;
+    color: #777;
+}
+
+footer span { color: #ffe000; }
+
+/* SCROLL BUTTONS */
+.scroll-controls {
+    position: fixed;
+    right: 18px;
+    bottom: 20px;
+    z-index: 900;
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+}
+
+.scroll-controls button {
+    width: 44px;
+    height: 44px;
+    border: 1px solid #28c8ff;
+    border-radius: 50%;
+    background: #101010ee;
+    color: #28c8ff;
+    font-size: 21px;
+    box-shadow: 0 3px 12px #0008;
+}
+
+.scroll-controls button:hover {
+    background: #28c8ff;
+    color: #000;
+}
+
+/* MOBILE */
+@media (max-width: 900px) {
+    .menu { display: none; }
+    .mobile-menu-button { display: block; }
+
+    .menu.mobile-open {
+        display: flex;
+        position: absolute;
+        top: 78px;
+        left: 3%;
+        right: 3%;
+        flex-direction: column;
+        gap: 0;
+        padding: 10px;
+        background: #101010;
+        border: 1px solid #ffe000;
+        border-radius: 12px;
+        box-shadow: 0 10px 25px #000b;
+    }
+
+    .menu.mobile-open button {
+        text-align: left;
+        padding: 14px;
+        border-radius: 7px;
+    }
+
+    .products, .map-grid, .id-grid {
+        grid-template-columns: repeat(2, minmax(0, 1fr));
+    }
+
+    .hero h1 { font-size: 42px; }
+}
+
+@media (max-width: 600px) {
+    .navbar { gap: 9px; }
+    .logo { width: 45px; height: 45px; }
+    .logo-name { font-size: 18px; }
+    .hero { min-height: 0; }
+    .hero-content { padding: 25px; }
+    .hero h1 { font-size: 34px; }
+    .title h2 { font-size: 24px; }
+
+    .cards, .products, .map-grid, .id-grid {
+        grid-template-columns: 1fr;
+    }
+
+    .search-box { right: 3%; width: 94%; }
+    .scroll-controls { right: 12px; bottom: 12px; }
+    .popup { padding: 16px; }
+    .detail-content-grid { grid-template-columns: 1fr; }
 }
 </style>
 </head>
@@ -107,441 +781,611 @@ footer span{color:#ffe000}
 <body>
 
 <header>
- <div class="navbar">
-  <div class="logo-name">Xeon<span>Finnix</span></div>
-  <button class="search-button" onclick="toggleSearch()">🔍</button>
-  <nav class="menu">
-   <button onclick="showHome()">🏠 หน้าหลัก</button>
-   <button onclick="openPopup('guidePopup')">📖 วิธีซื้อสินค้า</button>
-   <button onclick="openPopup('contactPopup')">📞 ติดต่อร้าน</button>
-  </nav>
-  <div class="search-box" id="searchBox">
-   <input id="searchInput" placeholder="ค้นหารหัสไอดี...">
-   <button onclick="searchProducts()">ค้นหา</button>
-  </div>
- </div>
+    <div class="navbar">
+        <img src="Screenshot 2026-10-22 180144.png" class="logo" alt="Xeon Finnix" onclick="zoomImage(this.src)">
+
+        <div class="logo-name">
+            Xeon<span>Finnix</span>
+        </div>
+
+        <button class="search-button" type="button" onclick="toggleSearch()" aria-label="ค้นหาสินค้า">🔍</button>
+        <button class="mobile-menu-button" id="mobileMenuButton" type="button" onclick="toggleMobileMenu()" aria-label="เปิดเมนู" aria-expanded="false">☰</button>
+
+        <nav class="menu">
+            <button type="button" onclick="goProducts()">🛒 สินค้า</button>
+            <button type="button" onclick="openPopup('guidePopup')">📖 วิธีซื้อสินค้า</button>
+            <button type="button" onclick="openPopup('contactPopup')">📞 ช่องทางการติดต่อ</button>
+        </nav>
+
+        <div class="search-box" id="searchBox">
+            <input id="searchInput" type="text" placeholder="ค้นหาสินค้า..." aria-label="ค้นหาสินค้า">
+            <button type="button" onclick="searchProduct()">ค้นหา</button>
+        </div>
+    </div>
 </header>
 
-<section class="hero" id="hero">
- <h1>XEON FINNIX <span>PES SHOP</span></h1>
- <p>ร้านจำหน่ายไอดี PES และไอดีไก่ PES เลือกดูรายละเอียดสินค้าและสั่งซื้อได้เลย</p>
- <button class="yellow" onclick="openPopup('guidePopup')">📖 วิธีซื้อสินค้า</button>
- <button class="blue" onclick="openPopup('contactPopup')">📞 ติดต่อร้าน</button>
+<section class="hero">
+    <div class="hero-content">
+        <div class="badge">🔥 XEON FINNIX</div>
+        <h1>ร้านค้า Roblox และ PES <span>ครบจบในที่เดียว</span></h1>
+        <p>ร้านค้าออนไลน์สำหรับสินค้าเกม ซื้อสินค้าได้ง่าย ติดต่อร้านได้โดยตรง รวดเร็วและสะดวก</p>
+        <div class="hero-buttons">
+            <button class="blue" onclick="openPopup('guidePopup')">📖 วิธีซื้อสินค้า</button>
+            <button class="dark" onclick="openPopup('contactPopup')">📞 ติดต่อร้าน</button>
+        </div>
+    </div>
 </section>
 
-<section class="container" id="homeContainer">
- <div class="title"><h2>หมวดหมู่สินค้า</h2><span>SHOP</span></div>
+<section class="container">
+    <div class="title">
+        <h2>หมวดหมู่สินค้า</h2>
+        <span>SHOP</span>
+    </div>
 
- <div class="cards">
-  <div class="category-card">
-   <!-- รูปหมวด PES: เปลี่ยนชื่อไฟล์รูปตรง src ได้ -->
-   <img class="category-image" src="6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp" alt="PES">
-   <h3>ไอดี PES</h3>
-   <p>รวมไอดี PES พร้อมจำหน่าย</p>
-   <button onclick="showGamePage('pesPage')">ดูสินค้า</button>
-  </div>
+    <div class="cards">
+        <div class="card roblox-card">
+            <div class="icon game-icon">
+                <img src="Roblox_Logo_2025.png" alt="Roblox" onclick="zoomImage(this.src)">
+            </div>
+            <h3>ROBLOX</h3>
+            <p>สินค้า Roblox</p>
+            <a href="javascript:void(0)" onclick="showGamePage('robloxPage')">ดูสินค้า</a>
+        </div>
 
-  <div class="category-card">
-   <!-- รูปหมวดไก่ PES: ใส่รูป chicken-pes.png ในโฟลเดอร์เดียวกับ index.html -->
-   <img class="category-image" src="chicken-pes.png" alt="ไก่ PES">
-   <h3>ไอดีไก่ PES</h3>
-   <p>รวมไอดีไก่ PES พร้อมจำหน่าย</p>
-   <button onclick="showGamePage('chickenPage')">ดูสินค้า</button>
-  </div>
- </div>
-
- <section class="lottery">
-  <h2>🎰 ระบบสุ่มไอดี</h2>
-  <p>สุ่มไอดี PES หรือไก่ PES จากรายการของร้าน</p>
-  <div class="lottery-result" id="lotteryResult">ยังไม่ได้สุ่มไอดี</div>
-  <button class="lottery-button" onclick="randomID()">🎲 เริ่มสุ่มไอดี</button>
- </section>
+        <div class="card pes-card">
+            <div class="icon game-icon">
+                <img src="6378d4098d29f695939c3e370dee6dc9c859dd18b33919250982f7e8c5db519d_600.webp" alt="PES" onclick="zoomImage(this.src)">
+            </div>
+            <h3>PES</h3>
+            <p>สินค้าและบริการเกม PES</p>
+            <a href="javascript:void(0)" onclick="showGamePage('pesPage')">ดูสินค้า</a>
+        </div>
+    </div>
 </section>
 
-<section class="game-page" id="pesPage">
- <div class="game-page-header">
-  <h2>รายการ <span>ไอดี PES</span></h2>
-  <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
- </div>
- <div class="id-grid" id="pesIdGrid"></div>
+<section class="container" id="products" style="display: none;">
+    <div class="products" id="productGrid">
+    </div>
 </section>
 
-<section class="game-page" id="chickenPage">
- <div class="game-page-header">
-  <h2>รายการ <span>ไอดีไก่ PES</span></h2>
-  <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
- </div>
- <div class="id-grid" id="chickenIdGrid"></div>
-</section>
+<!-- POPUP รายละเอียดสินค้า (ทั่วไป) -->
+<div class="popup-bg" id="detailPopup" role="dialog" aria-modal="true" aria-label="รายละเอียดสินค้า">
+    <div class="popup">
+        <div class="popup-title">
+            <h2 id="detailTitle">รายละเอียดสินค้า</h2>
+            <button class="close-button" onclick="closePopup('detailPopup')" aria-label="ปิด">×</button>
+        </div>
 
-<footer>© 2026 <span>Xeon Finnix</span> — All Rights Reserved</footer>
+        <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)" style="width:100%; height:250px; background:#000; border-radius:10px; overflow:hidden; margin-bottom:15px; cursor:pointer; position:relative; display:flex; align-items:center; justify-content:center; border:1px solid #333;">
+            <img id="detailImage" src="" alt="รูปสินค้า" style="width:100%; height:100%; object-fit:contain;">
+        </div>
 
-<!-- หน้าต่างรายละเอียดสินค้า -->
-<div class="popup-bg" id="detailPopup">
- <div class="popup">
-  <div class="popup-title">
-   <h2>🎮 รายละเอียดไอดี</h2>
-   <button class="close-button" onclick="closePopup('detailPopup')">×</button>
-  </div>
+        <div class="detail-description" id="detailDescription" style="color:#ccc; line-height:1.8; white-space:pre-line;"></div>
 
-  <div class="detail-content-grid">
-   <div class="detail-image" onclick="zoomImage(document.getElementById('detailImage').src)">
-    <img id="detailImage" src="" alt="รูปไอดี">
-    <div id="detailImagePlaceholder" style="display:none;color:#777">ยังไม่ได้ใส่รูปไอดี</div>
-   </div>
-   <div class="detail-info">
-    <div class="info-row"><span>รหัสไอดี:</span><span id="detailCode"></span></div>
-    <div class="info-row"><span>ทอง:</span><span id="detailGold"></span></div>
-    <div class="info-row"><span>วันที่:</span><span id="detailDate"></span></div>
-    <div class="info-row"><span>สถานะ:</span><span id="detailStatus"></span></div>
-   </div>
-  </div>
-
-  <div class="detail-price" id="detailPrice"></div>
-  <div class="detail-features">
-   <b>🎮 รายละเอียดไอดี</b>
-   <div id="detailFeatures">- ไอดีตามรายละเอียดร้าน</div>
-  </div>
-
-  <!-- มีแค่ปุ่มซื้อ ไม่มีปุ่มจอง -->
-  <div class="detail-buttons">
-   <button class="buy-button" id="buyButton" onclick="buySelected()">🛒 ซื้อไอดีนี้</button>
-  </div>
- </div>
+        <button class="contact-buy" style="margin-top:15px;" onclick="closePopup('detailPopup');openPopup('contactPopup')">
+            📞 ติดต่อเพื่อสั่งซื้อ
+        </button>
+    </div>
 </div>
 
-<!-- วิธีซื้อ -->
-<div class="popup-bg" id="guidePopup">
- <div class="popup">
-  <div class="popup-title">
-   <h2>📖 วิธีซื้อสินค้า</h2>
-   <button class="close-button" onclick="closePopup('guidePopup')">×</button>
-  </div>
-  <ol class="guide-list">
-   <li>เลือกหมวดหมู่ไอดี PES หรือไอดีไก่ PES</li>
-   <li>เลือกไอดีที่ต้องการ</li>
-   <li>กดดูรายละเอียดสินค้า</li>
-   <li>ตรวจสอบรูป รหัส ทอง ราคา และวันที่</li>
-   <li>กดซื้อไอดีนี้</li>
-   <li>ระบบจะเปิด Facebook ของร้าน</li>
-   <li>แจ้งรหัสไอดีที่ต้องการซื้อกับร้าน</li>
-  </ol>
- </div>
+<!-- POPUP รายละเอียดไอดี PES -->
+<div class="popup-bg" id="pesDetailPopup" role="dialog" aria-modal="true" aria-label="รายละเอียดไอดี PES">
+    <div class="popup">
+        <div class="popup-title">
+            <h2>🎮 รายละเอียดไอดี</h2>
+            <button class="close-button" onclick="closePopup('pesDetailPopup')" aria-label="ปิด">×</button>
+        </div>
+
+        <div class="detail-content-grid">
+            <div class="detail-image-box" onclick="zoomImage(document.getElementById('pesDetailImg').src)">
+                <img id="pesDetailImg" src="" alt="รูปไอดี PES">
+            </div>
+            <div class="detail-info-box">
+                <div class="info-row">
+                    <span>รหัสไอดี :</span>
+                    <span id="pesCode">PES 1</span>
+                </div>
+                <div class="info-row">
+                    <span>ทอง :</span>
+                    <span id="pesGold">0</span>
+                </div>
+                <div style="background:#111820; border:1px solid #333; border-radius:8px; padding:10px 12px; margin-top:auto;">
+                    <span style="color:#aaa; font-size:13px;">สถานะ:</span>
+                    <span style="color:#28ff55; font-weight:bold; display:block; margin-top:2px;">พร้อมจำหน่าย</span>
+                </div>
+            </div>
+        </div>
+
+        <div class="popup-price-tag">
+            <div class="p-label">ราคาเพียง</div>
+            <div class="p-val" id="pesPrice">สอบถามราคา</div>
+        </div>
+
+        <div class="popup-features">
+            <b>🎮 รายละเอียดเกมเปส :</b>
+            <div id="pesFeaturesText">- ไอดีสะอาด<br>- ไทยแท้<br>- ระบบ AD<br>- ล็อก 10</div>
+        </div>
+
+        <button class="contact-buy" onclick="closePopup('pesDetailPopup');openPopup('contactPopup')">
+            🛒 สั่งซื้อไอดีนี้
+        </button>
+    </div>
 </div>
 
-<!-- ช่องทางติดต่อ -->
-<div class="popup-bg" id="contactPopup">
- <div class="popup">
-  <div class="popup-title">
-   <h2>📞 ช่องทางการติดต่อ</h2>
-   <button class="close-button" onclick="closePopup('contactPopup')">×</button>
-  </div>
-  <a class="contact-item" href="https://www.facebook.com/profile.php?id=61594260961934&locale=th_TH" target="_blank" rel="noopener noreferrer">Facebook</a>
-  <a class="contact-item instagram" href="https://www.instagram.com/xeon_finnix/" target="_blank" rel="noopener noreferrer">Instagram</a>
- </div>
-</div>
-
-<!-- ขยายรูป -->
+<!-- POPUP ซูมรูปภาพใหญ่ (LIGHTBOX) -->
 <div class="zoom-modal" id="zoomModal" onclick="closeZoom()">
- <span class="zoom-close">×</span>
- <img id="zoomImage" src="" alt="รูปขยาย">
+    <span class="zoom-close" onclick="closeZoom()">&times;</span>
+    <img id="zoomImage" src="" alt="ขยายรูปภาพ">
 </div>
 
-<div class="scroll-controls">
- <button onclick="window.scrollTo({top:0,behavior:'smooth'})">↑</button>
- <button onclick="window.scrollTo({top:document.body.scrollHeight,behavior:'smooth'})">↓</button>
+<!-- POPUP ช่องทางติดต่อ -->
+<div class="popup-bg" id="contactPopup" role="dialog" aria-modal="true" aria-label="ช่องทางการติดต่อ">
+    <div class="popup">
+        <div class="popup-title">
+            <h2>📞 ช่องทางการติดต่อ</h2>
+            <button class="close-button" onclick="closePopup('contactPopup')" aria-label="ปิด">×</button>
+        </div>
+
+        <a class="contact-item" href="https://www.facebook.com/profile.php?id=61594260961934&locale=th_TH" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon" style="background: #1877f2; color: #fff;">FB</div>
+            <div>
+                <b>Facebook</b><br>
+                <small>ติดต่อผ่าน Facebook ของเรา</small>
+            </div>
+        </a>
+
+        <a class="contact-item" href="https://www.instagram.com/xeon_finnix/" target="_blank" rel="noopener noreferrer">
+            <div class="contact-icon" style="background: linear-gradient(45deg, #f09433, #e6683c, #dc2743, #cc2366, #bc1888); color: #fff;">IG</div>
+            <div>
+                <b>Instagram</b><br>
+                <small>ติดต่อผ่าน Instagram</small>
+            </div>
+        </a>
+    </div>
+</div>
+
+<!-- POPUP วิธีซื้อสินค้า -->
+<div class="popup-bg" id="guidePopup" role="dialog" aria-modal="true" aria-label="วิธีซื้อสินค้า">
+    <div class="popup">
+        <div class="popup-title">
+            <h2>📖 วิธีซื้อสินค้า</h2>
+            <button class="close-button" onclick="closePopup('guidePopup')" aria-label="ปิด">×</button>
+        </div>
+
+        <ol style="padding-left:25px;line-height:2;color:#ddd">
+            <li>เลือกสินค้าที่ต้องการ</li>
+            <li>กด “ดูรายละเอียด”</li>
+            <li>ตรวจสอบข้อมูล รหัส, ทอง และราคา</li>
+            <li>กด “สั่งซื้อไอดีนี้” เพื่อติดต่อร้านค้า</li>
+            <li>แจ้งรหัสไอดีที่ต้องการกับทางร้าน</li>
+        </ol>
+    </div>
+</div>
+
+<!-- หน้า ROBLOX -->
+<section class="game-page" id="robloxPage">
+    <div class="game-page-header">
+        <h2>ROBLOX <span>หมวดหมู่แมพ</span></h2>
+        <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
+    </div>
+
+    <div class="map-grid" id="robloxMapGrid">
+        <div class="map-card">
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/egg-map.jpg" alt="แมพเอาไข่"></div>
+            <h3>แมพเอาไข่</h3>
+            <p>สินค้าและไอเทมจากแมพนี้</p>
+            <button onclick="showMapProducts('egg')">ดูสินค้าในแมพ</button>
+        </div>
+        <div class="map-card">
+            <div class="map-image" onclick="zoomImage(this.querySelector('img').src)"><img src="images/maps/grow-a-garden.jpg" alt="Grow a Garden"></div>
+            <h3>Grow a Garden</h3>
+            <p>สินค้าและไอเทมจากแมพนี้</p>
+            <button onclick="showMapProducts('garden')">ดูสินค้าในแมพ</button>
+        </div>
+    </div>
+
+    <div id="mapProducts" style="display:none">
+        <div class="map-products-heading">
+            <h3 id="mapProductTitle">สินค้าในแมพ</h3>
+            <button class="back-button" onclick="backToMaps()">← กลับไปเลือกแมพ</button>
+        </div>
+        <div class="id-grid" id="mapProductGrid"></div>
+    </div>
+</section>
+
+<!-- หน้า PES -->
+<section class="game-page" id="pesPage">
+    <div class="game-page-header">
+        <h2>PES <span>ไอดี</span></h2>
+        <button class="back-button" onclick="showHome()">← กลับหน้าหลัก</button>
+    </div>
+
+    <div class="id-grid" id="pesIdGrid"></div>
+</section>
+
+<footer>
+    © 2026 <span>Xeon Finnix</span> — All Rights Reserved
+</footer>
+
+<!-- ปุ่มเลื่อนขึ้นและลง -->
+<div class="scroll-controls" aria-label="ปุ่มเลื่อนหน้าเว็บ">
+    <button type="button" onclick="scrollToTop()" aria-label="เลื่อนขึ้นด้านบน" title="เลื่อนขึ้น">↑</button>
+    <button type="button" onclick="scrollToBottom()" aria-label="เลื่อนลงด้านล่าง" title="เลื่อนลง">↓</button>
 </div>
 
 <script>
+/* ====================================
+   รูป fallback เมื่อไม่มีสินค้า/หาไฟล์ไม่พบ
+   ==================================== */
+const DEFAULT_NO_PRODUCT_IMG = "Screenshot 2026-10-22 094639.png";
 
-/* =====================================================
-   จุดที่ 1: ฐานข้อมูล PES
+/* ==========================================================
+   รวมรูปภาพ PES ID #1 ถึง #100
+   ========================================================== */
+const customPesImages = {
+    1: "PES.jpg",
+    2: "PES 3 409.png",
+    3: "PES.jpg",
+    4: "PES 9 409.png",
+    5: "PES.jpg",
+    6: "PES.jpg",
+    7: "PES 12 399.png",
+    8: "PES 13 399.png",
+    9: "PES.jpg",
+    10: "PES 15 399.png",
+    11: "PES 16 400.png",
+    12: "PES.jpg",
+    13: "PES 76 419.png",
+    14: "PES 77 389.png",
+    15: "PES.jpg",
+    16: "PES_79.png",
+    17: "PES.jpg",
+    18: "PES 82 419.png",
+    19: "PES 83 359.png",
+    20: "PES.jpg",
+    21: "PES 85 419.png",
+    22: "PES 86 419.png",
+    23: "PES 87 389.png",
+    24: "PES.jpg",
+    25: "PES 89 419.png",
+    26: "PES 90 429.png",
+    27: "PES.jpg",
+};
 
-   เพิ่มไอดี PES ตรงนี้
-   code  = รหัสไอดี
-   gold  = จำนวนทอง
-   price = ราคา
-   date  = วันที่ (เขียนเองได้)
-   image = ชื่อไฟล์รูป
-   status = สถานะสินค้า
+/* ==========================================================
+   ฐานข้อมูลตั้งค่าไอดี PES 1-27 (เบอร์อื่นๆ จะใช้อัตโนมัติ)
+   ========================================================== */
+const pesDatabase = {
+    1: { code: "ไม่มี", gold: "0 Coins", price: "สินค้าหมด", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    2: { code: "PES 3", gold: "5,350", price: "250 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    3: { code: "ไม่มี", gold: "0", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    4: { code: "PES 9", gold: "5,160", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    5: { code: "ไม่มี", gold: "6,750", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    6: { code: "ไม่มี", gold: "0", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    7: { code: "PES 12", gold: "4,920", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    8: { code: "PES 13", gold: "4,970", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    9: { code: "ไม่มี", gold: "4,850", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    10: { code: "PES 15", gold: "4,740", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    11: { code: "PES 16", gold: "4,590", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    12: { code: "ไม่มี", gold: "4,760", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    13: { code: "PES 76", gold: "4,840", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    14: { code: "PES 77", gold: "4,830", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    15: { code: "ไม่มี", gold: "5,610", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    16: { code: "PES 79", gold: "4,860", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    17: { code: "ไม่มี", gold: "4,760", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    18: { code: "PES 82", gold: "5,560", price: "260 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    19: { code: "PES 83", gold: "4,600", price: "235 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    20: { code: "ไม่มี", gold: "4,690", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    21: { code: "PES 85", gold: "4,860", price: "245 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    22: { code: "PES 86", gold: "5,500", price: "269 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    23: { code: "PES 87", gold: "4,750", price: "235 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    24: { code: "ไม่มี", gold: "5,075", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    25: { code: "PES 89", gold: "5,570", price: "279 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    26: { code: "PES 90", gold: "4,790", price: "235 ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" },
+    27: { code: "ไม่มี", gold: "0 Coins", price: "สินค้าหมด ฿", features: "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10" }
+};
 
-   ใส่รูปไว้ในโฟลเดอร์เดียวกับ index.html
-   ===================================================== */
+// สร้างการ์ด PES #1 - #100 และจัดเรียงอัตโนมัติ
+function generatePesCards() {
+    const container = document.getElementById("pesIdGrid");
+    if (!container) return;
+    
+    let items = [];
+    for (let i = 1; i <= 100; i++) {
+        const customImg = customPesImages[i];
+        const data = pesDatabase[i] || {};
+        
+        const hasImage = customImg ? true : false;
+        const imgSrc = hasImage ? customImg : DEFAULT_NO_PRODUCT_IMG;
+        
+        const code = data.code || `PES ${i}`;
+        const gold = data.gold || "สอบถาม";
+        const price = data.price || "สอบถามราคา";
+        const features = data.features || "- ไอดีสะอาด\n- ไทยแท้\n- ระบบ AD\n- ล็อก 10";
 
-const pesDatabase = [
- {code:"PES 3",gold:"5,350",price:"250 ฿",date:"18/11/2026",image:"PES 3 409.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 9",gold:"5,160",price:"245 ฿",date:"18/11/2026",image:"PES 9 409.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 12",gold:"4,920",price:"245 ฿",date:"18/11/2026",image:"PES 12 399.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 13",gold:"4,970",price:"245 ฿",date:"18/11/2026",image:"PES 13 399.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 15",gold:"4,740",price:"245 ฿",date:"18/11/2026",image:"PES 15 399.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 16",gold:"4,590",price:"245 ฿",date:"18/11/2026",image:"PES 16 400.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 76",gold:"4,840",price:"245 ฿",date:"18/11/2026",image:"PES 76 419.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 77",gold:"4,830",price:"245 ฿",date:"18/11/2026",image:"PES 77 389.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 79",gold:"4,860",price:"245 ฿",date:"18/11/2026",image:"PES_79.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 82",gold:"5,560",price:"260 ฿",date:"18/11/2026",image:"PES 82 419.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 83",gold:"4,600",price:"235 ฿",date:"18/11/2026",image:"PES 83 359.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 85",gold:"4,860",price:"245 ฿",date:"18/11/2026",image:"PES 85 419.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 86",gold:"5,500",price:"269 ฿",date:"18/11/2026",image:"PES 86 419.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 87",gold:"4,750",price:"235 ฿",date:"18/11/2026",image:"PES 87 389.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 89",gold:"5,570",price:"279 ฿",date:"18/11/2026",image:"PES 89 419.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"},
- {code:"PES 90",gold:"4,790",price:"235 ฿",date:"18/11/2026",image:"PES 90 429.png",status:"พร้อมจำหน่าย",features:"- ไอดี PES"}
-];
+        items.push({
+            id: i,
+            code: code,
+            imgSrc: imgSrc,
+            hasImage: hasImage,
+            gold: gold,
+            price: price,
+            features: features
+        });
+    }
 
-
-/* =====================================================
-   จุดที่ 2: ฐานข้อมูลไก่ PES
-
-   เพิ่มไอดีไก่ตรงนี้
-   ===================================================== */
-
-const chickenDatabase = [
- {code:"ไก่ PES 1",gold:"ใส่จำนวนทอง",price:"ใส่ราคา",date:"ใส่วันที่เอง",image:"chicken-pes-1.png",status:"พร้อมจำหน่าย",features:"- ไอดีไก่ PES"},
- {code:"ไก่ PES 2",gold:"ใส่จำนวนทอง",price:"ใส่ราคา",date:"ใส่วันที่เอง",image:"chicken-pes-2.png",status:"พร้อมจำหน่าย",features:"- ไอดีไก่ PES"}
-];
-
-let selectedItem = null;
-
-
-/* จุดที่ 3: สร้างรายการสินค้าอัตโนมัติ */
-
-function renderProducts(database,containerId){
- const container=document.getElementById(containerId);
- container.innerHTML="";
-
- database.forEach(item=>{
-  const card=document.createElement("div");
-  card.className="id-card";
-
-  const imageBox=document.createElement("div");
-  imageBox.className="id-image";
-
-  const img=document.createElement("img");
-  img.src=item.image;
-  img.alt=item.code;
-  img.onerror=function(){
-   this.style.display="none";
-   imageBox.textContent="ยังไม่ได้ใส่รูปไอดี";
-  };
-  imageBox.appendChild(img);
-  imageBox.onclick=()=>zoomImage(item.image);
-
-  const title=document.createElement("h3");
-  title.textContent=item.code;
-
-  const info=document.createElement("p");
-  info.textContent="ทอง "+item.gold+" | วันที่ "+item.date;
-
-  const price=document.createElement("div");
-  price.className="id-price";
-  price.textContent=item.price;
-
-  const status=document.createElement("div");
-  status.className="status";
-  status.textContent="● "+item.status;
-  if(item.status==="ขายแล้ว")status.classList.add("sold");
-
-  const button=document.createElement("button");
-  button.textContent="ดูรายละเอียดสินค้า";
-  button.onclick=()=>openDetail(item);
-
-  card.append(imageBox,title,info,price,status,button);
-  container.appendChild(card);
- });
+    items.sort(function(a, b) {
+        return (b.hasImage ? 1 : 0) - (a.hasImage ? 1 : 0);
+    });
+    
+    let htmlContent = "";
+    items.forEach(function(item) {
+        const safeFeatures = item.features.replace(/\n/g, '\\n');
+        
+        htmlContent += `
+        <div class="id-card">
+            <div class="id-image" onclick="zoomImage(this.querySelector('img').src)">
+                <img src="${item.imgSrc}" alt="${item.code}">
+            </div>
+            <h3>${item.code}</h3>
+            <p>ไอดี PES พร้อมใช้งาน</p>
+            <div class="id-price">${item.price}</div>
+            <button onclick="openPesDetail('${item.code}', '${item.imgSrc}', '${item.gold}', '${item.price}', '${safeFeatures}')">ดูรายละเอียด</button>
+        </div>
+        `;
+    });
+    container.innerHTML = htmlContent;
 }
 
-
-/* จุดที่ 4: เปิดรายละเอียดไอดี */
-
-function openDetail(item){
- selectedItem=item;
-
- document.getElementById("detailCode").textContent=item.code;
- document.getElementById("detailGold").textContent=item.gold;
- document.getElementById("detailPrice").textContent=item.price;
- document.getElementById("detailDate").textContent=item.date;
- document.getElementById("detailStatus").textContent=item.status;
- document.getElementById("detailFeatures").textContent=item.features||"- รายละเอียดไอดี";
-
- const image=document.getElementById("detailImage");
- const placeholder=document.getElementById("detailImagePlaceholder");
-
- image.style.display="block";
- placeholder.style.display="none";
- image.src=item.image;
- image.onerror=function(){
-  this.style.display="none";
-  placeholder.style.display="block";
- };
-
- const unavailable=item.status!=="พร้อมจำหน่าย";
- document.getElementById("buyButton").disabled=unavailable;
- document.getElementById("buyButton").style.opacity=unavailable?".4":"1";
-
- openPopup("detailPopup");
-}
-
-
-/* จุดที่ 5: ระบบซื้อไอดี
-   กดซื้อแล้วเปิด Facebook ร้านทันที */
-
-function buySelected(){
- if(!selectedItem)return;
-
- if(selectedItem.status!=="พร้อมจำหน่าย"){
-  alert("ไอดีนี้ไม่พร้อมจำหน่าย");
-  return;
- }
-
- const facebookURL="https://www.facebook.com/profile.php?id=61594260961934&locale=th_TH";
- window.open(facebookURL,"_blank","noopener,noreferrer");
-}
-
-
-/* จุดที่ 6: ระบบสุ่มไอดีพร้อมรูป */
-
-function randomID(){
- const allItems=[...pesDatabase,...chickenDatabase];
- const available=allItems.filter(item=>item.status==="พร้อมจำหน่าย");
-
- if(available.length===0){
-  alert("ยังไม่มีไอดีที่พร้อมจำหน่าย");
-  return;
- }
-
- const item=available[Math.floor(Math.random()*available.length)];
- selectedItem=item;
-
- const result=document.getElementById("lotteryResult");
- result.innerHTML="";
-
- const img=document.createElement("img");
- img.src=item.image;
- img.alt=item.code;
- img.onerror=function(){this.style.display="none"};
-
- const title=document.createElement("strong");
- title.textContent=item.code;
-
- const type=document.createElement("div");
- type.textContent=chickenDatabase.includes(item)?"ประเภท: ไก่ PES":"ประเภท: PES";
-
- const gold=document.createElement("div");
- gold.textContent="ทอง: "+item.gold;
-
- const price=document.createElement("div");
- price.textContent="ราคา: "+item.price;
-
- const date=document.createElement("div");
- date.textContent="วันที่: "+item.date;
-
- const detailButton=document.createElement("button");
- detailButton.className="blue";
- detailButton.style.cssText="padding:10px;border:0;border-radius:8px;margin-top:8px";
- detailButton.textContent="ดูรายละเอียดสินค้า";
- detailButton.onclick=()=>openDetail(item);
-
- result.append(img,title,type,gold,price,date,detailButton);
-}
-
-
-/* จุดที่ 7: เปลี่ยนหน้าหมวดหมู่ */
-
-function showGamePage(pageId){
- document.getElementById("hero").style.display="none";
- document.getElementById("homeContainer").style.display="none";
-
- document.querySelectorAll(".game-page").forEach(page=>{
-  page.classList.remove("active");
- });
-
- document.getElementById(pageId).classList.add("active");
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-function showHome(){
- document.getElementById("hero").style.display="block";
- document.getElementById("homeContainer").style.display="block";
-
- document.querySelectorAll(".game-page").forEach(page=>{
-  page.classList.remove("active");
- });
-
- window.scrollTo({top:0,behavior:"smooth"});
-}
-
-
-/* จุดที่ 8: ระบบค้นหา */
-
-function toggleSearch(){
- const box=document.getElementById("searchBox");
- box.style.display=box.style.display==="block"?"none":"block";
-}
-
-function searchProducts(){
- const keyword=document.getElementById("searchInput").value.trim().toLowerCase();
-
- if(!keyword){
-  alert("กรุณาพิมพ์รหัสไอดีที่ต้องการค้นหา");
-  return;
- }
-
- const all=[
-  ...pesDatabase.map(item=>({item,type:"pes"})),
-  ...chickenDatabase.map(item=>({item,type:"chicken"}))
- ];
-
- const found=all.find(entry=>entry.item.code.toLowerCase().includes(keyword));
-
- if(!found){
-  alert("ไม่พบไอดีที่ค้นหา");
-  return;
- }
-
- showGamePage(found.type==="pes"?"pesPage":"chickenPage");
- openDetail(found.item);
- document.getElementById("searchBox").style.display="none";
-}
-
-
-/* จุดที่ 9: หน้าต่างและซูมรูป */
-
-function openPopup(id){
- document.getElementById(id).style.display="flex";
-}
-
-function closePopup(id){
- document.getElementById(id).style.display="none";
-}
-
-function zoomImage(src){
- if(!src)return;
- document.getElementById("zoomImage").src=src;
- document.getElementById("zoomModal").style.display="flex";
-}
-
-function closeZoom(){
- document.getElementById("zoomModal").style.display="none";
-}
-
-document.querySelectorAll(".popup-bg").forEach(popup=>{
- popup.addEventListener("click",event=>{
-  if(event.target===popup)popup.style.display="none";
- });
+// เรียกใช้งานเมื่อโหลดหน้าเว็บ
+document.addEventListener("DOMContentLoaded", function() {
+    generatePesCards();
+    setupImageFallback();
 });
 
-document.addEventListener("keydown",event=>{
- if(event.key==="Escape"){
-  document.querySelectorAll(".popup-bg").forEach(p=>p.style.display="none");
-  closeZoom();
- }
+/* ตรวจสอบรูปที่โหลดไม่ติดหรือไม่มีไฟล์ ให้เปลี่ยนเป็นรูปไม่มีสินค้า */
+function setupImageFallback() {
+    document.querySelectorAll("img").forEach(function(img) {
+        if (!img.getAttribute('src')) {
+            img.src = DEFAULT_NO_PRODUCT_IMG;
+        }
+        img.addEventListener("error", function() {
+            this.onerror = null;
+            this.src = DEFAULT_NO_PRODUCT_IMG;
+            this.style.objectFit = "contain";
+            this.style.background = "#000";
+        });
+    });
+}
+
+/* เปิดป๊อปอัพรายละเอียดไอดี PES */
+function openPesDetail(code, img, gold, price, features) {
+    document.getElementById("pesCode").textContent = code;
+    document.getElementById("pesGold").textContent = gold;
+    document.getElementById("pesPrice").textContent = price;
+    document.getElementById("pesFeaturesText").innerHTML = features.replace(/\\n/g, '<br>');
+
+    const detailImg = document.getElementById("pesDetailImg");
+    detailImg.src = img;
+    detailImg.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+    };
+
+    openPopup("pesDetailPopup");
+}
+
+/* เปิดป๊อปอัพสินค้าทั่วไป */
+function openProductDetail(title, img, price, time, desc) {
+    document.getElementById("detailTitle").textContent = title;
+    document.getElementById("detailDescription").textContent = desc + "\nราคา: " + price;
+    
+    const detailImg = document.getElementById("detailImage");
+    detailImg.src = img;
+    detailImg.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+    };
+
+    openPopup("detailPopup");
+}
+
+/* ระบบซูมรูปภาพ */
+function zoomImage(src) {
+    if (!src) return;
+    const modal = document.getElementById("zoomModal");
+    const img = document.getElementById("zoomImage");
+    img.src = src;
+    img.onerror = function() {
+        this.onerror = null;
+        this.src = DEFAULT_NO_PRODUCT_IMG;
+    };
+    modal.style.display = "flex";
+}
+
+function closeZoom() {
+    document.getElementById("zoomModal").style.display = "none";
+}
+
+/* ระบบค้นหา */
+function toggleSearch() {
+    const box = document.getElementById("searchBox");
+    const input = document.getElementById("searchInput");
+    const isOpen = box.style.display === "block";
+    box.style.display = isOpen ? "none" : "block";
+    if (!isOpen) input.focus();
+}
+
+function searchProduct() {
+    const keyword = document.getElementById("searchInput").value.toLowerCase().trim();
+    const products = document.querySelectorAll(".product");
+    let visibleCount = 0;
+
+    products.forEach(function(product) {
+        const name = (product.dataset.name || product.innerText || "").toLowerCase();
+        const matches = !keyword || name.includes(keyword);
+        product.style.display = matches ? "" : "none";
+        if (matches) visibleCount++;
+    });
+
+    showHome();
+    document.getElementById("products").scrollIntoView({behavior:"smooth"});
+    closeMobileMenu();
+
+    if (keyword && visibleCount === 0) {
+        alert("ไม่พบสินค้าที่ค้นหา ลองใช้คำค้นอื่นได้เลยครับ");
+    }
+}
+
+document.getElementById("searchInput").addEventListener("keydown", function(event) {
+    if (event.key === "Enter") searchProduct();
 });
 
+/* เมนูมือถือ */
+function toggleMobileMenu() {
+    const menu = document.querySelector(".menu");
+    const button = document.getElementById("mobileMenuButton");
+    const isOpen = menu.classList.toggle("mobile-open");
+    button.setAttribute("aria-expanded", String(isOpen));
+    button.textContent = isOpen ? "×" : "☰";
+}
 
-/* จุดที่ 10: เริ่มต้นแสดงสินค้า */
+function closeMobileMenu() {
+    const menu = document.querySelector(".menu");
+    const button = document.getElementById("mobileMenuButton");
+    if (menu) menu.classList.remove("mobile-open");
+    if (button) {
+        button.setAttribute("aria-expanded", "false");
+        button.textContent = "☰";
+    }
+}
 
-renderProducts(pesDatabase,"pesIdGrid");
-renderProducts(chickenDatabase,"chickenIdGrid");
+/* ปุ่มเลื่อนหน้า */
+function scrollToTop() {
+    window.scrollTo({top:0, behavior:"smooth"});
+}
 
+function scrollToBottom() {
+    window.scrollTo({
+        top: document.documentElement.scrollHeight,
+        behavior: "smooth"
+    });
+}
+
+/* ป๊อปอัพควบคุมทั่วไป */
+function openPopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) popup.style.display = "flex";
+    closeMobileMenu();
+}
+
+function closePopup(id) {
+    const popup = document.getElementById(id);
+    if (popup) popup.style.display = "none";
+}
+
+document.querySelectorAll(".popup-bg").forEach(function(overlay) {
+    overlay.addEventListener("click", function(event) {
+        if (event.target === overlay) overlay.style.display = "none";
+    });
+});
+
+/* เปลี่ยนหน้าหลัก / เกมเพจ */
+function goProducts() {
+    showHome();
+    document.getElementById("products").scrollIntoView({behavior:"smooth"});
+    closeMobileMenu();
+}
+
+function showGamePage(pageId) {
+    document.querySelector(".hero").style.display = "none";
+    document.querySelectorAll(".container").forEach(function(element) {
+        element.style.display = "none";
+    });
+    document.querySelectorAll(".game-page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+    const page = document.getElementById(pageId);
+    if (page) {
+        page.classList.add("active");
+        page.scrollIntoView({behavior:"smooth"});
+    }
+    closeMobileMenu();
+}
+
+function showHome() {
+    document.querySelector(".hero").style.display = "";
+    document.querySelectorAll(".container").forEach(function(element) {
+        element.style.display = "";
+    });
+    document.querySelectorAll(".game-page").forEach(function(page) {
+        page.classList.remove("active");
+    });
+    window.scrollTo({top:0, behavior:"smooth"});
+}
+
+/* ปุ่ม ESC ปิดหน้าต่างทั้งหมด */
+document.addEventListener("keydown", function(event) {
+    if (event.key === "Escape") {
+        document.querySelectorAll(".popup-bg").forEach(function(popup) {
+            popup.style.display = "none";
+        });
+        closeZoom();
+        document.getElementById("searchBox").style.display = "none";
+        closeMobileMenu();
+    }
+});
+
+/* ข้อมูลแมพ Roblox */
+const robloxMaps = {
+    egg: {
+        name: "แมพเอาไข่",
+        products: [
+            { name: "สินค้าแมพเอาไข่ #1", image: "images/maps/egg-product1.jpg", price: "สอบถามราคา", description: "รายละเอียดสินค้าจากแมพเอาไข่" }
+        ]
+    },
+    garden: {
+        name: "Grow a Garden",
+        products: [
+            { name: "สินค้า Grow a Garden #1", image: "images/maps/garden-product1.jpg", price: "สอบถามราคา", description: "รายละเอียดสินค้า Grow a Garden" }
+        ]
+    }
+};
+
+function showMapProducts(mapKey) {
+    const map = robloxMaps[mapKey];
+    if (!map) return;
+    document.getElementById("robloxMapGrid").style.display = "none";
+    document.getElementById("mapProducts").style.display = "block";
+    document.getElementById("mapProductTitle").textContent = map.name;
+
+    const grid = document.getElementById("mapProductGrid");
+    grid.innerHTML = "";
+
+    map.products.forEach(function(product) {
+        const card = document.createElement("div");
+        card.className = "id-card";
+        card.innerHTML = `
+            <div class="id-image" onclick="zoomImage('${product.image}')">
+                <img src="${product.image}" alt="${product.name}">
+            </div>
+            <h3>${product.name}</h3>
+            <p>${product.description}</p>
+            <div class="id-price">${product.price}</div>
+            <button onclick="openProductDetail('${product.name}', '${product.image}', '${product.price}', '-', '${product.description}')">ดูรายละเอียดสินค้า</button>
+        `;
+        grid.appendChild(card);
+    });
+
+    document.getElementById("mapProducts").scrollIntoView({behavior: "smooth", block: "start"});
+}
+
+function backToMaps() {
+    document.getElementById("mapProducts").style.display = "none";
+    document.getElementById("robloxMapGrid").style.display = "grid";
+    document.getElementById("robloxPage").scrollIntoView({behavior: "smooth", block: "start"});
+}
 </script>
+
 </body>
 </html>
